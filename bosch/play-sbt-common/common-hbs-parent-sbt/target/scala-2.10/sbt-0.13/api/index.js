@@ -1,0 +1,1 @@
+Index.PACKAGES = {"com.bosch.sbt.parent" : [{"object" : "com\/bosch\/sbt\/parent\/BoschParent$.html", "name" : "com.bosch.sbt.parent.BoschParent"}], "com.bosch" : [], "sbt" : [], "com.bosch.sbt" : [], "com" : []};

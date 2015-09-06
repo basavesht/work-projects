@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:basic="http://tmp.bosch.com/cl/basictypes"
+            elementFormDefault="qualified">
+    <xsd:annotation>
+        <xsd:documentation>Revision: 1940</xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../CL/1/BasicTypes.xsd"/>
+    <!-- 
+    This schema provides common base types for realizing pagination & sorting of query results.
+    INTENDED USAGE:
+    Note that this is a special xml-schema without any namespace! For that reason, services should 
+    NOT IMPORT this schema (by using <xsd:include>), but INCLUDE the schema by using <xsd:redefine>.
+    The <xsd:redefine> mechanism will include (i.e., inline) all types defined here into the namespace 
+    of the including schema. 
+    While doing so, the including schema should redefine (i.e., override) the definition of the 
+    type "SortKey" in order to define valid sort keys for that particular service. 
+    
+    For more information see "Pagination & Sorting" in the Wiki.
+    -->
+    <!-- ########## Abstract type that has to be redefined ######### -->
+    <xsd:simpleType name="SortKey">
+        <xsd:annotation>
+            <xsd:documentation> 
+                A sort key defines a particular sorting criterion (e.g., a field name) after which all
+                elements of the query result can be sorted.
+                Valid sort keys have to be defined by each service individually by redefining this type!
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+
+    <!-- ################## Reusable types ################### -->
+    <xsd:complexType name="QueryInfo">
+        <xsd:annotation>
+            <xsd:documentation>
+                This element contains additional information about a query (i.e., a search request). This
+                comprises the number of the page requested, the number of elements to be included in this
+                page, as well as the requested sorting of elements.
+                Note that the page number refers to the sorted list of query results (i.e., sorting has to
+                be applied before selecting a certain subset of elements to be included in the result page.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="orderBy" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Defines the requested ordering of result elements. Multiple "orderBy" elements 
+                        will be apllied in successive order (e.g., the first one defines the primary
+                        sort criteria, the next one the secondary sort criteria, etc.). 
+                        If no ordering is given, the service will apply some default sorting instead.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="pageNumber" type="positiveInt" default="1">
+            <xsd:annotation>
+                <xsd:documentation>
+                        The number of the requested "page" of results (counting from 1). Each page contains
+                        a number of results as defined by the pageSize attribute. For example, setting 
+                        pageNumber=3 (and pageSize=20) will return a list with the 41st to the 60th element 
+                        of the entire query result (assuming there really are that many elements in the 
+                        query result). 
+                        If this parameter is omitted, the first page will be returned by default.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="pageSize" type="positiveInt">
+            <xsd:annotation>
+                <xsd:documentation>
+                        The number of results that are contained in a single "page". If this parameter is 
+                        omitted, the configured maximum page size will be used by default 
+                        (the maximum page size may be different between individual services).
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:complexType name="PageInfo">
+        <xsd:annotation>
+            <xsd:documentation>
+                This element contains additional information about a page of query results. This includes 
+                not only the page number and the page size, but also the total number of elements and 
+                the total number of pages the entire query result consists of.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="orderBy" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Defines the ordering of the returned results. Multiple "orderBy" elements 
+                        are apllied in successive order (e.g., the first one defines the primary
+                        sort criteria, the next one the secondary sort criteria, etc.).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="PageInfoAttributes"/>
+    </xsd:complexType>
+
+    <!-- ###### Some helper types used in the definitions above ####### -->
+    <xsd:attributeGroup name="PageInfoAttributes">
+        <xsd:attribute name="pageNumber" type="positiveInt" use="required">
+            <xsd:annotation>
+                <xsd:documentation>
+                    The number of one particular "page" of results (counting from 1).
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="pageSize" type="positiveInt" use="required">
+            <xsd:annotation>
+                <xsd:documentation>
+                    The number of results that are contained in a single "page".
+                    Note that this may be different from the requested pageSize, if the requested
+                    size exceeded the maximum page size allowed by a particular service.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="totalPages" type="positiveInt" use="required">
+            <xsd:annotation>
+                <xsd:documentation>
+                    The total number of pages that match the search request (i.e, the incoming query).
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="totalSize" type="nonNegativeInt" use="required">
+            <xsd:annotation>
+                <xsd:documentation>
+                    The total number of results that match the search request (i.e, the incoming query).
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:attributeGroup>
+    <xsd:element name="orderBy">
+        <xsd:complexType>
+            <xsd:attribute name="sortKey" type="SortKey" use="required">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        A particular sorting criterion (e.g., a field name) that defines the order of elements
+                        in the returned list of query results.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="sortDir" type="SortDirection" default="ASC">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Defines the direction of the order (either ascending "ASC" or descending "DESC").
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="SortDirection">
+        <xsd:annotation>
+            <xsd:documentation>
+                The direction in which a sorting criterion is applied.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ASC">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ASCending order.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DESC">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        DESCending order.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="positiveInt">
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="nonNegativeInt">
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+    <!-- ################# Reusable error types ################## -->
+    <xsd:element name="invalidPageNumberError">
+        <xsd:complexType>
+            <xsd:annotation>
+                <xsd:documentation>
+                    This error indicates that a client requested a page number that does not exist. That is,
+                    the total number of pages of the requested query result ("totalPages") is smaller than 
+                    the requested "pageNumber". 
+                    Additional information about the requested "pageNumber", the requested "pageSize", as well
+                    as about the total number of pages ("totalPages") and the total number of result elements 
+                    ("totalSize") is provided in the respective attributes of this error.
+                </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexContent>
+                <xsd:extension base="basic:BaseErrorType">
+                    <xsd:attributeGroup ref="PageInfoAttributes"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://th.bosch.com/externalorganization"
+        targetNamespace="http://th.bosch.com/externalorganization"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 2981</documentation>
+	   </annotation>
+	   <annotation>
+		      <documentation>Definition of the external organization identifiers which are used in the communication between external systems and the TMP.</documentation>
+	   </annotation>
+	   <complexType name="InternalOrganizationType">
+		      <sequence>
+			         <element name="organizationIdentifier" type="string"/>
+			         <element name="isIntegrated" type="boolean"/>
+			         <element name="isTest" type="boolean"/>
+		      </sequence>
+	   </complexType>
+	   <complexType name="ExternalOrganizationType">
+		      <sequence>
+			         <element name="organizationIdentifier" type="string"/>
+			         <element name="organizationType" type="string"/>
+		      </sequence>
+	   </complexType>
+	   <complexType name="OrganizationType">
+		      <sequence>
+			         <element name="internalOrganization" type="tns:InternalOrganizationType" minOccurs="0"
+                     maxOccurs="unbounded"/>
+			         <element name="externalOrganization" type="tns:ExternalOrganizationType"/>
+		      </sequence>
+	   </complexType>
+</schema>

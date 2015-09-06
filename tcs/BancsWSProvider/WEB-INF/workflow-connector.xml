@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WORKFLOW_CONNECTOR_CONFIG>
+	 <EJB_CONNECTOR PROVIDER="com.ibm.websphere.naming.WsnInitialContextFactory" URL="iiop://127.0.0.1:2814" JNDI="ejb/BancsWSProvider"></EJB_CONNECTOR>
+</WORKFLOW_CONNECTOR_CONFIG>

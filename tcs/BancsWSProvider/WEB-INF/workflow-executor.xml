@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WORKFLOW_EXECUTOR>
+      <SERVICE ID="1000">
+        <CLASS>com.tcs.ebw.serverside.services.PaymentTransactionService</CLASS>
+        <METHOD>
+         <NAME>onLoadAccDetails</NAME>
+         <METHOD-PARAMS>
+            <METHOD-PARAM>java.lang.String</METHOD-PARAM>
+            <METHOD-PARAM>[Ljava.lang.Object;</METHOD-PARAM>
+            <METHOD-PARAM>java.lang.Boolean</METHOD-PARAM>
+            <METHOD-PARAM>java.lang.String</METHOD-PARAM>
+         </METHOD-PARAMS>
+        </METHOD>
+      </SERVICE>
+       <SERVICE ID="1001">
+        <CLASS>com.tcs.ebw.serverside.services.PaymentTransactionService</CLASS>
+        <METHOD>
+         <NAME>onSelectedAccDetails</NAME>
+         <METHOD-PARAMS>
+            <METHOD-PARAM>java.lang.String</METHOD-PARAM>
+            <METHOD-PARAM>[Ljava.lang.Object;</METHOD-PARAM>
+            <METHOD-PARAM>java.lang.Boolean</METHOD-PARAM>
+         </METHOD-PARAMS>
+        </METHOD>
+      </SERVICE>
+      <SERVICE ID="1002">
+        <CLASS>com.tcs.ebw.serverside.services.PaymentTransactionService</CLASS>
+        <METHOD>
+         <NAME>createSubmitTransfer</NAME>
+         <METHOD-PARAMS>
+            <METHOD-PARAM>java.lang.String</METHOD-PARAM>
+            <METHOD-PARAM>[Ljava.lang.Object;</METHOD-PARAM>
+            <METHOD-PARAM>java.lang.Boolean</METHOD-PARAM>
+         </METHOD-PARAMS>
+        </METHOD>
+      </SERVICE>
+       <SERVICE ID="1003">
+        <CLASS>com.tcs.ebw.serverside.services.PaymentTransactionService</CLASS>
+        <METHOD>
+         <NAME>setPaymentsTransation</NAME>
+         <METHOD-PARAMS>
+            <METHOD-PARAM>java.lang.String</METHOD-PARAM>
+            <METHOD-PARAM>[Ljava.lang.Object;</METHOD-PARAM>
+            <METHOD-PARAM>java.lang.Boolean</METHOD-PARAM>
+         </METHOD-PARAMS>
+        </METHOD>
+      </SERVICE>
+</WORKFLOW_EXECUTOR>

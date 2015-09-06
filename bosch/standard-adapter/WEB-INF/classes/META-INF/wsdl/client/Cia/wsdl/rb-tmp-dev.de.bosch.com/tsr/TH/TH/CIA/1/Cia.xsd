@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:tns="http://th.bosch.com/cia" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pat="http://th.bosch.com/integrationpatient"
+            xmlns:basic="http://tmp.bosch.com/cl/basictypes"
+            xmlns:eo="http://th.bosch.com/externalorganization"
+            xmlns:pr="http://th.bosch.com/patientrecord"
+            xmlns:res="http://tmp.bosch.com/cl/results"
+            xmlns:task="http://tmp.bosch.com/cl/task"
+            targetNamespace="http://th.bosch.com/cia"
+            elementFormDefault="qualified">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3451</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:import namespace="http://th.bosch.com/integrationpatient"
+                schemaLocation="../../../TH/CIA/1/IntegrationPatient.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/externalorganization"
+                schemaLocation="../../../TH/CIA/1/ExternalOrganization.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/patientrecord"
+                schemaLocation="../../../TH/PatientRecord/1/PatientRecord.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../../CL/1/BasicTypes.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/results"
+                schemaLocation="../../../CL/Results/1/Results.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/task"
+                schemaLocation="../../../CL/Task/1/Task.xsd"/>
+	   <!--  ##############################################################################################################
+	             ############################################# Operation elements #####################################################
+	             ##############################################################################################################  -->
+	<xsd:element name="getExternalOrganizations">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="organizationIdentifier" type="xsd:string"/>
+				            <xsd:element name="organizationType" type="xsd:string"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getExternalOrganizationsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="externalOrganization" type="eo:OrganizationType" maxOccurs="unbounded"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="getPatients">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="basic:IdentifierType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getPatientsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"
+                             maxOccurs="unbounded"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="findPatientsByIdInOrganization">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="basic:IdentifierType"/>
+				            <xsd:element name="organizationId" type="xsd:long"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findPatientsByIdInOrganizationReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"
+                             maxOccurs="unbounded"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="admitPatient">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="admitPatientReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="pausePatient">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="pausePatientReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="updatePatientDemographics">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"
+                             maxOccurs="unbounded"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="updatePatientDemographicsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+<xsd:element name="findResults">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="filter" type="res:AbstractFilter">
+					               <xsd:annotation>
+						                  <xsd:documentation>Defines filter criteria for the results to be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="queryInfo" type="res:QueryInfo" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.If omitted, the default chunk size is used and the first chunk is returned.All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findResultsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="chunkInfo" type="res:ChunkInfo">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.
+If omitted, the default chunk size is used and the first chunk is returned.
+All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="surveyResponse" type="pr:SurveyResponse" minOccurs="0"
+                             maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>Requested survey responses, depending on the filter in the request.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="meterMeasurement" type="pr:MeterMeasurement" minOccurs="0"
+                             maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>Requested meter measurings, depending on the filter in the request.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType" minOccurs="0"
+                             maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>Unique Integrated patient details for the survey responses.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getResult">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="id" type="res:ResultId">
+					               <xsd:annotation>
+						                  <xsd:documentation>An id of a result which should be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getResultReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:AbstractResult">
+					               <xsd:annotation>
+						                  <xsd:documentation>The requested result.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="pushResults">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="surveyResponse" type="pr:SurveyResponse" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            <xsd:element name="meterMeasurement" type="pr:MeterMeasurement" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            <xsd:element name="patientId" type="basic:IdentifierType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="pushResultsReply"/>
+	   <xsd:element name="note">
+	       <xsd:annotation>
+	           <xsd:documentation>Pateint or Session Note Data</xsd:documentation>
+	       </xsd:annotation>
+		      <xsd:complexType>
+		          <xsd:sequence>
+				            <xsd:element name="header" type="task:HeaderType"/>
+				            <xsd:element name="payload" type="task:NotesPayloadType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findNotes">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="filter" type="task:AbstractFilterType">
+					               <xsd:annotation>
+						                  <xsd:documentation>Defines filter criteria for the notes to be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="queryInfo" type="task:QueryInfo" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.If omitted, the default chunk size is used and the first chunk is returned.All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findNotesReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="pageInfo" type="task:PageInfo">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about pagination and sorting of the returned query result. This includes the total number of matching tasks as well as the returned "page" of results and the ordering used.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element ref="tns:note" minOccurs="0" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The list of Patient or Session Notes Data based on (a) the specified filter criteria, and (b)  the requested pagination and sorting.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType" minOccurs="0"
+                             maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>Unique Integrated patient details for the notes responses.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="pushNotes">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element ref="tns:note" minOccurs="0" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The list of Patient or Session Notes Data based on (a) the specified filter criteria, and (b)  the requested pagination and sorting.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Unique Integrated patient details for the notes responses. Not required to be populated from task service. Requires only for CDA processing, hence it will be populated through CIA service.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	
+	   <!-- 	   ######################################################################################################################
+	   ################################################## Faults ############################################################
+	   ######################################################################################################################   	   -->
+	<xsd:element name="userNotAuthorizedError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that user is not authorized to invoke the operation</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="insufficientDataError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Error message that is sent if the supplied data is insufficient</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="optimisticLockingError" type="basic:OptimisticLockingErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates an optimistic locking violation while persisting data</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="organizationNotActiveError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Patient's signup organization is not active</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="resourceNotFoundError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates the intended resource is not found in the system</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="noSuchPatientError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates the intended patient is not found in the system</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="unknownResultError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that a passed id cannot be related to a result.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="invalidFilterError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="invalidNextChunkError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>This error indicates that a client requested a chunk and the passed identifier for the element which should be the first element of the chunk does not exist.                </xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="noSuchUserError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="patientNotActiveError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="userNotActiveError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="userNotAssignableError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="duplicatePatientError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the patient with given info already exists.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="remoteServiceError" type="basic:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the invocation of remote service failed.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="invalidDataError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that invalid data is sent.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="patientAlreadyEnrolledError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the patient is already enrolled.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!--++++++++++++++++++++++++++++++++++++++++++++-->
+	<xsd:element name="patientNotPausedError" type="pr:PatientErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the patient is not paused.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!-- 	   ######################################################################################################################	
+   ############################################## Types and Groups ######################################################	
+   ######################################################################################################################  
+ 	   -->
+</xsd:schema>

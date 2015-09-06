@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pat="http://th.bosch.com/integrationpatient"
+            xmlns:pr="http://th.bosch.com/patientrecord"
+            xmlns:res="http://tmp.bosch.com/cl/results"
+            targetNamespace="http://th.bosch.com/integration"
+            elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3429</documentation>
+	   </annotation>
+	   <!-- ################ Imported Schemas ####################### -->
+	<xsd:import namespace="http://th.bosch.com/integrationpatient"
+                schemaLocation="../../../TH/CIA/1/IntegrationPatient.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/results"
+                schemaLocation="../../../CL/Results/1/Results.xsd"/>
+    <xsd:import namespace="http://th.bosch.com/patientrecord"
+                schemaLocation="../../../TH/PatientRecord/1/PatientRecord.xsd"/>
+	   <!--################# Operation elements ######################-->
+	<xsd:element name="pushResults">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="surveyResponse" type="pr:SurveyResponse" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            <xsd:element name="meterMeasurement" type="pr:MeterMeasurement" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>	   
+</xsd:schema>

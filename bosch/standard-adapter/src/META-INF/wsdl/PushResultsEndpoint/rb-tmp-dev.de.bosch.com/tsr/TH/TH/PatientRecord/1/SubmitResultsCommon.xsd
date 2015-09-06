@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (x64) (http://www.altova.com) by Steffen Reimann (Robert Bosch GmbH) --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://th.bosch.com/patientrecord/common"
+            targetNamespace="http://th.bosch.com/patientrecord/common"
+            elementFormDefault="qualified">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3375</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:simpleType name="ClinicalCategoryType">
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="symptoms"/>
+			         <xsd:enumeration value="behavior"/>
+			         <xsd:enumeration value="knowledge"/>
+			         <xsd:enumeration value="general"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="ReliabilityLevelType">
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="none"/>
+			         <xsd:enumeration value="trusted"/>
+			         <xsd:enumeration value="notTrusted"/>
+			         <xsd:enumeration value="invalid"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="TimeOffsetType">
+		      <xsd:union>
+			         <xsd:simpleType>
+				            <xsd:restriction base="xsd:token">
+					               <xsd:enumeration value="unknown"/>
+				            </xsd:restriction>
+			         </xsd:simpleType>
+			         <xsd:simpleType>
+				            <xsd:restriction base="xsd:int">
+					               <xsd:annotation>
+						                  <xsd:documentation xml:lang="en">
+							The (positive or negative) offset in milliseconds.
+						</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:restriction>
+			         </xsd:simpleType>
+		      </xsd:union>
+	   </xsd:simpleType>
+	   <xsd:complexType name="AbstractNonResponderReason">
+		      <xsd:annotation>
+			         <xsd:documentation>Abstract non responder reason</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:complexType>
+	   <xsd:complexType name="PatientConfigurationIncomplete">
+		      <xsd:annotation>
+			         <xsd:documentation>Non responder because of incomplete configuration</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractNonResponderReason"/>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="RequestedVitalSignsNotReceived">
+		      <xsd:annotation>
+			         <xsd:documentation>Non responder because of missing requested vital signs</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractNonResponderReason"/>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="SurveyNotReceived">
+		      <xsd:annotation>
+			         <xsd:documentation>Non responder because of missing survey answer</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractNonResponderReason">
+				            <xsd:attribute name="currentSessionName" use="optional">
+					               <xsd:simpleType>
+						                  <xsd:restriction base="xsd:string">
+							                     <xsd:maxLength value="255"/>
+						                  </xsd:restriction>
+					               </xsd:simpleType>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+</xsd:schema>

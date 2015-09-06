@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Balasubramanian Azhagappan (Robert Bosch GmbH) --><schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:basic="http://th.bosch.com/basictypes"
+        xmlns:aud="http://th.bosch.com/audit"
+        xmlns:tns="http://th.bosch.com/threshold"
+        xmlns:cli="http://th.bosch.com/clinicaldefinitions"
+        targetNamespace="http://th.bosch.com/threshold"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 2676</documentation>
+	   </annotation>
+	   <!-- *************************************************************** Import used namespaces ************************************************************************************** -->
+	<import namespace="http://th.bosch.com/basictypes"
+            schemaLocation="../../TH/1/BasicTypes.xsd"/>
+	   <import namespace="http://th.bosch.com/audit"
+            schemaLocation="../../TH/1/AuditInformation.xsd"/>
+	   <import namespace="http://th.bosch.com/clinicaldefinitions"
+            schemaLocation="../../TH/1/ClinicalDefinitions.xsd"/>
+	   <complexType name="ThresholdRangeType">
+		      <annotation>
+			         <documentation>Represents a threshold range</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="minValue" type="cli:VitalSignValueType" minOccurs="0">
+				            <annotation>
+					               <documentation>The minimum value that a threshold should be. Each range has to have a minValue or a maxValue or both. </documentation>
+				            </annotation>
+			         </element>
+			         <element name="maxValue" type="cli:VitalSignValueType" minOccurs="0">
+				            <annotation>
+					               <documentation>The maximum value that a threshold should be. Each range has to have a minValue or a maxValue or both.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="enteredMinValue" type="cli:VitalSignValueType" minOccurs="0">
+				            <annotation>
+					               <documentation>The minimum value as entered by the user. 
+					Example: If the weigt threshold's baseline is '80' and the enteredMinValue is '-2' then the minValue would be '78'.
+					See also <a href="https://rb-tmp-dev.de.bosch.com/wiki/display/NI/Add+Weight+Thresholds+Page">Weight Thresholds</a>.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="enteredMaxValue" type="cli:VitalSignValueType" minOccurs="0">
+				            <annotation>
+					               <documentation>The maximum value as entered by the user. 
+					Example: If the weight threshold's baseline is '80' and the enteredMaxValue is '2' then the maxValue would be '82'.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="risk">
+				            <annotation>
+					               <documentation>The risk of vital sign if it falls within the threshold min and max values.</documentation>
+				            </annotation>
+				            <complexType>
+					               <simpleContent>
+						                  <extension base="cli:RiskType">
+							                     <attribute name="rangeCategory" type="tns:RiskCategoryType" use="required">
+								                        <annotation>
+									                           <documentation>Classifies high and medium risk ranges to be of category UPPER or LOWER. 
+								Low risk ranges always are of category NOT_APPLICABLE.</documentation>
+								                        </annotation>
+							                     </attribute>
+						                  </extension>
+					               </simpleContent>
+				            </complexType>
+			         </element>
+			         <element name="isMatched" type="xsd:boolean" minOccurs="0">
+				            <annotation>
+					               <documentation>Indicates whether this range was matched during the assessment.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <group name="ThresholdBaseGroup">
+		      <sequence>
+			         <element name="loincCode" type="cli:LoincCodeType">
+				            <annotation>
+					               <documentation>The threshold loinc code.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="unitOfMeasure" type="cli:UnitOfMeasureType" minOccurs="0">
+				            <annotation>
+					               <documentation>The unit of measure of the min and max values. Note: some LOINC types may not have a unit, e.g. INR. See https://rb-tmp-dev.de.bosch.com/wiki/display/TMPLUS2/PLS-0075+-+Vital+Sign+Threshold+Definitions</documentation>
+				            </annotation>
+			         </element>
+			         <element name="enteredUnitOfMeasure" type="cli:UnitOfMeasureType" minOccurs="0">
+				            <annotation>
+					               <documentation>The unit of measure of the entered min and entered max values.
+					Note: this can be different then 'unitOfMeasure' for example for PEF or FEV1 where 'enteredUnitOfMeasure' 
+					is in percent and 'unitOfMeasure' is in Liters/Minute or Liters. 
+					See also <a href="https://rb-tmp-dev.de.bosch.com/wiki/display/NI/Add+PEF+OR+FEV1+Thresholds+Page">PEF or FEV1 Thresholds</a>.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="baselineValue" type="cli:VitalSignValueType" minOccurs="0">
+				            <annotation>
+					               <documentation>The baseline value (weight) or personal best (PEF or FEV1).</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </group>
+	   <complexType name="ThresholdType">
+		      <sequence>
+			         <group ref="tns:ThresholdBaseGroup"/>
+			         <element name="range" minOccurs="2" maxOccurs="5">
+				            <complexType>
+					               <complexContent>
+						                  <extension base="tns:ThresholdRangeType">
+							                     <sequence>
+								                        <element name="id" type="basic:SurrogateKeyType"/>
+							                     </sequence>
+						                  </extension>
+					               </complexContent>
+				            </complexType>
+			         </element>
+			         <element name="id" type="basic:SurrogateKeyType">
+				            <annotation>
+					               <documentation>Primary identifier of the Threshold. This value is same as the value in the PS side.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="begin" type="dateTime"/>
+			         <element name="end" type="dateTime" minOccurs="0"/>
+			         <element name="assigner" type="aud:AuditInformationType"/>
+			         <element name="remover" type="aud:AuditInformationType" minOccurs="0"/>
+		      </sequence>
+	   </complexType>
+	   <complexType name="InitialThresholdType">
+		      <sequence>
+			         <group ref="tns:ThresholdBaseGroup"/>
+			         <element name="range" type="tns:ThresholdRangeType" minOccurs="2" maxOccurs="5"/>
+		      </sequence>
+	   </complexType>
+	   <simpleType name="RiskCategoryType">
+		      <restriction base="token">
+			         <enumeration value="UPPER"/>
+			         <enumeration value="LOWER"/>
+			         <enumeration value="NOT_APPLICABLE"/>
+		      </restriction>
+	   </simpleType>
+</schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on the fly from a service meta model XML file by performing an XSL transformation. -->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:th="http://tmp.bosch.com"
+                  xmlns:tns="http://th.bosch.com/integration/notes"
+                  targetNamespace="http://th.bosch.com/integration/notes"
+                  name="PushNotes">
+    <wsdl:documentation>
+        <th:revision>Revision: 3442</th:revision>
+    </wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://th.bosch.com/integration/notes"
+                        schemaLocation="PushNotes.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="pushNotesRequest">
+        <wsdl:part name="part1" element="tns:pushNotes"/>
+    </wsdl:message>
+    <wsdl:portType name="PushNotesPortType">
+        <wsdl:operation name="pushNotes">
+            <wsdl:input name="pushNotesInput" message="tns:pushNotesRequest"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PushNotesSoapBinding" type="tns:PushNotesPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="pushNotes">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="pushNotesInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PushNotesService">
+        <wsdl:port name="PushNotesHttpPort" binding="tns:PushNotesSoapBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/PushNotesService/PushNotesHttpPort"/>
+        </wsdl:port>
+    </wsdl:service>
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+        <jaxws:package name="com.bosch.th.integration"/>
+    </jaxws:bindings>
+    <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="PushNotes">
+        <plnk:role name="ServiceImplementation" portType="tns:PushNotesPortType"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

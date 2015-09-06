@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="com.bosch"
+		module="bosch-hbs-sbt-parent"
+		revision="1.7-SNAPSHOT"
+		extra-scalaVersion="2.10"
+		extra-sbtVersion="0.13"
+		conf="test"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20150506170539"/>
+	<dependencies>
+	</dependencies>
+</ivy-report>

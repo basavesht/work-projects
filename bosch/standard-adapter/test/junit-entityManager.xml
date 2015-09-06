@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<tx:annotation-driven />
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:tmpdb.properties</value>
+		</property>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="${tmpdb.url}" />
+		<property name="user" value="${tmpdb.user}" />
+		<property name="password" value="${tmpdb.pwd}" />
+		<property name="minPoolSize" value="1" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<constructor-arg ref="entityManagerFactory" />
+	</bean>
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" />
+		<property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="false" />
+            </bean>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <!--prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop-->
+                <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+            </props>
+        </property>
+	</bean>
+
+	<bean id="notesDao" class="com.bosch.tmp.integration.dao.NotesDaoImpl">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+    <bean id="sessionResultDao" class="com.bosch.tmp.integration.dao.SessionResultDaoImpl">
+    	<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+    <bean id="resultDao" class="com.bosch.tmp.integration.dao.ResultDaoImpl">
+  	  <property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+    
+</beans>

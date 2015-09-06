@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (x64) (http://www.altova.com) by Steffen Reimann (Robert Bosch GmbH) --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:bsc="http://th.bosch.com/basictypes"
+            xmlns:cd="http://th.bosch.com/clinicaldefinitions"
+            xmlns:threshold="http://th.bosch.com/threshold"
+            xmlns:patient="http://th.bosch.com/patient"
+            xmlns:cmn="http://th.bosch.com/patientrecord/common"
+            xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:tns="http://th.bosch.com/patientrecord"
+            targetNamespace="http://th.bosch.com/patientrecord"
+            elementFormDefault="qualified"
+            jxb:version="2.0">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3452</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:import namespace="http://th.bosch.com/basictypes"
+                schemaLocation="../../../TH/1/BasicTypes.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/patient"
+                schemaLocation="../../../TH/1/Patient.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/threshold"
+                schemaLocation="../../../TH/1/Threshold.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/clinicaldefinitions"
+                schemaLocation="../../../TH/1/ClinicalDefinitions.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/patientrecord/common"
+                schemaLocation="./SubmitResultsCommon.xsd"/>
+	   <!-- ############### Faults  ############### -->
+	<xsd:element name="invalidResultDataError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that processing the passed results failed because of invalid data.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="userNotAuthorizedError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that user is not authorized to perform the operation.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <!-- ############### Clinical Values  ############### -->
+	<xsd:complexType name="RiskAssessment">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a risk assessment.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="threshold" type="threshold:ThresholdType" minOccurs="0" maxOccurs="2">
+				            <xsd:annotation>
+					               <xsd:documentation>The thresholds used as criteria for assessing vital signs.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="risk" maxOccurs="unbounded">
+				            <xsd:annotation>
+					               <xsd:documentation>The risks determined by this assessment.</xsd:documentation>
+				            </xsd:annotation>
+				            <xsd:complexType>
+					               <xsd:attribute name="level" type="cd:RiskType" use="required">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Indicates the level of the risk.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:attribute>
+					               <xsd:attribute name="category" type="cmn:ClinicalCategoryType" use="optional">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Denotes the risk's category, if an assessment leads to multiple risks (e.g. when risking a resposne to survey).</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:attribute>
+				            </xsd:complexType>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:complexType name="Assessment">
+		      <xsd:annotation>
+			         <xsd:documentation>An assessment of a result.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="riskAssessment" type="tns:RiskAssessment"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:complexType name="AbstractResult" abstract="true">
+		      <xsd:annotation>
+			         <xsd:documentation>Base type for all results.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="btpId" type="patient:BtpId">
+				            <xsd:annotation>
+					               <xsd:documentation>The patient from which the result was taken.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="responseDate" type="xsd:dateTime" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The date when the patient responded to generate this Result</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="receivedDate" type="xsd:dateTime">
+				            <xsd:annotation>
+					               <xsd:documentation>The date when this response was received at the TMP.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+		      <xsd:attribute name="patientTimezone">
+			         <xsd:annotation>
+				            <xsd:documentation>The POSIX name of the patient timezone in effect when the result was collected.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="collectionTime" type="xsd:dateTime" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The date when this result was collected. The meaning differs depending on the respecting result type.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="uploadId" type="xsd:long">
+			         <xsd:annotation>
+				            <xsd:documentation>An ID allowing to group results which were uploaded at the same time. This ID is generated each time results are uploaded.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:complexType name="NoResult">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that an expected result has not been received.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractResult">
+				            <xsd:sequence>
+					               <xsd:element name="reasons" type="cmn:AbstractNonResponderReason" maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>A list of reasons that triggered this non responder message.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="ConnectionResult">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that a patient interface connected to the TMP but did not deliver any results.
+
+The collectionTime refers to the date when the patient interface connected to the TMP.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractResult">
+				            <xsd:sequence>
+					               <xsd:element name="device" type="tns:Device">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Denotes the patient interface which connected to the TMP.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:simpleType name="VitalSignType">
+		      <xsd:annotation>
+			         <xsd:documentation>Enumerates all used vital sign types.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="bloodPressure"/>
+			         <xsd:enumeration value="bloodGlucose"/>
+			         <xsd:enumeration value="weight"/>
+			         <xsd:enumeration value="peakFlow"/>
+			         <xsd:enumeration value="oxygen"/>
+			         <xsd:enumeration value="temperature"/>
+			         <xsd:enumeration value="pulse"/>
+			         <xsd:enumeration value="inr"/>
+			         <xsd:enumeration value="fev1"/>
+			         <xsd:enumeration value="prothrombinTime"/>
+			         <xsd:enumeration value="respirations"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:complexType name="MeterMeasurement">
+		      <xsd:annotation>
+			         <xsd:documentation>Groups one or a series of vital signs taken by a meter.
+
+The collection time refers to the date when this meter measurement was received at the TMP.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractResult">
+				            <xsd:sequence>
+					               <xsd:element name="mode" type="tns:Mode">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The mode in which this meter measurement was collected.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="collectionType" type="tns:Collection"/>
+					               <xsd:element name="vitalSign" type="tns:AssessedVitalSign" maxOccurs="unbounded"/>
+					               <xsd:element name="id" type="xsd:long" minOccurs="0">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The id of the meter measurement.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="missingRequestedVitals" minOccurs="0" maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The list of loinc codes of the missing requested vital signs</xsd:documentation>
+						                  </xsd:annotation>
+						                  <xsd:complexType>
+							                     <xsd:attribute name="loincCode" type="xsd:string" use="required">
+								                        <xsd:annotation>
+									                           <xsd:documentation>The loinc code related to the missing requested vital sign</xsd:documentation>
+								                        </xsd:annotation>
+							                     </xsd:attribute>
+						                  </xsd:complexType>
+					               </xsd:element>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="VitalSignValue">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents the numeric value of a vital sign.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="loincCode" type="cd:LoincCodeType">
+				            <xsd:annotation>
+					               <xsd:documentation>The loinc code, identifying the kind of measurement taken.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="value">
+				            <xsd:annotation>
+					               <xsd:documentation>The value of the vital sign.</xsd:documentation>
+				            </xsd:annotation>
+				            <xsd:simpleType>
+					               <xsd:restriction base="xsd:decimal">
+						                  <xsd:minInclusive value="0"/>
+					               </xsd:restriction>
+				            </xsd:simpleType>
+			         </xsd:element>
+			         <xsd:element name="unit" type="cd:UnitOfMeasureType">
+				            <xsd:annotation>
+					               <xsd:documentation>The unit of the vital sign.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="meterFlags" type="cd:MeterFlagEnumType" minOccurs="0"
+                         maxOccurs="unbounded">
+				            <xsd:annotation>
+					               <xsd:documentation>describes potential reasons/tags, as to why a vital sign is considered invalid. It could also be, that a reason is specified but vital sign is considered valid. In that case, the invalid flag in vital sign should NOT be set.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+		      <xsd:attribute name="id" use="optional">
+			         <xsd:annotation>
+				            <xsd:documentation>unique identifier of this vitalsign value within the platform</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="patientTimezone">
+			         <xsd:annotation>
+				            <xsd:documentation>The POSIX name of the patient timezone in effect when the result was collected.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="collectionTime" type="xsd:dateTime" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The date when this numeric value was collected by the meter device.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:complexType name="VitalSign">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a vital sign.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="numericValue" type="tns:VitalSignValue" maxOccurs="unbounded"/>
+			         <xsd:element name="id" type="xsd:long" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The id of the vital sign.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="type" type="tns:VitalSignType">
+				            <xsd:annotation>
+					               <xsd:documentation>The type of the vital sign.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="invalid" type="xsd:boolean" default="false" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>Presence of this flag alone indicates that the vital sign is  invalid. If not set, then, by default, the vital sign is considered valid </xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="requested" type="boolean" default="false" nillable="false">
+				            <xsd:annotation>
+					               <xsd:documentation>States if the vital sign is on the list of requested vital signs of the patient. </xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+		      <xsd:attribute name="patientTimezone">
+			         <xsd:annotation>
+				            <xsd:documentation>The POSIX name of the patient timezone in effect when the result was collected.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="collectionTime" type="xsd:dateTime" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The date when this vital sign was collected by the meter device.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:complexType name="AssessedVitalSign">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a vital sign which was assessed and hence contains a risk assessment.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:VitalSign">
+				            <xsd:sequence>
+					               <xsd:element name="riskAssessment" type="tns:RiskAssessment"/>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="SurveyResponse">
+		      <xsd:annotation>
+			         <xsd:documentation>A survey whose questions were answered by the patient. 
+
+Also known as a session.
+
+The name should emphasize the  request-response pattern employed: The patient is requested to answer a survey and responds to that survey.
+
+The collectionTime refers to the date when the survey response was received at the TMP.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractResult">
+				            <xsd:sequence>
+					               <xsd:element name="patientInterface" type="tns:Device">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The patient interface through which this survey response was collected.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="riskAssessment" type="tns:RiskAssessment"/>
+					               <xsd:element name="surveyVariables" type="tns:SurveyVariable" maxOccurs="unbounded"/>
+					               <xsd:element name="questionResponse" type="tns:QuestionResponse" maxOccurs="unbounded"/>
+					               <xsd:element name="id" type="xsd:long" minOccurs="0">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Unique id of the survey response.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="surveyId" type="xsd:long">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Unique identifier of the survey which was sent to the patient</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="isPartial" type="xsd:boolean" nillable="true">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Indicates the completeness of this session, meaning whether the patient did answer to all questions or not. Defaults to false if omitted!</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="surveyName" type="xsd:string">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The name of the survey.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="surveyGroupName" type="xsd:string">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The name of the group the survey belongs to.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="surveyVersion" type="xsd:string">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Version no. of the survey sent to the patient</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="programName" type="xsd:string">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The name of the program.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="programId" type="xsd:long">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Unique identifier of the program.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="sentDate" type="xsd:dateTime">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The date, when the survey was sent to the patient interface.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="requestedVitals" minOccurs="0" maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The list of loinc codes of the requested vital signs</xsd:documentation>
+						                  </xsd:annotation>
+						                  <xsd:complexType>
+							                     <xsd:attribute name="loincCode" type="xsd:string" use="required">
+								                        <xsd:annotation>
+									                           <xsd:documentation>The loinc code related to the requested vital sign</xsd:documentation>
+								                        </xsd:annotation>
+							                     </xsd:attribute>
+						                  </xsd:complexType>
+					               </xsd:element>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="QuestionResponse">
+		      <xsd:annotation>
+			         <xsd:documentation>A question, it's metadata and the response given.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="meterMeasurement" type="tns:MeterMeasurement" minOccurs="0"
+                         maxOccurs="unbounded">
+				            <xsd:annotation>
+					               <xsd:documentation>Meter measurements made in the process of answering the question.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:group ref="tns:Question"/>
+			         <xsd:group ref="tns:Response"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:group name="Question">
+		      <xsd:sequence>
+			         <xsd:element name="sequenceNumber" type="xsd:short">
+				            <xsd:annotation>
+					               <xsd:documentation>The sequence number of this dialog within the survey.
+
+The same sequence number must only occur once within one survey response!</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="questionType" type="tns:QuestionType">
+				            <xsd:annotation>
+					               <xsd:documentation>The question's type.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="questionCategory" type="cmn:ClinicalCategoryType">
+				            <xsd:annotation>
+					               <xsd:documentation>The category to which the question belongs.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="questionAspect" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>The aspect to which the question belongs.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="question" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>The question which the patient was asked.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="questionId" type="xsd:long">
+				            <xsd:annotation>
+					               <xsd:documentation>the unique identifier of the question</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="questionVersion" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>version number of the question</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="reportCode" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>This question's report code.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="loinc" type="cd:LoincCodeType" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The LOINC code associated with this question.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="unit" type="cd:UnitOfMeasureType" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The unit of measure associated with this question.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:group>
+	   <xsd:group name="Response">
+		      <xsd:sequence>
+			         <xsd:element name="response" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>The response given by the patient.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="responseId" type="xsd:long" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>unique identifier of the response </xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="risk" type="cd:RiskType">
+				            <xsd:annotation>
+					               <xsd:documentation>The risk associated with the response given by the patient.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:group>
+	   <xsd:complexType name="SurveyVariable">
+		      <xsd:annotation>
+			         <xsd:documentation>A survey variable in form of a key-value pair.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:attribute name="key" type="xsd:string" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The key, denoting the survey variable.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="value" type="xsd:string" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The value of the survey variable.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:simpleType name="QuestionType">
+		      <xsd:annotation>
+			         <xsd:documentation>Denotes the type of a question.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="Prompt"/>
+			         <xsd:enumeration value="MultipleChoice"/>
+			         <xsd:enumeration value="Numeric"/>
+			         <xsd:enumeration value="Range"/>
+			         <xsd:enumeration value="Meter"/>
+			         <xsd:enumeration value="Escalate"/>
+			         <xsd:enumeration value="Decision"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <!-- ############### Collections  ############### -->
+	<xsd:complexType name="Collection" abstract="true">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents by which means (person and/or devices) a meter measurement was collected.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="interface" type="tns:Device" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The patient interface through which the result was collected.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:complexType name="AdhocCollection">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a collection of a meter measurement which was done ad-hoc, meaning not following a clinical schedule imposed upon the patient.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:Collection"/>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="ScheduledCollection">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a collection of a meter measurement which was done following a clinical schedule imposed on the patient.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:Collection">
+				            <xsd:attribute name="sequenceNo" type="xsd:short">
+					               <xsd:annotation>
+						                  <xsd:documentation>The no of the dialog in the survey.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+				            <xsd:attribute name="surveyResponseId" type="xsd:long">
+					               <xsd:annotation>
+						                  <xsd:documentation>The survey response which contains the question which the patient was asked and involved taking this measurement.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <!-- ############### Modes  ############### -->
+	<xsd:complexType name="Mode" abstract="true">
+		      <xsd:annotation>
+			         <xsd:documentation>Base Type for modes.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:complexType>
+	   <xsd:group name="DeviceType">
+		      <xsd:annotation>
+			         <xsd:documentation>All properties making up a device.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="manufacturer" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>The manufacturer of the device.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="model" type="xsd:string">
+				            <xsd:annotation>
+					               <xsd:documentation>The model of the device.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="serialNumber" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The serial number of the device.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:group>
+	   <xsd:attributeGroup name="DeviceAttributes">
+		      <xsd:attribute name="deviceOffset" type="cmn:TimeOffsetType" use="optional">
+			         <xsd:annotation>
+				            <xsd:documentation>
+The device offset indicates the time offset a device may
+have relative to a patient interface (e.g. a base station) it is connected to at the time of collection, i.e. the upload of the device readings to the patient interface.
+				</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:attributeGroup>
+	   <xsd:complexType name="Device">
+		      <xsd:annotation>
+			         <xsd:documentation>Represents a device be it a meter or a patient interface.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:group ref="tns:DeviceType"/>
+		      <xsd:attributeGroup ref="tns:DeviceAttributes">
+			         <xsd:annotation>
+				            <xsd:documentation>All attributes making up a device.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attributeGroup>
+	   </xsd:complexType>
+	   <xsd:complexType name="DeviceReportedMode">
+		      <xsd:annotation>
+			         <xsd:documentation>Holds information for device-reported mode.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:Mode">
+				            <xsd:group ref="tns:DeviceType"/>
+				            <xsd:attributeGroup ref="tns:DeviceAttributes"/>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="SelfReportedMode">
+		      <xsd:annotation>
+			         <xsd:documentation>Holds information for self-reported mode.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:Mode">
+				            <xsd:sequence>
+					               <xsd:element name="btpId" type="xsd:string"/>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+</xsd:schema>

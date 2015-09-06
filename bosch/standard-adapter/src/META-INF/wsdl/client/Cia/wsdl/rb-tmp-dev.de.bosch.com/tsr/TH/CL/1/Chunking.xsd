@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Balasubramanian Azhagappan (Robert Bosch GmbH) --><!-- This schema does not define its own namespace, so that the faults defined for chunking can be re-used easily by services including this schema! --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:bsc="http://tmp.bosch.com/cl/basictypes"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3345</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../CL/1/BasicTypes.xsd"/>
+	   <xsd:complexType name="QueryInfo">
+		      <xsd:annotation>
+			         <xsd:documentation>This element contains additional information about a query. 
+
+If the number of items to be returned exceeds the passed chunk size or is bigger than the maximum allowed size, the items will be divided in chunks, beginning with the item which has the greatest id.
+
+Items will be sorted by their id in descending order.
+
+Example:
+------------
+1st Request: 
+chunkSize: 3, 
+lastSeenItemId not set
+
+1st Response: A list of three items beginning with the item which has the greatest id:
+
+Item id="10"
+Item id="9"
+Item id="8"
+
+2nd Request: 
+lastSeenItemId: 8, 
+chunkSize: 3
+
+2nd Response: A list of three items beginning with the item which has an identifier smaller than the passed lastSeenItemId (Note: This means it is not necessarly lastSeenItemId - 1!)
+
+Item id="7"
+Item id="6"
+Item id="5"
+
+The third and fourth request are analogous.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:attributeGroup ref="chunkAttributes"/>
+	   </xsd:complexType>
+	   <xsd:complexType name="ChunkInfo">
+		      <xsd:annotation>
+			         <xsd:documentation>This element contains additional information about a chunk of results.     </xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:attributeGroup ref="chunkAttributes"/>
+		      <xsd:attribute name="totalChunks" type="xsd:long" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The total number of chunks in which the request will be divided.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:attributeGroup name="chunkAttributes">
+		      <xsd:attribute name="lastSeenItemId" type="bsc:SurrogateKeyType">
+			         <xsd:annotation>
+				            <xsd:documentation>Denotes the identifier of the element having the smallest id in the last received chunk.
+
+If omitted, the start of the chunk will be the element with the maximum identifier value.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="chunkSize" type="xsd:int">
+			         <xsd:annotation>
+				            <xsd:documentation>Denotes the number of elements comprised in one chunk.If omitted, the default chunk size is used.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="totalSize" type="xsd:long">
+			         <xsd:annotation>
+				            <xsd:documentation>The total number of elements which match the request. If the client has received this once, it has to send the further requests to findResults with this parameter set. Otherwise Chunking might not work as expected!</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:attributeGroup>
+	   <!-- ################# Errors ################## -->
+	<xsd:element name="invalidNextChunkError">
+		      <xsd:complexType>
+			         <xsd:annotation>
+				            <xsd:documentation>                    This error indicates that a client requested a chunk and the passed identifier for the element which should be the first element of the chunk does not exist.                </xsd:documentation>
+			         </xsd:annotation>
+			         <xsd:complexContent>
+				            <xsd:extension base="bsc:BaseErrorType">
+					               <xsd:attributeGroup ref="chunkAttributes"/>
+				            </xsd:extension>
+			         </xsd:complexContent>
+		      </xsd:complexType>
+	   </xsd:element>
+</xsd:schema>

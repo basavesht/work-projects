@@ -1,0 +1,67 @@
+<urn:QVR_Q17 xmlns:urn="urn:hl7-org:v2xml">
+	<urn:MSH>
+		<urn:MSH.1>|</urn:MSH.1>
+		<urn:MSH.2>^~\&amp;</urn:MSH.2>
+		<urn:MSH.3>
+			<urn:HD.1>Customer EMR</urn:HD.1>
+		</urn:MSH.3>
+		<urn:MSH.4>
+			<urn:HD.1>30040exorg</urn:HD.1>
+		</urn:MSH.4>
+		<urn:MSH.5>
+			<urn:HD.1>Bosch TH+ System</urn:HD.1>
+		</urn:MSH.5>
+		<urn:MSH.6>
+			<urn:HD.1>Bosch TH+ System Code</urn:HD.1>
+		</urn:MSH.6>
+		<urn:MSH.7>
+			<urn:TS.1>3433463</urn:TS.1>
+		</urn:MSH.7>
+		<urn:MSH.9>
+			<urn:MSG.1>QVR</urn:MSG.1>
+			<urn:MSG.2>Q17</urn:MSG.2>
+			<urn:MSG.3>QVR_Q17</urn:MSG.3>
+		</urn:MSH.9>
+		<urn:MSH.10>${#Project#controlId}</urn:MSH.10>
+		<urn:MSH.11>
+			<urn:PT.1>P</urn:PT.1>
+		</urn:MSH.11>
+		<urn:MSH.12>
+			<urn:VID.1>2.9</urn:VID.1>
+		</urn:MSH.12>
+		<urn:MSH.16>AL</urn:MSH.16>
+	</urn:MSH>
+	<urn:UAC>
+		<urn:UAC.1>
+			<urn:CNE.1>SAML</urn:CNE.1>
+		</urn:UAC.1>
+		<urn:UAC.2>
+			<urn:ED.1>
+				<urn:HD.1>Customer EMR</urn:HD.1>
+			</urn:ED.1>
+			<urn:ED.2>UNT</urn:ED.2>
+			<urn:ED.5>
+				<urn:UNT.1>int1</urn:UNT.1>
+				<urn:UNT.2>adminpassword$1</urn:UNT.2>
+			</urn:ED.5>
+		</urn:UAC.2>
+	</urn:UAC>
+	<urn:QPD>
+		<urn:QPD.1>
+			<urn:CE.1>Results Batch</urn:CE.1>
+		</urn:QPD.1>
+		<urn:QPD.7 />
+		<urn:QPD.9>
+			<urn:CX.1>NTE</urn:CX.1>
+			<urn:CX.5>QT</urn:CX.5>
+		</urn:QPD.9>
+	</urn:QPD>
+	<urn:RCP>
+		<urn:RCP.2>
+			<urn:CQ.1>15</urn:CQ.1>
+			<urn:CQ.2>
+				<urn:CE.1>RD</urn:CE.1>
+			</urn:CQ.2>
+		</urn:RCP.2>
+	</urn:RCP>
+</urn:QVR_Q17>

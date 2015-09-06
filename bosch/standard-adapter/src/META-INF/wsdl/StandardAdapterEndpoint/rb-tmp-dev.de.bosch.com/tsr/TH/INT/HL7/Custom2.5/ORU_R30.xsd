@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v25  - ORU_R30
+    Copyright (c) 1999-2004, Health Level Seven. All rights reserved.
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml"
+            targetNamespace="urn:hl7-org:v2xml">
+
+
+  <!-- include segment definitions for version v25 -->
+  <xsd:include schemaLocation="segments.xsd"/>
+
+    <!--
+    MESSAGE ORU_R30
+-->
+  <!-- .. groups used in message ORU_R30 -->
+  <xsd:complexType name="ORU_R30.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.VISIT" type="ORU_R30.VISIT.CONTENT"/>
+    <xsd:complexType name="ORU_R30.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.TIMING_QTY" type="ORU_R30.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="ORU_R30.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.OBSERVATION" type="ORU_R30.OBSERVATION.CONTENT"/>
+    <!-- McKesson construct -->
+  <xsd:complexType name="ORU_R30.PATIENT_INFORMATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PV1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.PATIENT_INFORMATION" type="ORU_R30.PATIENT_INFORMATION.CONTENT"/>
+    <!-- McKesson construct -->
+  <xsd:complexType name="ORU_R30.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ORU_R30.RESULTS" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.ORDER" type="ORU_R30.ORDER.CONTENT"/>
+    <!-- McKesson construct -->
+  <xsd:complexType name="ORU_R30.RESULTS.CONTENT">
+        <xsd:sequence>
+    	<!-- should use xs:choice but does not appear to be part of xml schema 2001. make minOccurs 0 for obx and obx.assembly-->
+        <xsd:element ref="OBX" minOccurs="0" maxOccurs="1"/>
+	           <xsd:element ref="OBX.ASSEMBLY" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30.RESULTS" type="ORU_R30.RESULTS.CONTENT"/>
+
+    <!-- .. message definition ORU_R30 -->
+  <xsd:complexType name="ORU_R30.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="UAC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PID" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORU_R30.VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORU_R30.PATIENT_INFORMATION" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ORU_R30.TIMING_QTY" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ORU_R30.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ORU_R30.ORDER" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORU_R30" type="ORU_R30.CONTENT"/>
+</xsd:schema>
+<!-- McKesson definition --><!--
+<ElementType name="ORU_R30" model="closed" order="seq" content="eltOnly">
+<element type="MSH" minOccurs="1" maxOccurs="1"/>
+<element type="UAC" minOccurs="0" maxOccurs="1"/>
+<element type="ORU_R30.PATIENT_INFORMATION" minOccurs="1" maxOccurs="1"/>
+<element type="ORU_R30.ORDER" minOccurs="1" maxOccurs="*"/>
+</ElementType>
+--><!-- original message definition --><!-- 
+ <xsd:complexType name="ORU_R30.VISIT.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="PV1" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="PV2" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ORU_R30.VISIT" type="ORU_R30.VISIT.CONTENT"/>
+  <xsd:complexType name="ORU_R30.TIMING_QTY.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ORU_R30.TIMING_QTY" type="ORU_R30.TIMING_QTY.CONTENT"/>
+  <xsd:complexType name="ORU_R30.OBSERVATION.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="OBX" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ORU_R30.OBSERVATION" type="ORU_R30.OBSERVATION.CONTENT"/>
+--><!-- .. message definition ORU_R30 --><!--  <xsd:complexType name="ORU_R30.CONTENT">
+    <xsd:sequence>
+      <xsd:element ref="MSH" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element ref="UAC" minOccurs="0" maxOccurs="1" />
+      <xsd:element ref="PID" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="PD1" minOccurs="0" maxOccurs="1" />
+      <xsd:element ref="ORU_R30.VISIT" minOccurs="0" maxOccurs="1" />
+      <xsd:element ref="ORC" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="OBR" minOccurs="1" maxOccurs="1" />
+      <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element ref="ORU_R30.TIMING_QTY" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element ref="ORU_R30.OBSERVATION" minOccurs="1" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ORU_R30" type="ORU_R30.CONTENT"/>
+</xsd:schema>   -->

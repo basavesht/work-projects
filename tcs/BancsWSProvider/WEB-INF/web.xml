@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5"
+ xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <display-name>BancsWSProvider</display-name>
+ <listener>
+  <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+ </listener>
+ <servlet>
+  <servlet-name>BancsWSProvider</servlet-name>
+  <servlet-class>com.tcs.bancs.gateway.http.servlet.BancsWorkflowGateway</servlet-class>
+  <init-param>
+   <param-name>workflowHandlerConfig</param-name>
+   <param-value>/WEB-INF/workflow-handler.xml</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>BancsWSProvider</servlet-name>
+  <url-pattern>/BancsWSProvider</url-pattern>
+ </servlet-mapping>
+ <session-config>
+  <session-timeout>120</session-timeout>
+ </session-config>
+ <env-entry>
+  <env-entry-name>workflow-handler</env-entry-name>
+  <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>/WEB-INF/workflow-handler.xml</env-entry-value>
+ </env-entry>
+</web-app>

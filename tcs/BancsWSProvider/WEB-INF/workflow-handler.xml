@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WORKFLOW_HANDLER_CONFIG>
+     <OPERATIONS>
+	      <OPERATION NAME="loadTransfer" ID="1000">
+			   <REQUEST_HANDLER IMPL_CLASS="com.tcs.bancs.handler.request.RequestHandlerImpl">
+					   <REQUEST_VALIDATOR REQUIRED="true" VALIDATOR_IMPL_CLASS="com.tcs.bancs.handler.request.validator.payments.transfers.OnLoadRequestValidator"/>
+					   <REQUEST_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.request.transformer.payments.transfers.OnLoadRequestTransformer"/>
+					   <REQUEST_ROUTER REQUIRED="true" ROUTER_MODE="EJB"/>
+			   </REQUEST_HANDLER>
+			   <RESPONSE_HANDLER IMPL_CLASS="com.tcs.bancs.handler.response.ResponseHandlerImpl">
+					   <RESPONSE_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.response.transformer.payments.transfers.OnLoadResponseTransformer"/>
+			   </RESPONSE_HANDLER>
+	      </OPERATION>
+	      
+	       <OPERATION NAME="selectAccount" ID="1001">
+			   <REQUEST_HANDLER IMPL_CLASS="com.tcs.bancs.handler.request.RequestHandlerImpl">
+					   <REQUEST_VALIDATOR REQUIRED="true" VALIDATOR_IMPL_CLASS="com.tcs.bancs.handler.request.validator.payments.transfers.SelectAccountRequestValidator"/>
+					   <REQUEST_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.request.transformer.payments.transfers.SelectAccountRequestTransformer"/>
+					   <REQUEST_ROUTER REQUIRED="true" ROUTER_MODE="EJB"/>
+			   </REQUEST_HANDLER>
+			   <RESPONSE_HANDLER IMPL_CLASS="com.tcs.bancs.handler.response.ResponseHandlerImpl">
+					   <RESPONSE_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.response.transformer.payments.transfers.SelectAccountResponseTransformer"/>
+			   </RESPONSE_HANDLER>
+	      </OPERATION>
+	      
+	      <OPERATION NAME="submitTransfer" ID="1002">
+			   <REQUEST_HANDLER IMPL_CLASS="com.tcs.bancs.handler.request.RequestHandlerImpl">
+					   <REQUEST_VALIDATOR REQUIRED="true" VALIDATOR_IMPL_CLASS="com.tcs.bancs.handler.request.validator.payments.transfers.OnSubmitRequestValidator"/>
+					   <REQUEST_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.request.transformer.payments.transfers.OnSubmitRequestTransformer"/>
+					   <REQUEST_ROUTER REQUIRED="true" ROUTER_MODE="EJB"/>
+			   </REQUEST_HANDLER>
+			   <RESPONSE_HANDLER IMPL_CLASS="com.tcs.bancs.handler.response.ResponseHandlerImpl">
+					   <RESPONSE_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.response.transformer.payments.transfers.OnSubmitResponseTransformer"/>
+			   </RESPONSE_HANDLER>
+	      </OPERATION>
+	      
+	       <OPERATION NAME="createTransfer" ID="1003">
+			   <REQUEST_HANDLER IMPL_CLASS="com.tcs.bancs.handler.request.RequestHandlerImpl">
+					   <REQUEST_VALIDATOR REQUIRED="true" VALIDATOR_IMPL_CLASS="com.tcs.bancs.handler.request.validator.payments.transfers.OnSubmitRequestValidator"/>
+					   <REQUEST_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.request.transformer.payments.transfers.OnSubmitRequestTransformer"/>
+					   <REQUEST_ROUTER REQUIRED="true" ROUTER_MODE="EJB"/>
+			   </REQUEST_HANDLER>
+			   <RESPONSE_HANDLER IMPL_CLASS="com.tcs.bancs.handler.response.ResponseHandlerImpl">
+					   <RESPONSE_TRANSFORMER REQUIRED="true" TRANSFORMER_IMPL_CLASS="com.tcs.bancs.handler.response.transformer.payments.transfers.OnSubmitResponseTransformer"/>
+			   </RESPONSE_HANDLER>
+	      </OPERATION>
+	      
+     </OPERATIONS>
+     <ROUTERS INIT="D:/profiles/WAS7/AppSrv32Bit/msapp/Mobile/config/workflow-connector.xml">
+         <ROUTER>com.tcs.bancs.handler.request.router.ejb.RequestEJBRouterImpl</ROUTER>
+     </ROUTERS>
+</WORKFLOW_HANDLER_CONFIG>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<taglib>  
+	<tlibversion>1.0</tlibversion>  
+	<jspversion>1.1</jspversion>  
+	<shortname>csrfguard</shortname>  
+	<info>CSRFGuard Taglib</info>  
+	<uri>http://bancs.tcs.com/taglib/csrfguard</uri>  
+	<tag>  
+	   <name>token</name>  
+	   <tagclass>com.tcs.bancs.csrfguard.tag.CSRFGuardTag</tagclass>  
+	   <attribute>  
+	     <name>config</name>  
+	     <required>true</required>  
+	   </attribute>  
+	</tag>  
+</taglib> 

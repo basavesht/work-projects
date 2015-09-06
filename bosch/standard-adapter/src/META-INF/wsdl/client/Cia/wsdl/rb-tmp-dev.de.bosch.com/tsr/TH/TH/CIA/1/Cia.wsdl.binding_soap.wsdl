@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on the fly from a service meta model XML file by performing an XSL transformation. -->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:th="http://tmp.bosch.com"
+                  xmlns:tns="http://th.bosch.com/cia"
+                  targetNamespace="http://th.bosch.com/cia"
+                  name="Cia">
+    <wsdl:documentation>
+        <th:revision>Revision: 3420</th:revision>
+		The CIA service acts as a TMP facade in order to provide TMP functionality to the integrated Care Provider Systems or any Customer specific adapters. 
+	</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://th.bosch.com/cia" schemaLocation="Cia.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getExternalOrganizationsRequest">
+        <wsdl:part name="part1" element="tns:getExternalOrganizations"/>
+    </wsdl:message>
+    <wsdl:message name="getExternalOrganizationsResponse">
+        <wsdl:part name="part1" element="tns:getExternalOrganizationsReply"/>
+    </wsdl:message>
+    <wsdl:message name="getPatientsRequest">
+        <wsdl:part name="part1" element="tns:getPatients"/>
+    </wsdl:message>
+    <wsdl:message name="getPatientsResponse">
+        <wsdl:part name="part1" element="tns:getPatientsReply"/>
+    </wsdl:message>
+    <wsdl:message name="findPatientsByIdInOrganizationRequest">
+        <wsdl:part name="part1" element="tns:findPatientsByIdInOrganization"/>
+    </wsdl:message>
+    <wsdl:message name="findPatientsByIdInOrganizationResponse">
+        <wsdl:part name="part1" element="tns:findPatientsByIdInOrganizationReply"/>
+    </wsdl:message>
+    <wsdl:message name="admitPatientRequest">
+        <wsdl:part name="part1" element="tns:admitPatient"/>
+    </wsdl:message>
+    <wsdl:message name="admitPatientResponse">
+        <wsdl:part name="part1" element="tns:admitPatientReply"/>
+    </wsdl:message>
+    <wsdl:message name="pausePatientRequest">
+        <wsdl:part name="part1" element="tns:pausePatient"/>
+    </wsdl:message>
+    <wsdl:message name="pausePatientResponse">
+        <wsdl:part name="part1" element="tns:pausePatientReply"/>
+    </wsdl:message>
+    <wsdl:message name="updatePatientDemographicsRequest">
+        <wsdl:part name="part1" element="tns:updatePatientDemographics"/>
+    </wsdl:message>
+    <wsdl:message name="updatePatientDemographicsResponse">
+        <wsdl:part name="part1" element="tns:updatePatientDemographicsReply"/>
+    </wsdl:message>
+    <wsdl:message name="pushResultsRequest">
+        <wsdl:part name="part1" element="tns:pushResults"/>
+    </wsdl:message>
+    <wsdl:message name="pushResultsResponse">
+        <wsdl:part name="part1" element="tns:pushResultsReply"/>
+    </wsdl:message>
+    <wsdl:message name="getResultRequest">
+        <wsdl:part name="part1" element="tns:getResult"/>
+    </wsdl:message>
+    <wsdl:message name="getResultResponse">
+        <wsdl:part name="part1" element="tns:getResultReply"/>
+    </wsdl:message>
+    <wsdl:message name="findResultsRequest">
+        <wsdl:part name="part1" element="tns:findResults"/>
+    </wsdl:message>
+    <wsdl:message name="findResultsResponse">
+        <wsdl:part name="part1" element="tns:findResultsReply"/>
+    </wsdl:message>
+    <wsdl:message name="pushNotesRequest">
+        <wsdl:part name="part1" element="tns:pushNotes"/>
+    </wsdl:message>
+    <wsdl:message name="pushNotesResponse"><!--Operation is declared void(), thus no wsdl:part declaration--></wsdl:message>
+    <wsdl:message name="findNotesRequest">
+        <wsdl:part name="part1" element="tns:findNotes"/>
+    </wsdl:message>
+    <wsdl:message name="findNotesResponse">
+        <wsdl:part name="part1" element="tns:findNotesReply"/>
+    </wsdl:message>
+    <wsdl:message name="userNotAuthorizedFault">
+        <wsdl:part name="part1" element="tns:userNotAuthorizedError"/>
+    </wsdl:message>
+    <wsdl:message name="resourceNotFoundFault">
+        <wsdl:part name="part1" element="tns:resourceNotFoundError"/>
+    </wsdl:message>
+    <wsdl:message name="insufficientDataFault">
+        <wsdl:part name="part1" element="tns:insufficientDataError"/>
+    </wsdl:message>
+    <wsdl:message name="noSuchPatientFault">
+        <wsdl:part name="part1" element="tns:noSuchPatientError"/>
+    </wsdl:message>
+    <wsdl:message name="optimisticLockingFault">
+        <wsdl:part name="part1" element="tns:optimisticLockingError"/>
+    </wsdl:message>
+    <wsdl:message name="organizationNotActiveFault">
+        <wsdl:part name="part1" element="tns:organizationNotActiveError"/>
+    </wsdl:message>
+    <wsdl:message name="noSuchUserFault">
+        <wsdl:part name="part1" element="tns:noSuchUserError"/>
+    </wsdl:message>
+    <wsdl:message name="patientNotActiveFault">
+        <wsdl:part name="part1" element="tns:patientNotActiveError"/>
+    </wsdl:message>
+    <wsdl:message name="userNotActiveFault">
+        <wsdl:part name="part1" element="tns:userNotActiveError"/>
+    </wsdl:message>
+    <wsdl:message name="userNotAssignableFault">
+        <wsdl:part name="part1" element="tns:userNotAssignableError"/>
+    </wsdl:message>
+    <wsdl:message name="duplicatePatientFault">
+        <wsdl:part name="part1" element="tns:duplicatePatientError"/>
+    </wsdl:message>
+    <wsdl:message name="remoteServiceFault">
+        <wsdl:part name="part1" element="tns:remoteServiceError"/>
+    </wsdl:message>
+    <wsdl:message name="invalidDataFault">
+        <wsdl:part name="part1" element="tns:invalidDataError"/>
+    </wsdl:message>
+    <wsdl:message name="patientAlreadyEnrolledFault">
+        <wsdl:part name="part1" element="tns:patientAlreadyEnrolledError"/>
+    </wsdl:message>
+    <wsdl:message name="patientNotPausedFault">
+        <wsdl:part name="part1" element="tns:patientNotPausedError"/>
+    </wsdl:message>
+    <wsdl:message name="unknownResultFault">
+        <wsdl:part name="part1" element="tns:unknownResultError"/>
+    </wsdl:message>
+    <wsdl:message name="invalidFilterFault">
+        <wsdl:part name="part1" element="tns:invalidFilterError"/>
+    </wsdl:message>
+    <wsdl:message name="invalidNextChunkFault">
+        <wsdl:part name="part1" element="tns:invalidNextChunkError"/>
+    </wsdl:message>
+    <wsdl:portType name="CiaPortType">
+        <wsdl:operation name="getExternalOrganizations">
+            <wsdl:documentation>This operation returns all organizations matching the speciefied external id. </wsdl:documentation>
+            <wsdl:input name="getExternalOrganizationsInput"
+                        message="tns:getExternalOrganizationsRequest"/>
+            <wsdl:output name="getExternalOrganizationsOutput"
+                         message="tns:getExternalOrganizationsResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="resourceNotFoundError" message="tns:resourceNotFoundFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPatients">
+            <wsdl:documentation>This operation returns all patient matching the speciefied external id. </wsdl:documentation>
+            <wsdl:input name="getPatientsInput" message="tns:getPatientsRequest"/>
+            <wsdl:output name="getPatientsOutput" message="tns:getPatientsResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="findPatientsByIdInOrganization">
+            <wsdl:documentation>
+				The operation returns patients in the given account (organization) having given custom identifiers.
+	        </wsdl:documentation>
+            <wsdl:input name="findPatientsByIdInOrganizationInput"
+                        message="tns:findPatientsByIdInOrganizationRequest"/>
+            <wsdl:output name="findPatientsByIdInOrganizationOutput"
+                         message="tns:findPatientsByIdInOrganizationResponse"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+            <wsdl:fault name="noSuchPatientError" message="tns:noSuchPatientFault"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="admitPatient">
+            <wsdl:documentation>This operation enables the given Patient to use the remote patient monitoring services of the TMP. If the Patient does not exist yet in the TMP, it will create a new Patient beforehand. </wsdl:documentation>
+            <wsdl:input name="admitPatientInput" message="tns:admitPatientRequest"/>
+            <wsdl:output name="admitPatientOutput" message="tns:admitPatientResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+            <wsdl:fault name="optimisticLockingError" message="tns:optimisticLockingFault"/>
+            <wsdl:fault name="organizationNotActiveError" message="tns:organizationNotActiveFault"/>
+            <wsdl:fault name="resourceNotFoundError" message="tns:resourceNotFoundFault"/>
+            <wsdl:fault name="noSuchPatientError" message="tns:noSuchPatientFault"/>
+            <wsdl:fault name="noSuchUserError" message="tns:noSuchUserFault"/>
+            <wsdl:fault name="patientNotActiveError" message="tns:patientNotActiveFault"/>
+            <wsdl:fault name="userNotActiveError" message="tns:userNotActiveFault"/>
+            <wsdl:fault name="userNotAssignableError" message="tns:userNotAssignableFault"/>
+            <wsdl:fault name="duplicatePatientError" message="tns:duplicatePatientFault"/>
+            <wsdl:fault name="remoteServiceError" message="tns:remoteServiceFault"/>
+            <wsdl:fault name="invalidDataError" message="tns:invalidDataFault"/>
+            <wsdl:fault name="patientAlreadyEnrolledError" message="tns:patientAlreadyEnrolledFault"/>
+            <wsdl:fault name="patientNotPausedError" message="tns:patientNotPausedFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="pausePatient">
+            <wsdl:documentation>
+			The operation pauses an existing patient.
+	        </wsdl:documentation>
+            <wsdl:input name="pausePatientInput" message="tns:pausePatientRequest"/>
+            <wsdl:output name="pausePatientOutput" message="tns:pausePatientResponse"/>
+            <wsdl:fault name="noSuchPatientError" message="tns:noSuchPatientFault"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="optimisticLockingError" message="tns:optimisticLockingFault"/>
+            <wsdl:fault name="patientNotActiveError" message="tns:patientNotActiveFault"/>
+            <wsdl:fault name="invalidDataError" message="tns:invalidDataFault"/>
+            <wsdl:fault name="resourceNotFoundError" message="tns:resourceNotFoundFault"/>
+            <wsdl:fault name="remoteServiceError" message="tns:remoteServiceFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="updatePatientDemographics">
+            <wsdl:documentation>
+			The operation updates an existing patient demographics.
+        	</wsdl:documentation>
+            <wsdl:input name="updatePatientDemographicsInput"
+                        message="tns:updatePatientDemographicsRequest"/>
+            <wsdl:output name="updatePatientDemographicsOutput"
+                         message="tns:updatePatientDemographicsResponse"/>
+            <wsdl:fault name="noSuchPatientError" message="tns:noSuchPatientFault"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="optimisticLockingError" message="tns:optimisticLockingFault"/>
+            <wsdl:fault name="duplicatePatientError" message="tns:duplicatePatientFault"/>
+            <wsdl:fault name="invalidDataError" message="tns:invalidDataFault"/>
+            <wsdl:fault name="resourceNotFoundError" message="tns:resourceNotFoundFault"/>
+            <wsdl:fault name="remoteServiceError" message="tns:remoteServiceFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="pushResults">
+            <wsdl:documentation>Pushes the results to corresponding Customer dependend Adapter. </wsdl:documentation>
+            <wsdl:input name="pushResultsInput" message="tns:pushResultsRequest"/>
+            <wsdl:output name="pushResultsOutput" message="tns:pushResultsResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="getResult">
+            <wsdl:documentation>
+		 Get a single result identified by its id.
+		 </wsdl:documentation>
+            <wsdl:input name="getResultInput" message="tns:getResultRequest"/>
+            <wsdl:output name="getResultOutput" message="tns:getResultResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="unknownResultError" message="tns:unknownResultFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="findResults">
+            <wsdl:documentation>
+		find the results matching the passed filter. Results are returned in a paginated fashion, meaning if there is a big number of results to be returned, they will be divided in chunks.
+		To get the next chunk the id for the last result in the first chunk needs to be passed.
+		</wsdl:documentation>
+            <wsdl:input name="findResultsInput" message="tns:findResultsRequest"/>
+            <wsdl:output name="findResultsOutput" message="tns:findResultsResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="invalidFilterError" message="tns:invalidFilterFault"/>
+            <wsdl:fault name="invalidNextChunkError" message="tns:invalidNextChunkFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="pushNotes">
+            <wsdl:documentation>Pushes the Notes to corresponding Customer dependend Adapter. </wsdl:documentation>
+            <wsdl:input name="pushNotesInput" message="tns:pushNotesRequest"/>
+            <wsdl:output name="pushNotesOutput" message="tns:pushNotesResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="insufficientDataError" message="tns:insufficientDataFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="findNotes">
+            <wsdl:documentation>
+		find the notes matching the passed filter. Notes are returned in a paginated fashion, meaning if there is a big number of results to be returned, they will be divided in chunks.
+		To get the next chunk the id for the last notes in the first chunk needs to be passed.
+		</wsdl:documentation>
+            <wsdl:input name="findNotesInput" message="tns:findNotesRequest"/>
+            <wsdl:output name="findNotesOutput" message="tns:findNotesResponse"/>
+            <wsdl:fault name="userNotAuthorizedError" message="tns:userNotAuthorizedFault"/>
+            <wsdl:fault name="invalidFilterError" message="tns:invalidFilterFault"/>
+            <wsdl:fault name="invalidNextChunkError" message="tns:invalidNextChunkFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CiaSoapBinding" type="tns:CiaPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getExternalOrganizations">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getExternalOrganizationsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getExternalOrganizationsOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="resourceNotFoundError">
+                <soap:fault name="resourceNotFoundError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPatients">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getPatientsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPatientsOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findPatientsByIdInOrganization">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findPatientsByIdInOrganizationInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findPatientsByIdInOrganizationOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="noSuchPatientError">
+                <soap:fault name="noSuchPatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="admitPatient">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="admitPatientInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="admitPatientOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="optimisticLockingError">
+                <soap:fault name="optimisticLockingError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="organizationNotActiveError">
+                <soap:fault name="organizationNotActiveError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="resourceNotFoundError">
+                <soap:fault name="resourceNotFoundError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="noSuchPatientError">
+                <soap:fault name="noSuchPatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="noSuchUserError">
+                <soap:fault name="noSuchUserError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="patientNotActiveError">
+                <soap:fault name="patientNotActiveError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="userNotActiveError">
+                <soap:fault name="userNotActiveError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="userNotAssignableError">
+                <soap:fault name="userNotAssignableError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="duplicatePatientError">
+                <soap:fault name="duplicatePatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="remoteServiceError">
+                <soap:fault name="remoteServiceError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataError">
+                <soap:fault name="invalidDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="patientAlreadyEnrolledError">
+                <soap:fault name="patientAlreadyEnrolledError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="patientNotPausedError">
+                <soap:fault name="patientNotPausedError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="pausePatient">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="pausePatientInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="pausePatientOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="noSuchPatientError">
+                <soap:fault name="noSuchPatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="optimisticLockingError">
+                <soap:fault name="optimisticLockingError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="patientNotActiveError">
+                <soap:fault name="patientNotActiveError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataError">
+                <soap:fault name="invalidDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="resourceNotFoundError">
+                <soap:fault name="resourceNotFoundError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="remoteServiceError">
+                <soap:fault name="remoteServiceError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updatePatientDemographics">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updatePatientDemographicsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updatePatientDemographicsOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="noSuchPatientError">
+                <soap:fault name="noSuchPatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="optimisticLockingError">
+                <soap:fault name="optimisticLockingError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="duplicatePatientError">
+                <soap:fault name="duplicatePatientError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataError">
+                <soap:fault name="invalidDataError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="resourceNotFoundError">
+                <soap:fault name="resourceNotFoundError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="remoteServiceError">
+                <soap:fault name="remoteServiceError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="pushResults">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="pushResultsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="pushResultsOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getResult">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getResultInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getResultOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="unknownResultError">
+                <soap:fault name="unknownResultError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findResults">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findResultsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findResultsOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidFilterError">
+                <soap:fault name="invalidFilterError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidNextChunkError">
+                <soap:fault name="invalidNextChunkError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="pushNotes">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="pushNotesInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="pushNotesOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="insufficientDataError">
+                <soap:fault name="insufficientDataError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="findNotes">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="findNotesInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findNotesOutput">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="userNotAuthorizedError">
+                <soap:fault name="userNotAuthorizedError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidFilterError">
+                <soap:fault name="invalidFilterError" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidNextChunkError">
+                <soap:fault name="invalidNextChunkError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CiaService">
+        <wsdl:port name="CiaHttpPort" binding="tns:CiaSoapBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/CiaService/CiaHttpPort"/>
+        </wsdl:port>
+    </wsdl:service>
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+        <jaxws:package name="com.bosch.th.cia"/>
+    </jaxws:bindings>
+    <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="Cia">
+        <plnk:role name="ServiceImplementation" portType="tns:CiaPortType"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

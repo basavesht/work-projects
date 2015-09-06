@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on the fly from a service meta model XML file by performing an XSL transformation. -->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:th="http://tmp.bosch.com"
+                  xmlns:tns="http://th.bosch.com/integration"
+                  targetNamespace="http://th.bosch.com/integration"
+                  name="PushResults">
+    <wsdl:documentation>
+        <th:revision>Revision: 2977</th:revision>
+    </wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://th.bosch.com/integration" schemaLocation="PushResults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="pushResultsRequest">
+        <wsdl:part name="part1" element="tns:pushResults"/>
+    </wsdl:message>
+    <wsdl:portType name="PushResultsPortType">
+        <wsdl:operation name="pushResults">
+            <wsdl:input name="pushResultsInput" message="tns:pushResultsRequest"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PushResultsSoapBinding" type="tns:PushResultsPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="pushResults">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="pushResultsInput">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PushResultsService">
+        <wsdl:port name="PushResultsHttpPort" binding="tns:PushResultsSoapBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/PushResultsService/PushResultsHttpPort"/>
+        </wsdl:port>
+    </wsdl:service>
+    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+        <jaxws:package name="com.bosch.th.integration"/>
+    </jaxws:bindings>
+    <plnk:partnerLinkType xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="PushResults">
+        <plnk:role name="ServiceImplementation" portType="tns:PushResultsPortType"/>
+    </plnk:partnerLinkType>
+</wsdl:definitions>

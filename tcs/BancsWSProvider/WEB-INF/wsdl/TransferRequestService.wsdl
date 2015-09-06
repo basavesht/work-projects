@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions targetNamespace="http://implementations.transfers.payments.provider.services.bancs.tcs.com/" name="TransferRequestService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://implementations.transfers.payments.provider.services.bancs.tcs.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <import namespace="http://tcs.com/bancs/morganstanley/payments/transfers" location="TransferRequest.wsdl"/>
+  <binding name="TransferRequestPortBinding" type="ns1:TransferRequest" xmlns:ns1="http://tcs.com/bancs/morganstanley/payments/transfers">
+    <soap12:binding transport="http://www.w3.org/2003/05/soap/bindings/HTTP/" style="document"/>
+    <operation name="loadTransfer">
+      <soap12:operation soapAction="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="TransferRequestException">
+        <soap12:fault name="TransferRequestException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="selectAccount">
+      <soap12:operation soapAction="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="TransferRequestException">
+        <soap12:fault name="TransferRequestException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="createTransfer">
+      <soap12:operation soapAction="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer"/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="TransferRequestException">
+        <soap12:fault name="TransferRequestException" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="TransferRequestService">
+    <port name="TransferRequestPort" binding="tns:TransferRequestPortBinding">
+      <soap12:address location="REPLACE_WITH_ACTUAL_URL"/>
+    </port>
+  </service>
+</definitions>
+

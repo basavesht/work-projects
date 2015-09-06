@@ -1,0 +1,1135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml"
+            targetNamespace="urn:hl7-org:v2xml">
+	   <xsd:include schemaLocation="datatypes.xsd"/>
+
+	   <xsd:complexType name="Assembly">
+		      <xsd:sequence>
+			<!--xsd:element ref="Session_Status_Code" minOccurs="0" maxOccurs="unbounded"/-->
+			<xsd:element ref="Session" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Assembly" type="Assembly"/>
+
+	   <!--Assembly begins here -->
+
+	<!--xsd:complexType name="Session_Status_Code">
+		      <xsd:sequence>
+			         <xsd:element ref="Session_Status_Code_Identifier" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Status_Code_Text" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Status_Code_Date" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Session_Status_Code" type="Session_Status_Code"/-->
+
+	<xsd:complexType name="Session">
+		      <xsd:sequence>
+			         <xsd:element ref="Header" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Program" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Survey" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Risk_Summary" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Score" minOccurs="0" maxOccurs="unbounded"/-->
+			<xsd:element ref="Session_Response" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Note" minOccurs="0" maxOccurs="unbounded"/>
+			         <!--xsd:element ref="Schedule" minOccurs="0" maxOccurs="1"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session" type="Session"/>
+	   <!--Assembly ends here -->
+
+    <!--- Header-->
+	<xsd:complexType name="Header">
+		      <xsd:sequence>
+			         <xsd:element ref="Session_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Name" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Sent_Date" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Received_Date" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Session_Response_Date" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Session_End_Date" minOccurs="0" maxOccurs="1"/-->
+			 <!--xsd:element ref="Session_Begin_Date" minOccurs="0" maxOccurs="1"/-->
+			 <xsd:element ref="Time_Zone" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Header" type="Header"/>
+	   <!--- Header ends here-->
+	<!--- Program-->
+	<xsd:complexType name="Program">
+		      <xsd:sequence>
+			         <xsd:element ref="Program_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Program_Name" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Program_Version" minOccurs="0" maxOccurs="1"/-->
+			<!--xsd:element ref="Program_Language" minOccurs="0" maxOccurs="1"/-->
+			<!--xsd:element ref="Program_Author" minOccurs="0" maxOccurs="1"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Program" type="Program"/>
+	   <!--- Program ends here-->
+
+	<!--- Survey-->
+	<xsd:complexType name="Survey">
+		      <xsd:sequence>
+			         <xsd:element ref="Survey_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Survey_Name" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Survey_Version" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Survey_Language" minOccurs="0" maxOccurs="1"/-->
+			<!--xsd:element ref="Survey_Author" minOccurs="0" maxOccurs="1"/-->
+			<!--New Fields-->
+			<xsd:element ref="Survey_GroupName" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="Survey_Sent_Date" minOccurs="1" maxOccurs="1"/>
+			         <!--New Fields-->
+      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey" type="Survey"/>
+	   <!--- Survey ends here-->
+
+	<!--- Risk_Summary-->
+	<xsd:complexType name="Risk_Summary">
+		      <xsd:sequence>
+			         <xsd:element ref="Risk_Summary_Risk" minOccurs="1" maxOccurs="unbounded"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Risk_Summary" type="Risk_Summary"/>
+	   <!--- Risk_Summary ends here-->
+
+	<!--- Score-->
+	<!--xsd:complexType name="Score">
+		      <xsd:sequence>
+			         <xsd:element ref="Score_Value" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Score_Scale" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Score" type="Score"/-->
+	<!--- Score ends here-->
+
+	<!--- Session_Response-->
+	<xsd:complexType name="Session_Response">
+		      <xsd:sequence>
+			         <xsd:element ref="isPartial" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Partial_Result_Code" minOccurs="0" maxOccurs="1"/-->
+			         <xsd:element ref="Survey_Interface" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Response" minOccurs="1" maxOccurs="unbounded"/>
+			         <xsd:element ref="Meter_Device" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Response" type="Session_Response"/>
+	   <!--- Session_Response ends here-->
+
+
+
+	<!--Note-->
+	<xsd:complexType name="Note">
+		      <xsd:sequence>
+			         <xsd:element ref="Note_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Note_Category" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Note_Type_Code" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Note_Value" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Note_Author" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Note_Entered_Date" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Note_Due_Date" minOccurs="0" maxOccurs="1"/-->
+			         <!--xsd:element ref="Note_Version" minOccurs="0" maxOccurs="1"/-->
+			         <!--xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/-->
+					 <!--New Field required for Session Notes-->
+					 <xsd:element ref="Session_ID" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note" type="Note"/>
+	   <!--Note ends here-->
+
+	<!--- Schedule-->
+	<!--xsd:complexType name="Schedule">
+		      <xsd:sequence>
+			         <xsd:element ref="Survey_Period" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Previous_Session_Reference_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Next_Session_Reference_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Next_Scheduled_Survey_Reference" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Schedule" type="Schedule"/-->
+	<!--- Schedule ends here -->
+
+
+
+    <!-- Header Information -->
+	<xsd:complexType name="Session_Received_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Received_Date" type="Session_Received_Date"/>
+
+	   <xsd:complexType name="Session_Sent_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Sent_Date" type="Session_Sent_Date"/>
+
+	   <!--xsd:complexType name="Session_Begin_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Session_Begin_Date" type="Session_Begin_Date"/-->
+
+	 <!--xsd:complexType name="Session_End_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Session_End_Date" type="Session_End_Date"/-->
+
+	<xsd:complexType name="Time_Zone">
+	      <xsd:simpleContent>
+	           <xsd:extension base="ST"/>
+	      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Time_Zone" type="Time_Zone"/>
+	   <!-- Header Information ends  here-->
+
+
+	<!---Program Information begins here-->
+
+	<xsd:complexType name="Program_Name">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Program_Name" type="Program_Name"/>
+
+	   <xsd:complexType name="Program_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Program_ID" type="Program_ID"/>
+
+	   <!--xsd:complexType name="Program_Author">
+		      <xsd:sequence>
+			         <xsd:element ref="XCN.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.6" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.7" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.8" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.9" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.10" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.11" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.12" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.13" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.14" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.15" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.16" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.17" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.18" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Program_Author" type="Program_Author"/-->
+
+	   <!--xsd:complexType name="Program_Version">
+		      <xsd:sequence>
+			         <xsd:element ref="VID.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.3" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Program_Version" type="Program_Version"/-->
+
+	   <!--xsd:complexType name="Program_Language">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Program_Language" type="Program_Language"/-->
+
+	 <!--- Program Information ends here-->
+
+
+
+	<!---Survey Information begins here-->
+	<xsd:complexType name="Survey_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_ID" type="Survey_ID"/>
+
+	   <xsd:complexType name="Survey_Name">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Name" type="Survey_Name"/>
+
+	   <xsd:complexType name="Survey_Version">
+		      <xsd:sequence>
+			         <xsd:element ref="VID.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.3" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Version" type="Survey_Version"/>
+
+	   <!--xsd:complexType name="Survey_Language">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Survey_Language" type="Survey_Language"/>
+
+	 <xsd:complexType name="Survey_Author">
+		      <xsd:sequence>
+			         <xsd:element ref="XCN.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.6" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.7" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.8" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.9" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.10" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.11" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.12" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.13" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.14" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.15" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.16" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.17" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.18" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Author" type="Survey_Author"/-->
+
+	<xsd:complexType name="Survey_GroupName">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_GroupName" type="Survey_GroupName"/>
+
+	   <xsd:complexType name="Survey_Sent_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Sent_Date" type="Survey_Sent_Date"/>
+
+	   <!---Survey Information ends here-->
+
+	<!--Risk_Summary/Risk_Summary_Risk begins here-->
+	<xsd:complexType name="Risk_Summary_Risk">
+		      <xsd:sequence>
+			         <xsd:element ref="Risk_Value" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Risk_Summary_Category" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Risk_Summary_Risk" type="Risk_Summary_Risk"/>
+
+
+
+	   <xsd:complexType name="Risk_Summary_Category">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Risk_Summary_Category" type="Risk_Summary_Category"/>
+	   <!--Risk_Summary/Risk_Summary_Risk ends here-->
+
+	<!---Score begins here -->
+	    <!--xsd:complexType name="Score_Value">
+		      <xsd:sequence>
+			         <xsd:element ref="Score_Value_Text" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Question_Sub_ID" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Score_Value" type="Score_Value"/>
+
+	   <xsd:complexType name="Score_Scale">
+		      <xsd:sequence>
+			         <xsd:element ref="Score_Scale_Text" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Score_Scale" type="Score_Scale"/>
+
+	    <xsd:complexType name="Score_Value_Text">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Score_Value_Text" type="Score_Value_Text"/>
+
+	    <xsd:complexType name="Score_Scale_Text">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Score_Scale_Text" type="Score_Scale_Text"/-->
+
+
+	<!---Score ends here -->
+
+	<!--Session_Response begins here-->
+
+	    <!-- New Fields isPartial begins here-->
+		<xsd:complexType name="isPartial">
+			     <xsd:simpleContent>
+				        <xsd:extension base="ST"/>
+			     </xsd:simpleContent>
+		  </xsd:complexType>
+		  <xsd:element name="isPartial" type="isPartial"/>
+		  <!-- New Fields isPartial ends here-->
+
+	    <!--Partial_Result_Code begins here-->
+		<!--xsd:complexType name="Partial_Result_Code">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Partial_Result_Code" type="Partial_Result_Code"/-->
+	    <!--Partial_Result_Code ends here-->
+
+	   <!--Survey_Interface begins here-->
+	   <xsd:complexType name="Survey_Interface">
+		      <xsd:sequence>
+			         <xsd:element ref="Device_Manufacturer" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Device_Model" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Device_Serial_Number" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Device_ROM_Number" minOccurs="0" maxOccurs="1"/-->
+			<!--xsd:element ref="Device_Software" minOccurs="0" maxOccurs="1"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Interface" type="Survey_Interface"/>
+	   <!--Survey_Interface ends here-->
+
+	<!--Response begins here-->
+	<xsd:complexType name="Response">
+		      <xsd:sequence>
+			         <xsd:element ref="Response_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Response_Sequence_Number" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Response_Risk" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Question" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Response_Value" minOccurs="0" maxOccurs="unbounded"/>
+			         <xsd:element ref="Response_Time" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Anomalous_Response_Code" minOccurs="0" maxOccurs="unbounded"/-->
+			<!--xsd:element ref="Meter_Reading_Group" minOccurs="0" maxOccurs="unbounded"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Response" type="Response"/>
+	   <!--Response ends here-->
+
+	<!--Session_Response ends here-->
+
+	<!--Response Details begins here-->
+	<xsd:complexType name="Response_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Response_ID" type="Response_ID"/>
+
+	   <xsd:complexType name="Response_Sequence_Number">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Response_Sequence_Number" type="Response_Sequence_Number"/>
+
+	   <xsd:complexType name="Response_Risk">
+		      <xsd:sequence>
+			         <xsd:element ref="Risk_Value" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Response_Risk" type="Response_Risk"/>
+
+	   <xsd:complexType name="Question">
+		      <xsd:sequence>
+			         <xsd:element ref="Question_ID" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Question_Sub_ID" minOccurs="0" maxOccurs="1"/-->
+			<xsd:element ref="Question_Text" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Question_Version" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Question_Encoded_Data" minOccurs="0" maxOccurs="unbounded"/-->
+			<xsd:element ref="Question_Variable" minOccurs="0" maxOccurs="unbounded"/>
+			         <xsd:element ref="Question_Type" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Question_Category" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Question_Aspect" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/>
+			         <!-- New Fields Optional for Survey Q&A and Required for Vitals-->
+			<xsd:element ref="UnitOfMeasureType" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Multiple_Question_Response_ID" minOccurs="0" maxOccurs="1"/>
+			         <!-- New Fields Optional for Survey Q&A and Required for Vitals-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Question" type="Question"/>
+
+
+	   <xsd:complexType name="Response_Value">
+		      <xsd:sequence>
+			         <xsd:element ref="Value" minOccurs="1" maxOccurs="1"/>
+			         <!--New Fields-->
+			<xsd:element ref="VitalSignID" minOccurs="0" maxOccurs="1"/>
+			         <!--New Fields-->
+			<xsd:element ref="Mode" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Unit_Of_Measure" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Value_Type" minOccurs="1" maxOccurs="unbounded"/>
+			         <xsd:element ref="Observation_Result_Status" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="InValidID" minOccurs="0" maxOccurs="1"/>
+			         <!--xsd:element ref="Response_Encoded_Data" minOccurs="0" maxOccurs="unbounded"/-->
+			<!--xsd:element ref="Subjective_Indicator" minOccurs="0" maxOccurs="1"/-->
+			<!--New Fields-->
+			<xsd:element ref="CollectionType" minOccurs="0" maxOccurs="1"/>
+			         <!--New Fields-->
+			<xsd:element ref="PatientTimeZone" minOccurs="0" maxOccurs="1"/>
+			         <!--New Fields-->
+			<!--xsd:element ref="Meter_Device" minOccurs="0" maxOccurs="1"/-->
+			<!--New Fields-->
+			<!--xsd:element ref="Threshold" minOccurs="0" maxOccurs="1"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Response_Value" type="Response_Value"/>
+
+	   <xsd:complexType name="Response_Time">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Response_Time" type="Response_Time"/>
+
+	   <!--xsd:complexType name="Anomalous_Response_Code">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Anomalous_Response_Code" type="Anomalous_Response_Code"/>
+
+	<xsd:complexType name="Meter_Reading_Group">
+		      <xsd:sequence>
+			         <xsd:element ref="Meter_Reading_Group_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Meter_Device_Sub_ID" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Meter_Record_ID" minOccurs="1" maxOccurs="unbounded"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Meter_Reading_Group" type="Meter_Reading_Group"/-->
+
+	<!--Response Details ends here-->
+
+
+	<!-- Question begins here-->
+
+	<xsd:complexType name="Question_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Question_ID" type="Question_ID"/>
+
+	   <xsd:complexType name="Question_Text">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Text" type="Question_Text"/>
+
+
+	   <xsd:complexType name="Question_Version">
+		      <xsd:sequence>
+			         <xsd:element ref="VID.1" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="VID.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.3" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Version" type="Question_Version"/>
+
+	   <xsd:complexType name="Question_Variable">
+		      <xsd:sequence>
+			         <xsd:element ref="Variable_Key" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Value_Type" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Variable_Value" minOccurs="1" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+    <xsd:element name="Question_Variable" type="Question_Variable"/>
+
+	   <xsd:complexType name="Question_Encoded_Data">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Encoded_Data" type="Question_Encoded_Data"/>
+
+	   <xsd:complexType name="Question_Type">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Type" type="Question_Type"/>
+
+	   <xsd:complexType name="Question_Category">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Category" type="Question_Category"/>
+
+	   <xsd:complexType name="Question_Aspect">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Question_Aspect" type="Question_Aspect"/>
+
+	   <xsd:complexType name="UnitOfMeasureType">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="UnitOfMeasureType" type="UnitOfMeasureType"/>
+
+	   <xsd:complexType name="Multiple_Question_Response_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Multiple_Question_Response_ID" type="Multiple_Question_Response_ID"/>
+
+	   <!-- Question ends here -->
+
+	<!---Response Value begins here-->
+
+	<xsd:complexType name="VitalSignID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="VitalSignID" type="VitalSignID"/>
+
+	   <xsd:complexType name="Mode">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Mode" type="Mode"/>
+
+	   <xsd:complexType name="Unit_Of_Measure">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Unit_Of_Measure" type="Unit_Of_Measure"/>
+
+	   <xsd:complexType name="Observation_Result_Status">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Observation_Result_Status" type="Observation_Result_Status"/>
+
+    <xsd:complexType name="InValidID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="xsd:boolean"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="InValidID" type="InValidID"/>
+
+	   <!--xsd:complexType name="Response_Encoded_Data">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Response_Encoded_Data" type="Response_Encoded_Data"/-->
+
+	<xsd:complexType name="Subjective_Indicator">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Subjective_Indicator" type="Subjective_Indicator"/>
+
+	   <xsd:complexType name="CollectionType">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="CollectionType" type="CollectionType"/>
+
+	   <xsd:complexType name="PatientTimeZone">
+	      <xsd:simpleContent>
+	           <xsd:extension base="ST"/>
+	      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="PatientTimeZone" type="PatientTimeZone"/>
+
+	   <!--In future need to add proper XSD for it -->
+	<xsd:complexType name="Threshold">
+	      <xsd:simpleContent>
+	           <xsd:extension base="ST"/>
+	      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Threshold" type="Threshold"/>
+
+
+
+	   <!---Response Value ends here-->
+
+
+	<!--Common elements used by Parent Elements-->
+	<xsd:complexType name="Risk_Value">
+		      <xsd:sequence>
+			         <xsd:element ref="Risk" minOccurs="1" maxOccurs="1"/>
+			         <!--xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/-->
+		</xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Risk_Value" type="Risk_Value"/>
+
+
+	   <xsd:complexType name="Risk">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Risk" type="Risk"/>
+
+	   <xsd:complexType name="Clinical_Coding">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Clinical_Coding" type="Clinical_Coding"/>
+
+	   <!--xsd:complexType name="Question_Sub_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	<xsd:element name="Question_Sub_ID" type="Question_Sub_ID"/-->
+
+	<xsd:complexType name="Variable_Key">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Variable_Key" type="Variable_Key"/>
+
+	   <xsd:complexType name="Value_Type">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Value_Type" type="Value_Type"/>
+
+	   <xsd:complexType name="Variable_Value">
+		      <xsd:sequence>
+			         <xsd:element ref="Value" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Clinical_Coding" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Variable_Value" type="Variable_Value"/>
+
+	   <xsd:complexType name="Value">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Value" type="Value"/>
+
+   <xsd:complexType name="Session_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Session_ID" type="Session_ID"/>
+
+	   <xsd:complexType name="Session_Name">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Name" type="Session_Name"/>
+
+	   <xsd:complexType name="Session_Response_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+   <xsd:element name="Session_Response_Date" type="Session_Response_Date"/>
+
+	   <!--Common elements used by Parent Elements ends here-->
+
+	<!---Device Information begins here-->
+	<!-- Covers Patient Interface as well Peripheral Interface-->
+	<xsd:complexType name="Meter_Device">
+		      <xsd:sequence>
+			         <xsd:element ref="Device_Manufacturer" minOccurs="1" maxOccurs="1"/>
+			         <xsd:element ref="Device_Model" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Device_Serial_Number" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Meter_Device" type="Meter_Device"/>
+
+	   <xsd:complexType name="Device_Manufacturer">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Device_Manufacturer" type="Device_Manufacturer"/>
+
+	   <xsd:complexType name="Device_Model">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Device_Model" type="Device_Model"/>
+
+	   <xsd:complexType name="Device_Serial_Number">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Device_Serial_Number" type="Device_Serial_Number"/>
+
+	   <!--xsd:complexType name="Device_ROM_Number">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="Device_ROM_Number" type="Device_ROM_Number"/>
+
+	<xsd:complexType name="Device_Software">
+		      <xsd:sequence>
+			         <xsd:element ref="Software_Vendor_Organization" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Device_Software_Version" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Software_Product_Name" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Software_Binary_ID" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Software_Product_Information" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Software_Install_Date" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Device_Software" type="Device_Software"/>
+
+	<xsd:complexType name="Software_Vendor_Organization">
+		      <xsd:sequence>
+			         <xsd:element ref="XON.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.6" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.7" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.8" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XON.9" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Software_Vendor_Organization" type="Software_Vendor_Organization"/>
+
+	<xsd:complexType name="Device_Software_Version">
+		      <xsd:sequence>
+			         <xsd:element ref="VID.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.3" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	<xsd:element name="Device_Software_Version" type="Device_Software_Version"/>
+
+	 <xsd:complexType name="Software_Product_Information">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Software_Product_Information" type="Software_Product_Information"/>
+
+	   <xsd:complexType name="Software_Binary_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Software_Binary_ID" type="Software_Binary_ID"/>
+
+	   <xsd:complexType name="Software_Product_Name">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Software_Product_Name" type="Software_Product_Name"/>
+
+	   <xsd:complexType name="Software_Install_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Software_Install_Date" type="Software_Install_Date"/-->
+
+
+	<!--Device Information ends here-->
+
+	<!-- Assembly Session_Status_Code  begins here-->
+	<!--xsd:complexType name="Session_Status_Code_Text">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	<xsd:element name="Session_Status_Code_Text" type="Session_Status_Code_Text"/>
+
+	<xsd:complexType name="Session_Status_Code_Date">
+		<xsd:sequence>
+			<xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Session_Status_Code_Date" type="Session_Status_Code_Date"/>
+
+
+	<xsd:complexType name="Session_Status_Code_Identifier">
+		<xsd:simpleContent>
+			<xsd:extension base="ST"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="Session_Status_Code_Identifier" type="Session_Status_Code_Identifier"/-->
+	<!-- Assembly Session_Status_Code  ends here-->
+
+	<!-- Schedule details-->
+	 <!--xsd:complexType name="Survey_Period">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Survey_Period" type="Survey_Period"/>
+
+	   <xsd:complexType name="Previous_Session_Reference_ID">
+		      <xsd:sequence>
+			         <xsd:element ref="Session_Effective_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Expiration_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Response_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_ID" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Name" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Previous_Session_Reference_ID" type="Previous_Session_Reference_ID"/>
+
+	   <xsd:complexType name="Next_Session_Reference_ID">
+		      <xsd:sequence>
+			         <xsd:element ref="Session_Effective_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Expiration_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Response_Date" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_ID" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Session_Name" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Next_Session_Reference_ID" type="Next_Session_Reference_ID"/>
+
+	    <xsd:complexType name="Next_Scheduled_Survey_Reference">
+		      <xsd:sequence>
+			         <xsd:element ref="Survey_ID" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Survey_Name" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="Survey_Version" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Next_Scheduled_Survey_Reference" type="Next_Scheduled_Survey_Reference"/>
+
+	    <xsd:complexType name="Session_Effective_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Effective_Date" type="Session_Effective_Date"/>
+
+	   <xsd:complexType name="Session_Expiration_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Session_Expiration_Date" type="Session_Expiration_Date"/-->
+	   <!--Schedule details end here-->
+
+
+	   <!---Note Details-->
+
+	    <xsd:complexType name="Note_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Note_ID" type="Note_ID"/>
+
+	    <xsd:complexType name="Note_Value">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Value" type="Note_Value"/>
+
+	    <xsd:complexType name="Note_Category">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Category" type="Note_Category"/>
+
+	    <xsd:complexType name="Note_Type_Code">
+		      <xsd:sequence>
+			         <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Type_Code" type="Note_Type_Code"/>
+
+	   <!--xsd:complexType name="Note_Version">
+		      <xsd:sequence>
+			         <xsd:element ref="VID.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="VID.3" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Version" type="Note_Version"/-->
+
+
+
+	   <xsd:complexType name="Note_Author">
+		      <xsd:sequence>
+			         <xsd:element ref="XCN.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.2" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.3" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.4" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.5" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.6" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.7" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.8" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.9" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.10" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.11" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.12" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.13" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.14" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.15" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.16" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.17" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="XCN.18" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Author" type="Note_Author"/>
+
+	   <xsd:complexType name="Note_Entered_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Entered_Date" type="Note_Entered_Date"/>
+
+	   <!--xsd:complexType name="Note_Due_Date">
+		      <xsd:sequence>
+			         <xsd:element ref="TS.1" minOccurs="0" maxOccurs="1"/>
+			         <xsd:element ref="TS.2" minOccurs="0" maxOccurs="1"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="Note_Due_Date" type="Note_Due_Date"/-->
+
+      <!-- Meter Reading Group  Starts here-->
+	   <!--xsd:complexType name="Meter_Reading_Group_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Meter_Reading_Group_ID" type="Meter_Reading_Group_ID"/>
+
+	   <xsd:complexType name="Meter_Record_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Meter_Record_ID" type="Meter_Record_ID"/>
+
+         <xsd:complexType name="Meter_Device_Sub_ID">
+		      <xsd:simpleContent>
+			         <xsd:extension base="ST"/>
+		      </xsd:simpleContent>
+	   </xsd:complexType>
+	   <xsd:element name="Meter_Device_Sub_ID" type="Meter_Device_Sub_ID"/-->
+        <!-- Meter Reading Group ends here-->
+</xsd:schema>

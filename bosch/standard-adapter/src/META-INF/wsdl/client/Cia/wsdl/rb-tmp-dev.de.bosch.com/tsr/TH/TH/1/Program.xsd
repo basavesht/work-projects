@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://th.bosch.com/program"
+        xmlns:basic="http://th.bosch.com/basictypes"
+        targetNamespace="http://th.bosch.com/program">
+	   <annotation>
+		      <documentation>Revision: 2112</documentation>
+	   </annotation>
+	   <!-- Import used namespaces -->
+	<import namespace="http://th.bosch.com/basictypes"
+            schemaLocation="../../TH/1/BasicTypes.xsd"/>
+	   <!-- Custom type definitions -->
+	<simpleType name="IdType">
+		      <annotation>
+			         <documentation>Surrogate key type for a program. This key is generated in the User Domain.</documentation>
+		      </annotation>
+		      <restriction base="basic:SurrogateKeyType"/>
+	   </simpleType>
+	   <complexType name="VersionedIdType">
+		      <annotation>
+			         <documentation>Surrogate key type for a program which also contains the version of the entity. This key is generated in the User Domain and is used to determine concurrent data modification.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="programId" type="tns:IdType"/>
+			         <element ref="basic:version"/>
+		      </sequence>
+	   </complexType>
+	   <complexType name="ProgramType">
+		      <annotation>
+			         <documentation>A program with its name and description.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="programId" type="basic:SurrogateKeyType">
+				            <annotation>
+					               <documentation>The unique identifier of the program.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="programName" type="string">
+				            <annotation>
+					               <documentation>The name of the program.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="programDescription" type="string">
+				            <annotation>
+					               <documentation>The name of the program.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <!--  *************************************************************** Basic Error message definition  ************************************************************************************* -->
+	<complexType name="ProgramErrorType">
+		      <annotation>
+			         <documentation>Base ErrorType for program errors.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="basic:BaseErrorType"/>
+		      </complexContent>
+	   </complexType>
+</schema>

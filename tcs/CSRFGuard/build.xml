@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project name="OWASP-CSRFGuard-2.0" default="dist" basedir=".">
+	<property name="name" value="OWASP-CSRFGuard-2.0" />
+	<property name="src" value="src" />
+	<property name="bin" value="bin" />
+	<property name="dist" value="dist" />
+	<property name="resources" value="${src}/resources" />
+	<property name="conf" value="conf" />
+	
+	<target name="cleanProps">
+		<delete file="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/web.xml"/>
+		<delete file="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/csrfguard.properties"/>
+		<delete file="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/lib/htmlparser.jar"/>
+		<delete file="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/lib/${name}.jar"/>
+		
+		<delete file="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/web.xml"/>
+		<delete file="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/csrfguard.properties"/>
+		<delete file="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/lib/htmlparser.jar"/>
+		<delete file="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/lib/${name}.jar"/>
+	</target>
+	
+	<target name="clean" depends="cleanProps">
+		<delete dir="${bin}"/>
+		<delete dir="${dist}"/>
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="${bin}"/>
+	</target>
+	
+	<target name="compile" depends="init"> 
+		<javac srcdir="${src}" destdir="${bin}">
+		    <classpath>
+		        <fileset dir="./lib">
+		            <include name="*.jar"/>
+		        </fileset>
+		    </classpath> 
+		</javac>
+	</target>
+	
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${bin}/resources"/>
+		<jar jarfile="${dist}/${name}.jar" basedir="${bin}"/>
+	</target>
+	
+	<target name="deployToWebGoat" depends="dist">
+		<copy file="${dist}/${name}.jar" toDir="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/lib" />
+		<copy file="lib/htmlparser.jar" toDir="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF/lib" />
+		<copy file="${conf}/web.xml" toDir="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF" />
+		<copy file="${conf}/csrfguard.properties" toDir="C:/AppSecWorkbench/tools/tomcat/webapps/WebGoat/WEB-INF" />
+	</target>
+	
+	<target name="deployToWebGoatDev" depends="dist">
+		<copy file="${dist}/${name}.jar" toDir="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/lib" />
+		<copy file="lib/htmlparser.jar" toDir="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF/lib" />
+		<copy file="${conf}/web.xml" toDir="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF" />
+		<copy file="${conf}/csrfguard.properties" toDir="C:/AspectClass/J2EE/Labs/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/WebGoat/WEB-INF" />
+	</target>
+</project>

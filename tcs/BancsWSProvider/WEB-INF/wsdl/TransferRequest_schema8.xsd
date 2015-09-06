@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://tcs.com/bancs/morganstanley/payments/transfers" xmlns:ns2="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/response" xmlns:ns1="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/request" xmlns:ns4="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/response" xmlns:ns3="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/request" xmlns:tns="http://tcs.com/bancs/morganstanley/payments/transfers" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns5="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/request" xmlns:ns6="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/response">
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/request" schemaLocation="TransferRequest_schema2.xsd"/>
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/response" schemaLocation="TransferRequest_schema1.xsd"/>
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/request" schemaLocation="TransferRequest_schema7.xsd"/>
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/response" schemaLocation="TransferRequest_schema6.xsd"/>
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/request" schemaLocation="TransferRequest_schema4.xsd"/>
+
+  <xs:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/response" schemaLocation="TransferRequest_schema3.xsd"/>
+
+  <xs:element name="createTransfer" type="tns:createTransfer"/>
+
+  <xs:element name="createTransferResponse" type="tns:createTransferResponse"/>
+
+  <xs:element name="loadTransfer" type="tns:loadTransfer"/>
+
+  <xs:element name="loadTransferResponse" type="tns:loadTransferResponse"/>
+
+  <xs:element name="selectAccount" type="tns:selectAccount"/>
+
+  <xs:element name="selectAccountResponse" type="tns:selectAccountResponse"/>
+
+  <xs:complexType name="selectAccount">
+    <xs:sequence>
+      <xs:element ref="ns1:SelectAccountRequestParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transferRequest">
+    <xs:sequence>
+      <xs:element name="paymentRequest" type="tns:paymentRequest" minOccurs="0"/>
+      <xs:element name="userDetails" type="tns:userDetails" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="paymentRequest">
+    <xs:sequence>
+      <xs:element name="account" type="tns:account" nillable="true" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="amount" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="comments" type="xs:string" minOccurs="0"/>
+      <xs:element name="recurringDetails" type="tns:recurringDetails" minOccurs="0"/>
+      <xs:element name="transferAction" type="tns:transferAction" minOccurs="0"/>
+      <xs:element name="transferDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="transferSchedule" type="tns:transferSchedule" minOccurs="0"/>
+      <xs:element name="transferType" type="tns:transferType" minOccurs="0"/>
+      <xs:element name="txnConfirmationNo" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="account">
+    <xs:sequence>
+      <xs:element name="account" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountCategory" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountClass" type="xs:string" minOccurs="0"/>
+      <xs:element name="accountStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="acntType" type="tns:acntType" minOccurs="0"/>
+      <xs:element name="choiceFundCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientCategory" type="xs:string" minOccurs="0"/>
+      <xs:element name="collateralAcctInd" type="xs:string" minOccurs="0"/>
+      <xs:element name="displayName" type="xs:string" minOccurs="0"/>
+      <xs:element name="divPay" type="xs:string" minOccurs="0"/>
+      <xs:element name="drCrIndicator" type="tns:drCrIndicator" minOccurs="0"/>
+      <xs:element name="externalAcntRefId" type="xs:string" minOccurs="0"/>
+      <xs:element name="fa" type="xs:string" minOccurs="0"/>
+      <xs:element name="iraCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="keyAccount" type="xs:string" minOccurs="0"/>
+      <xs:element name="novusSubProduct" type="xs:string" minOccurs="0"/>
+      <xs:element name="office" type="xs:string" minOccurs="0"/>
+      <xs:element name="tradeControl" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recurringDetails">
+    <xs:sequence>
+      <xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="frequency" type="xs:int" minOccurs="0"/>
+      <xs:element name="noOfTransfers" type="xs:string" minOccurs="0"/>
+      <xs:element name="repeat" type="xs:int" minOccurs="0"/>
+      <xs:element name="untilAmount" type="xs:decimal" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="userDetails">
+    <xs:sequence>
+      <xs:element name="clientIdentifier" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientUUID" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="loginId" type="xs:string" minOccurs="0"/>
+      <xs:element name="maskedClientIdentifier" type="xs:string" minOccurs="0"/>
+      <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="selectAccountResponse">
+    <xs:sequence>
+      <xs:element ref="ns2:SelectAccountResponseParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transferResponse">
+    <xs:sequence>
+      <xs:element name="paymentResponse" type="tns:paymentResponse" minOccurs="0"/>
+      <xs:element name="responseObject" type="tns:responseObject" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="paymentResponse">
+    <xs:sequence>
+      <xs:element name="accountResponse" type="tns:accountResponse" nillable="true" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="confirmationNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="paymentStatus" type="xs:int" minOccurs="0"/>
+      <xs:element name="serviceContext" type="tns:serviceContext" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accountResponse">
+    <xs:sequence>
+      <xs:element name="account" type="xs:string" minOccurs="0"/>
+      <xs:element name="acntBalance" type="tns:acntBalance" minOccurs="0"/>
+      <xs:element name="acntType" type="tns:acntType" minOccurs="0"/>
+      <xs:element name="displayName" type="xs:string" minOccurs="0"/>
+      <xs:element name="externalAcntRefId" type="xs:string" minOccurs="0"/>
+      <xs:element name="fa" type="xs:string" minOccurs="0"/>
+      <xs:element name="keyAccount" type="xs:string" minOccurs="0"/>
+      <xs:element name="office" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="acntBalance">
+    <xs:sequence>
+      <xs:element name="account" type="xs:string" minOccurs="0"/>
+      <xs:element name="availSpndPower" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="cashAvail" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="cashAvailablePend" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="delayedDebitCardTxn" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="fa" type="xs:string" minOccurs="0"/>
+      <xs:element name="keyAccount" type="xs:string" minOccurs="0"/>
+      <xs:element name="marginAvail" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="marginPendTxn" type="xs:decimal" minOccurs="0"/>
+      <xs:element name="office" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="serviceContext">
+    <xs:sequence>
+      <xs:element name="message" type="tns:message" nillable="true" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="message">
+    <xs:sequence>
+      <xs:element name="messageCode" type="xs:int" minOccurs="0"/>
+      <xs:element name="messageDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="messageType" type="tns:messageType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseObject">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="returnCode" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transferRequestFaultBean">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createTransfer">
+    <xs:sequence>
+      <xs:element ref="ns3:CreateTransferRequestParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createTransferResponse">
+    <xs:sequence>
+      <xs:element ref="ns4:CreateTransferResponseParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="loadTransfer">
+    <xs:sequence>
+      <xs:element ref="ns5:loadTransferRequestParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="loadTransferResponse">
+    <xs:sequence>
+      <xs:element ref="ns6:LoadTransferResponseParam" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="acntType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="External"/>
+      <xs:enumeration value="Internal"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="drCrIndicator">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CR"/>
+      <xs:enumeration value="DR"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="transferAction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CreateConfirm"/>
+      <xs:enumeration value="CreatePreConfirm"/>
+      <xs:enumeration value="CreatePageLoad"/>
+      <xs:enumeration value="GetBalance"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="transferSchedule">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Recurring"/>
+      <xs:enumeration value="OneTime"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="transferType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ACH"/>
+      <xs:enumeration value="Internal"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="messageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CRITICAL"/>
+      <xs:enumeration value="SEVERE"/>
+      <xs:enumeration value="ERROR"/>
+      <xs:enumeration value="RISK"/>
+      <xs:enumeration value="WARNING"/>
+      <xs:enumeration value="INFORMATION"/>
+      <xs:enumeration value="SUCCESS"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

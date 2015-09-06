@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://th.bosch.com/integration/notes"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pat="http://th.bosch.com/integrationpatient"
+            xmlns:task="http://tmp.bosch.com/cl/task"
+            xmlns:basic="http://tmp.bosch.com/cl/basictypes"
+            targetNamespace="http://th.bosch.com/integration/notes"
+            elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3434</documentation>
+	   </annotation>
+	   <!-- ################ Imported Schemas ####################### -->
+	<xsd:import namespace="http://th.bosch.com/integrationpatient"
+                schemaLocation="../../../TH/CIA/1/IntegrationPatient.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/task"
+                schemaLocation="../../../CL/Task/1/Task.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../../CL/1/BasicTypes.xsd"/>
+    <!--################# Operation elements ######################-->
+	<xsd:element name="note">
+	       <xsd:annotation>
+	           <xsd:documentation>Patient or Session Note Data</xsd:documentation>
+	       </xsd:annotation>
+		      <xsd:complexType>
+		          <xsd:sequence>
+				            <xsd:element name="header" type="task:HeaderType"/>
+				            <xsd:element name="payload" type="task:NotesPayloadType"/>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="pushNotes">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element ref="tns:note" minOccurs="0" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The list of Patient or Session Notes Data based on (a) the specified filter criteria, and (b)  the requested pagination and sorting.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="patientId" type="basic:IdentifierType">
+					               <xsd:annotation>
+						                  <xsd:documentation>Patient Id of the associated note.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="integrationPatient" type="pat:IntegrationPatientType" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Unique Integrated patient details for the notes responses. Not required to be populated from task service. Requires only for CDA processing, hence it will be populated through CIA service.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+</xsd:schema>

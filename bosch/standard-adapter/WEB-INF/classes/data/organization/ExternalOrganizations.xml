@@ -1,0 +1,12 @@
+<ns3:getExternalOrganizationsReply xmlns:ns2="http://th.bosch.com/basictypes" xmlns="http://tmp.bosch.com/cl/task" xmlns:ns4="http://tmp.bosch.com/cl/basictypes" xmlns:ns3="http://th.bosch.com/cia" xmlns:ns9="http://tmp.bosch.com/cl/results" xmlns:ns5="http://th.bosch.com/integrationpatient" xmlns:ns6="http://th.bosch.com/patientrecord" xmlns:ns10="http://th.bosch.com/externalorganization" xmlns:ns7="http://th.bosch.com/threshold" xmlns:ns8="http://th.bosch.com/audit">
+    <ns3:externalOrganization>
+        <ns10:internalOrganization>
+            <ns10:organizationIdentifier>30040</ns10:organizationIdentifier>
+            <ns10:isIntegrated>true</ns10:isIntegrated>
+            <ns10:isTest>false</ns10:isTest>
+        </ns10:internalOrganization>
+        <ns10:externalOrganization>
+            <ns10:organizationIdentifier>30040exorg</ns10:organizationIdentifier>
+        </ns10:externalOrganization>
+    </ns3:externalOrganization>
+</ns3:getExternalOrganizationsReply>

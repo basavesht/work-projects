@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://th.bosch.com/integration"
+             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+             xmlns:ns="urn:hl7-org:v2xml"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             name="StandardAdapter"
+             targetNamespace="http://th.bosch.com/integration">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ADT_A01.xsd"/>
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ADT_A03.xsd"/>            
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ADT_A05.xsd"/>            
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/QVR_Q17.xsd"/>            
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ORU_R30_BATCH.xsd"/>
+			         <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ORU_R01_BATCH.xsd"/>
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/ACK_BATCH.xsd"/>  
+            <xsd:import namespace="urn:hl7-org:v2xml"
+                        schemaLocation="../../../INT/HL7/Custom2.5/SurveyResultsAssemblyTemplateSchema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="ADT_A01OperationRequest">
+        <part name="part1" element="ns:ADT_A01"/>
+    </message>
+    <message name="ADT_A01OperationResponse">
+        <part name="part1" element="ns:ACK"/>
+    </message>    
+    <message name="ADT_A03OperationRequest">
+        <part name="part1" element="ns:ADT_A03"/>
+    </message>
+    <message name="ADT_A03OperationResponse">
+        <part name="part1" element="ns:ACK"/>
+    </message>
+    <message name="ADT_A05OperationRequest">
+        <part name="part1" element="ns:ADT_A05"/>
+    </message>
+    <message name="ADT_A05OperationResponse">
+        <part name="part1" element="ns:ACK"/>
+    </message>    
+    <message name="QVR_Q17OperationRequest">
+        <part name="part1" element="ns:QVR_Q17"/>
+    </message>
+    <message name="QVR_Q17OperationResponse">
+        <part name="part1" element="ns:ORU_R30_BATCH"/>
+    </message>
+    <message name="ACK_BATCHOperationRequest">
+        <part name="part1" element="ns:ACK_BATCH"/>
+    </message>
+    <message name="ACK_BATCHOperationResponse">
+        <part name="part1" element="ns:ACK"/>
+    </message> 
+	   <message name="QVR_Q17ORUR01OperationRequest">
+        <part name="part1" element="ns:QVR_Q17"/>
+    </message>
+    <message name="QVR_Q17ORUR01OperationResponse">
+        <part name="part1" element="ns:ORU_R01_BATCH"/>
+    </message>	
+    <portType name="StandardAdapterPortType">
+        <operation name="ADT_A01Operation">
+            <input name="ADT_A01OperationInput" message="tns:ADT_A01OperationRequest"/>
+            <output name="ADT_A01OperationOutput" message="tns:ADT_A01OperationResponse"/>
+        </operation>        
+        <operation name="ADT_A03Operation">
+            <input name="ADT_A03OperationInput" message="tns:ADT_A03OperationRequest"/>
+            <output name="ADT_A03OperationOutput" message="tns:ADT_A03OperationResponse"/>
+        </operation>        
+        <operation name="ADT_A05Operation">
+            <input name="ADT_A05OperationInput" message="tns:ADT_A05OperationRequest"/>
+            <output name="ADT_A05OperationOutput" message="tns:ADT_A05OperationResponse"/>
+        </operation>        
+        <operation name="QVR_Q17Operation">
+            <input name="QVR_Q17OperationInput" message="tns:QVR_Q17OperationRequest"/>
+            <output name="QVR_Q17OperationOutput" message="tns:QVR_Q17OperationResponse"/>
+        </operation>
+        <operation name="ACK_BATCHOperation">
+            <input name="ACK_BATCHOperationInput" message="tns:ACK_BATCHOperationRequest"/>
+            <output name="ACK_BATCHOperationOutput" message="tns:ACK_BATCHOperationResponse"/>
+        </operation>  
+		      <operation name="QVR_Q17ORUR01Operation">
+            <input name="QVR_Q17ORUR01OperationInput" message="tns:QVR_Q17ORUR01OperationRequest"/>
+            <output name="QVR_Q17ORUR01OperationOutput"
+                    message="tns:QVR_Q17ORUR01OperationResponse"/>
+        </operation>		
+    </portType>
+    <binding name="StandardAdapterSoapBinding" type="tns:StandardAdapterPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ADT_A01Operation">
+            <soap:operation style="document" soapAction=""/>
+            <input name="ADT_A01OperationInput">
+                <soap:body use="literal" parts="part1"/>
+            </input>
+            <output name="ADT_A01OperationOutput">
+                <soap:body use="literal" parts="part1"/>
+            </output>
+        </operation>        
+        <operation name="ADT_A03Operation">
+            <soap:operation style="document" soapAction=""/>
+            <input name="ADT_A03OperationInput">
+                <soap:body use="literal" parts="part1"/>
+            </input>
+            <output name="ADT_A03OperationOutput">
+                <soap:body use="literal" parts="part1"/>
+            </output>
+        </operation>        
+        <operation name="ADT_A05Operation">
+            <soap:operation style="document" soapAction=""/>
+            <input name="ADT_A05OperationInput">
+                <soap:body use="literal" parts="part1"/>
+            </input>
+            <output name="ADT_A05OperationOutput">
+                <soap:body use="literal" parts="part1"/>
+            </output>
+        </operation>        
+        <operation name="QVR_Q17Operation">
+            <soap:operation style="document" soapAction="http://th.bosch.com/integration/QVR_Q17Operation"/>
+            <input name="QVR_Q17OperationInput">
+                <soap:body use="literal" parts="part1"/>
+            </input>
+            <output name="QVR_Q17OperationOutput">
+                <soap:body use="literal" parts="part1"/>
+            </output>
+        </operation>
+        <operation name="ACK_BATCHOperation">
+            <soap:operation style="document" soapAction=""/>
+            <input name="ACK_BATCHOperationInput">
+                <soap:body parts="part1" use="literal"/>
+            </input>
+            <output name="ACK_BATCHOperationOutput">
+                <soap:body parts="part1" use="literal"/>
+            </output>
+        </operation>   
+		      <operation name="QVR_Q17ORUR01Operation">
+            <soap:operation style="document"
+                            soapAction="http://th.bosch.com/integration/QVR_Q17ORUR01Operation"/>
+            <input name="QVR_Q17ORUR01OperationInput">
+                <soap:body use="literal" parts="part1"/>
+            </input>
+            <output name="QVR_Q17ORUR01OperationOutput">
+                <soap:body use="literal" parts="part1"/>
+            </output>
+        </operation>		
+    </binding>
+    <service name="StandardAdapterService">
+        <port name="StandardAdapterHttpPort" binding="tns:StandardAdapterSoapBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/StandardAdapterService/StandardAdapterHttpPort"/>
+        </port>
+    </service>
+   <jaxws:bindings xmlns:jaxws=" http://java.sun.com/xml/ns/jaxws">
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+        <jaxws:package name="com.bosch.th.integration"/>
+    </jaxws:bindings>
+    <!-- A partner link type is automatically generated when a new port type is added.
+         Partner link types are used by BPEL processes.
+         In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service.
+         Each partner link is associated with a partner link type.
+         A partner link type characterizes the conversational relationship between two services.
+         The partner link type can have one or two roles. -->
+    <plnk:partnerLinkType name="StandardAdapter">
+        <plnk:role name="ServiceImplementation" portType="tns:StandardAdapterPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Money Movement Application</display-name>
+
+	<filter>
+		<description>
+		Authenticate Resource using SAML and then handle session</description>
+		<display-name>SAMLAuthorizer</display-name>
+		<filter-name>SAMLAuthorizer</filter-name>
+		<filter-class>com.tcs.bancs.ui.filters.security.saml.SAMLAuthorizerSimulator</filter-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>D:/MorganStanley/MS-ConfigParams/Channels/config-Phase2/saml-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextXML</param-name>
+			<param-value>D:/MorganStanley/MS-ConfigParams/Channels/config-Phase2/context.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextXSD</param-name>
+			<param-value>D:/MorganStanley/MS-ConfigParams/Channels/config-Phase2/context.xsd</param-value>
+		</init-param>
+		<init-param>
+			<param-name>hookConfig</param-name>
+			<param-value>D:/MorganStanley/MS-ConfigParams/Channels/config-Phase2/pagemap.xml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SAMLAuthorizer</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+  <!-- Action Servlet Configuration -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>com.tcs.ebw.serverside.jaas.struts.servlets.EbwActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/payments</param-name>
+      <param-value>/WEB-INF/payments/struts-config.xml</param-value>
+    </init-param>
+	 <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>LoginNew.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- Struts Tag Library Descriptors -->
+  <jsp-config>
+	  <taglib >
+	    <taglib-uri>/tags/ebw-bean</taglib-uri>
+	    <taglib-location>/WEB-INF/ebw-bean.tld</taglib-location>
+	  </taglib>
+	
+	  <taglib>
+	    <taglib-uri>/tags/ebw-html</taglib-uri>
+	    <taglib-location>/WEB-INF/ebw-html.tld</taglib-location>
+	  </taglib>
+	
+	  <taglib>
+	    <taglib-uri>/tags/struts-html</taglib-uri>
+	    <taglib-location>/WEB-INF/ebw-html.tld</taglib-location>
+	  </taglib>
+	
+	  <taglib>
+	    <taglib-uri>/tags/ebw-logic</taglib-uri>
+	    <taglib-location>/WEB-INF/ebw-logic.tld</taglib-location>
+	  </taglib>
+	
+	  <taglib>
+	    <taglib-uri>/tags/ebw-taglibs</taglib-uri>
+	    <taglib-location>/WEB-INF/ebwtaglibs.tld</taglib-location>
+	  </taglib>
+	
+	  <taglib>
+	    <taglib-uri>/tags/template</taglib-uri>
+	    <taglib-location>/WEB-INF/template.tld</taglib-location>
+	  </taglib>
+		
+	  <taglib>
+	    <taglib-uri>/tags/c</taglib-uri>
+	    <taglib-location>/WEB-INF/c.tld</taglib-location>
+	  </taglib>
+  </jsp-config>
+ 
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Entire Application</web-resource-name>
+      <url-pattern>/*.do</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>USER1</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Define the Login Configuration for this Application -->
+ <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>MyFirst Protected Area</realm-name>
+        <form-login-config>
+                <form-login-page>/login.html</form-login-page>
+                <form-error-page>/autherr.html</form-error-page>
+        </form-login-config>
+</login-config>
+
+<security-role>
+        <description>Only 'tomcat' role is allowed to access this web application</description>
+        <role-name>USER1</role-name>
+</security-role>
+
+<session-config>
+        <session-timeout>20</session-timeout>
+</session-config>
+
+<!-- Error Page Mapping -->
+		<!-- Page Not Found -->
+					<error-page>
+							<error-code>404</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Internal Server Error -->
+					<error-page>
+							<error-code>500</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Service Unavailable -->
+					<error-page>
+							<error-code>503</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Bad Gateway -->
+					<error-page>
+							<error-code>502</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Gateway Timeout -->
+					<error-page>
+							<error-code>504</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Bad Request-->
+					<error-page>
+							<error-code>400</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Request Timeout -->
+					<error-page>
+							<error-code>408</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+		<!-- Request-URI Too Large -->
+					<error-page>
+							<error-code>414</error-code> 
+							<location>/payments/Error.jsp</location>
+					</error-page>
+
+<!-- Error Page Mapping End -->
+<!-- Destory listener for the session security data -->
+<listener>
+		<listener-class>com.tcs.ebw.serverside.listeners.MSHttpSessionListener</listener-class>
+</listener>
+
+</web-app>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Kai Hudalla (Robert Bosch GmbH) --><schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://tmp.bosch.com/cl/basictypes"
+        targetNamespace="http://tmp.bosch.com/cl/basictypes"
+        elementFormDefault="qualified"
+        version="1.1">	
+    <annotation>
+        <documentation>Revision: 2674</documentation>
+    </annotation>    
+    <annotation>		
+        <documentation>			The types declared in this schema are meant to be reused			in other schemata by importing its target namespace.		</documentation>	
+    </annotation>	
+    <simpleType name="SurrogateKeyType">		
+        <restriction base="long">			
+            <totalDigits value="18"/>		
+        </restriction>	
+    </simpleType>	
+    <element name="version" type="tns:VersionType"/>	
+    <simpleType name="VersionType">		
+        <restriction base="long">			
+            <totalDigits value="18"/>		
+        </restriction>	
+    </simpleType>	
+    <simpleType name="DueTimeType">		
+        <union>			
+            <simpleType>				
+                <restriction base="xsd:token">					
+                    <enumeration value="NEVER"/>					
+                    <enumeration value="IMMEDIATELY"/>				
+                </restriction>			
+            </simpleType>			
+            <simpleType>				
+                <restriction base="xsd:dateTime"/>			
+            </simpleType>		
+        </union>	
+    </simpleType>	
+    <complexType name="BasicValueType">		
+        <sequence>			
+            <any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>		
+        </sequence>		
+        <attribute name="codeSystem" type="xsd:string" use="required"/>		
+        <attribute name="code" type="xsd:string" use="required"/>		
+        <attribute name="value" type="xsd:string" use="optional"/>	
+    </complexType>	
+    <simpleType name="TimeOffsetType">		
+        <union>			
+            <simpleType>				
+                <restriction base="xsd:token">					
+                    <enumeration value="UNKNOWN"/>				
+                </restriction>			
+            </simpleType>			
+            <simpleType>				
+                <restriction base="xsd:int">					
+                    <annotation>						
+                        <documentation xml:lang="en">							The (positive or negative) offset in milliseconds.						</documentation>					
+                    </annotation>				
+                </restriction>			
+            </simpleType>		
+        </union>	
+    </simpleType>	
+    <complexType name="BaseErrorType">		
+        <annotation>			
+            <documentation>The BaseErrorType is the root type of all business errors in the TMP. All business faults defined by services should either use BaseErrorType or use types, which extend BaseErrorType.</documentation>		
+        </annotation>		
+        <sequence>			
+            <element name="message" type="string">				
+                <annotation>					
+                    <documentation>The description of the error.</documentation>				
+                </annotation>			
+            </element>		
+        </sequence>	
+    </complexType>	
+    <complexType name="OptimisticLockingErrorType">		
+        <annotation>			
+            <documentation>Indicates an optimistic locking violation while persisting data.</documentation>		
+        </annotation>		
+        <complexContent>			
+            <extension base="tns:BaseErrorType"/>		
+        </complexContent>	
+    </complexType>
+    <simpleType name="UserIdType">		
+        <annotation>			
+            <documentation>				Surrogate key type for an user. The UserIdType is a basic type as the user id is the unique identifier throughout the Telemedicine Platform and 				is therefore used in all Service Domains.			</documentation>		
+        </annotation>		
+        <restriction base="tns:SurrogateKeyType"/>	
+    </simpleType>	
+    <simpleType name="GenderType">		
+        <annotation>			
+            <documentation>Male/Female</documentation>		
+        </annotation>		
+        <restriction base="string">			
+            <enumeration value="male"/>			
+            <enumeration value="female"/>		
+        </restriction>	
+    </simpleType>	
+    <attributeGroup name="VersionedSurrogateKey">		
+        <annotation>			
+            <documentation>surrogate key with version attributes used for optimistic locking purposes.</documentation>		
+        </annotation>		
+        <attribute name="id" use="required" type="tns:SurrogateKeyType"/>		
+        <attribute name="version" use="required" type="tns:VersionType"/>	
+    </attributeGroup>    
+    <complexType name="IdentifierType">		
+        <annotation>			
+            <documentation>An identifier type that may be either an internal identifier type or an external identifier type.</documentation>		
+        </annotation>		
+        <choice>			
+            <element name="internalIdentifier" type="tns:SurrogateKeyType"/>			
+            <element name="externalIdentifier" type="tns:ExternalIdentifierType"
+                     maxOccurs="unbounded"/>		
+        </choice>		
+        <attribute name="versionCount" type="tns:VersionType" use="optional"/>	
+    </complexType>	
+    <complexType name="ExternalIdentifierType">		
+        <sequence>            
+            <element name="identifierId" type="tns:SurrogateKeyType"/>			
+            <element name="name" type="xsd:string"/>			
+            <element name="value" type="xsd:string"/>			
+            <element name="checksum" type="xsd:string" minOccurs="0"/>			
+            <element name="scopeOrganization" type="tns:IdentifierType"/>		
+        </sequence>	
+    </complexType>	
+    <complexType name="NameType">		
+        <sequence>			
+            <element name="firstName" type="xsd:string" minOccurs="0"/>            
+            <element name="middleName" type="xsd:string" minOccurs="0"/>            
+            <element name="lastName" type="xsd:string" minOccurs="0"/>		
+        </sequence>	
+    </complexType>    
+    <simpleType name="UserType">		
+        <annotation>			
+            <documentation>Physician or Care Manager</documentation>		
+        </annotation>		
+        <restriction base="string">			
+            <enumeration value="physician"/>			
+            <enumeration value="caremanager"/>		
+        </restriction>	
+    </simpleType>
+</schema>

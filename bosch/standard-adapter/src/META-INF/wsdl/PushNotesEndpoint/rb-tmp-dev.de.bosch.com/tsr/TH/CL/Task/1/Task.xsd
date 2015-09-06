@@ -1,0 +1,1392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (x64) (http://www.altova.com) by Steffen Reimann (Robert Bosch GmbH) --><schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:basic="http://th.bosch.com/basictypes"
+        xmlns:clinical="http://th.bosch.com/clinicaldefinitions"
+        xmlns:tns="http://tmp.bosch.com/cl/task"
+        targetNamespace="http://tmp.bosch.com/cl/task"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3438</documentation>
+	   </annotation>
+	   <import namespace="http://th.bosch.com/basictypes"
+            schemaLocation="../../../TH/1/BasicTypes.xsd"/>
+	   <import namespace="http://th.bosch.com/clinicaldefinitions"
+            schemaLocation="../../../TH/1/ClinicalDefinitions.xsd"/>
+	   <redefine schemaLocation="../../../CL/1/Pagination.xsd">
+		<!-- This includes common base types for Pagination & Sorting into the current namespace!
+             In addition, the "SortKey" type is redefined (i.e., overridden) in order to define
+             the set of valid sort keys for this particular service. -->
+		<simpleType name="SortKey">
+			         <annotation>
+				            <documentation>This enumeration defines all sorting criteria that can be used to sort a list of tasks.</documentation>
+			         </annotation>
+			         <restriction base="tns:SortKey">
+				            <enumeration value="ID">
+					               <annotation>
+						                  <documentation>Tasks are sorted by their unique id.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="TYPE">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to their payload type. The ascending order of types is: FOLLOWUP, PATIENT_FOLLOWUP, REVIEW_NONRESPONDER, REVIEW_CLINICALDATA.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="PRIORITY">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to their priority level. The ascending order of priority values is: LOW, MEDIUM, HIGH.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="STATUS">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to their status. The ascending order of status values is:  UNCLAIMED, CLAIMED, FINISHED.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="OWNER_FIRST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of their owner's first name. Tasks that are not assigned to any owner are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="OWNER_LAST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of their owner's last name. Tasks that are not assigned to any owner are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="PATIENT_BTP_ID">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the Bosch Telemedicine Platform ID (BTP ID) of the patient they are related to. Tasks that are not related to any patient are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="PATIENT_MAIN_ID">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the customer-specific main identifier of the patient they are related to. Tasks that are not related to any patient are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="PATIENT_FIRST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the first name of the patient they are related to. Tasks that are not related to any patient are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="PATIENT_LAST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the last name of the patient they are related to. Tasks that are not related to any patient are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CATEGORY">
+					               <annotation>
+						                  <documentation>Tasks are sorted based on the categories they are assigned to. The categories of a task are always sorted in ascending alphabetical order. The list of tasks is then sorted in alphabetical order of this "category list". Tasks that are not assigned to any category are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="DUE_TIME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the order of their due times. In ascending order, the task with the earliest due time appears first in the list.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CREATION_TIME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the order of their creation times. In ascending order, the oldest task (i.e. the one that was created first) appears first in the list.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CHANGE_TIME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the order of their most recent change times. In ascending order, the task that has been changed most recently appears LAST in the list.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CHANGED_BY_FIRST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the first name of the user that has most recently changed this task.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CHANGED_BY_LAST_NAME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of the last name of the user that has most recently changed this task.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="CLOSE_TIME">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the order of their most recent close times. In ascending order, the task that has been closed most recently appears LAST in the list.</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="SYMPTOMS">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to the risk level of "symptoms". The ascending order of risk values is: NONE, LOW, MEDIUM, HIGH. Tasks that do not have a risk level (i.e. all tasks that are not REVIEW_CLINICALDATA tasks) appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="BEHAVIOR">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to the risk level of "behavior". The ascending order of risk values is: NONE, LOW, MEDIUM, HIGH. Tasks that do not have a risk level (i.e. all tasks that are not REVIEW_CLINICALDATA tasks) appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="KNOWLEDGE">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to the risk level of "knowledge". The ascending order of risk values is: NONE, LOW, MEDIUM, HIGH. Tasks that do not have a risk level (i.e. all tasks that are not REVIEW_CLINICALDATA tasks) appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="GENERAL">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to the risk level of "general". The ascending order of risk values is: NONE, LOW, MEDIUM, HIGH. Tasks that do not have a risk level (i.e. all tasks that are not REVIEW_CLINICALDATA tasks) appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="VITAL_SIGNS">
+					               <annotation>
+						                  <documentation>Tasks are sorted according to the risk level of "vital signs". The ascending order of risk values is: NONE, LOW, MEDIUM, HIGH. Tasks that do not have a risk level (i.e. all tasks that are not REVIEW_CLINICALDATA tasks) appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+				            <enumeration value="DESCRIPTION">
+					               <annotation>
+						                  <documentation>Tasks are sorted in the alphabetical order of their description. Tasks that do not have any description are appended to the end of the list in ascending order (and prepended in descending order).</documentation>
+					               </annotation>
+				            </enumeration>
+			         </restriction>
+		      </simpleType>
+	   </redefine>
+	   <!-- ############### Messages  ############### -->
+	<element name="createTask">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>The new task to be created by the task service. If id or status are set, it will be ignored by the service.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="createTaskReply">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>The newly created task, as it was created by the task service. The returned task contains the taskId.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTasks">
+		      <complexType>
+			         <sequence>
+				            <element name="queryInfo" type="tns:QueryInfo">
+					               <annotation>
+						                  <documentation>Information about the expected pagination and sorting of the query result (i.e., which subset of matching task should be returned in which order).</documentation>
+					               </annotation>
+				            </element>
+				            <element name="filter" type="tns:AbstractFilterType" minOccurs="0">
+					               <annotation>
+						                  <documentation>A filter that is used to restrict the tasks returned by this operation. If no filter is specified, the operation returns all tasks the current user has permissions for.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="viewableBy" type="tns:UserIdType" minOccurs="0">
+					               <annotation>
+						                  <documentation>
+                        This optional element acts as a special kind of filter that filters out any task that is NOT viewable by the user with the specified userId. As a result, this operation returns 
+                        only those tasks that (a) match the specified filter element, and (b) the requesting user is permitted to view, and (c) the user with the specified id is permitted to view.
+                        </documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTasksReply">
+		      <complexType>
+			         <sequence>
+				            <element name="pageInfo" type="tns:PageInfo">
+					               <annotation>
+						                  <documentation>Information about pagination and sorting of the returned query result. This includes the total number of matching tasks as well as the returned "page" of results and the ordering used.</documentation>
+					               </annotation>
+				            </element>
+				            <element ref="tns:task" minOccurs="0" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of tasks based on (a) the permissions of the current user, (b) the specified filter criteria, and (c)  the requested pagination and sorting.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTaskHistory">
+		      <complexType>
+			         <sequence>
+				            <element name="taskHistoryFilter" type="tns:TaskHistoryFilter"/>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTaskHistoryReply">
+		      <complexType>
+			         <sequence>
+				            <element name="taskHistory" type="tns:TaskHistory" minOccurs="0" maxOccurs="unbounded"/>
+				            <element ref="tns:task" minOccurs="0"/>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateTask">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>The task to be updated. Task state fields, which consist of state and owner, are ignored.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateTaskReply">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>Updated task.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="doAction">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>The task, on which the workflow action should be executed. The task may contain updated values, which have been changed when the user executed the workflow action.</documentation>
+					               </annotation>
+				            </element>
+				            <element ref="tns:actionId">
+					               <annotation>
+						                  <documentation>The id of the action to execute. The id has to be valid for the step, the task is currently in. If the task has been transitioned to another step, and the action id is not valid anymore, the operation will throw a invalidActionFault.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="doActionReply">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task">
+					               <annotation>
+						                  <documentation>The task, which was transitioned to a new step.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="replaceCategoryForTasks">
+		      <complexType>
+			         <sequence>
+				            <element name="oldCategory" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>
+                            The category that needs to be replaced.
+                        </documentation>
+					               </annotation>
+				            </element>
+				            <element name="newCategory" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>
+                            The oldCategory is replaced by this category for all given tasks.
+                        </documentation>
+					               </annotation>
+				            </element>
+				            <element name="tasks" type="long" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>Ids of those tasks which need to be linked to the new category.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="comments" type="string">
+					               <annotation>
+						                  <documentation>Any comment that may be provided for this operation.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="replaceCategoryForTasksReply">
+		      <complexType>
+			         <sequence>
+				            <element name="result" type="int">
+					               <annotation>
+						                  <documentation>
+                            Returns the number of tasks that were replaced successfully.
+                        </documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="createTaskCategory">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>The category to be created in the system.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="createTaskCategoryReply">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>The newly created task category.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTaskCategory">
+		      <complexType>
+			         <sequence>
+				            <element name="categoryId" type="long">
+					               <annotation>
+						                  <documentation>Id of the category requested.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTaskCategoryReply">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>The requested category.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getTaskCategories">
+		      <complexType>
+			         <sequence>
+				            <element name="categoryName" type="string" minOccurs="0">
+					               <annotation>
+						                  <documentation>A filter to be used to filter categories, which are returned by this operation. Only the category name is used for filtering now.
+                        </documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+			         <attribute name="includeInactiveCategories" type="boolean" default="false">
+				            <annotation>
+					               <documentation>
+                        A flag to indicate if the previously removed/inactive categories should also be included in the response. By default, return only active categories.
+                    </documentation>
+				            </annotation>
+			         </attribute>
+		      </complexType>
+	   </element>
+	   <element name="getTaskCategoriesReply">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory" minOccurs="0" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of categories based on (a) the specified filter and (b) the permissions of the current user.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateTaskCategory">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>The category to be updated in the system.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateTaskCategoryReply">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory">
+					               <annotation>
+						                  <documentation>The updated task category.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="disableTaskCategories">
+		      <complexType>
+			         <sequence>
+				            <element name="category" type="tns:TaskCategory" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of categories to be disabled in the system.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="disableTaskCategoriesReply">
+		      <complexType>
+			         <sequence>
+				            <element name="result" type="int">
+					               <annotation>
+						                  <documentation>Returns the number of categories that were disabled successfully.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateCategoriesForTasks">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of tasks to be updated with the input categories.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="categories" type="tns:TaskCategory" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of categories to be linked to the tasks in the input.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="updateCategoriesForTasksReply">
+		      <complexType>
+			         <sequence>
+				            <element ref="tns:task" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The list of updated tasks.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <!-- ############### Faults  ############### -->
+	<element name="userNotAuthorizedError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that user is not authorized to perform the operation or user cannot be assigned to a patient task.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="optimisticLockingError" type="basic:OptimisticLockingErrorType">
+		      <annotation>
+			         <documentation>Indicates an optimistic locking violation while persisting data.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="unknownTaskError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that a given ID cannot be resolved to an existing Task.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="invalidTaskDataError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that a task data validation failed, e.g. because of data inconsistency.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="invalidActionError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that a given action (transition) cannot be performed on a task, e.g. because the task's current state does not allow for the particular action (a finished task cannot be claimed anymore).</documentation>
+		      </annotation>
+	   </element>
+	   <element name="invalidFilterError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that a filter cannot be applied, e.g. due to an invalid field name or search value or because a filter cannot be applied to the given field (a date range filter can only be applied to a date field).</documentation>
+		      </annotation>
+	   </element>
+	   <element name="invalidTaskCategoryError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that one or more properties of Task Category is invalid.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="unknownTaskCategoryError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that a given ID cannot be resolved to an existing Task Category.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="duplicateTaskCategoryError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>This exceptions occurs if an active task category by the same name for the same account already exists in the system.</documentation>
+		      </annotation>
+	   </element>
+	   <element name="taskCategoryIsLinkedError" type="basic:BaseErrorType">
+		      <annotation>
+			         <documentation>Indicates that the task category is linked to at least one task.</documentation>
+		      </annotation>
+	   </element>
+	   <!-- ############### Common Types ############### -->
+	<simpleType name="Character">
+		      <restriction base="string">
+			         <maxLength value="1"/>
+		      </restriction>
+	   </simpleType>
+	   <complexType name="DateTimeWithTimeZoneType">
+		      <annotation>
+			         <documentation>A date time with an additional attribute that contains time zone information.</documentation>
+		      </annotation>
+		      <simpleContent>
+			         <extension base="xsd:dateTime">
+				            <attribute name="timeZone" use="required">
+					               <annotation>
+						                  <documentation>Time zone information represented by the POSIX name of  time zone.</documentation>
+					               </annotation>
+				            </attribute>
+			         </extension>
+		      </simpleContent>
+	   </complexType>
+	   <complexType name="TimeIntervalType">
+		      <annotation>
+			         <documentation>A time interval that needs to contain both a start and an end time.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="start" type="xsd:dateTime"/>
+			         <element name="end" type="xsd:dateTime"/>
+		      </sequence>
+	   </complexType>
+	   <simpleType name="UserIdType">
+		      <annotation>
+			         <documentation>Surrogate key type for a user.</documentation>
+		      </annotation>
+		      <restriction base="basic:SurrogateKeyType"/>
+	   </simpleType>
+	   <simpleType name="CreatorType">
+		      <annotation>
+			         <documentation>Indicates whether a task was created by a user of the system or by the system itself (e.g. a service that needed to create a task).</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="USER"/>
+			         <enumeration value="SYSTEM"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="PriorityType">
+		      <annotation>
+			         <documentation>All valid task priority levels. The priority level currently has no semantics inside the Task service itself, but may be used for filtering and sorting a set of tasks.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="LOW"/>
+			         <enumeration value="MEDIUM"/>
+			         <enumeration value="HIGH"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="StatusType">
+		      <annotation>
+			         <documentation>All valid task status identifiers.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="UNCLAIMED"/>
+			         <enumeration value="CLAIMED"/>
+			         <enumeration value="FINISHED"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="TypeIdType">
+		      <annotation>
+			         <documentation>All identifiers of concrete task types the Task service can manage.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="FOLLOWUP"/>
+			         <enumeration value="PATIENT_FOLLOWUP"/>
+			         <enumeration value="REVIEW_NONRESPONDER"/>
+			         <enumeration value="REVIEW_CLINICALDATA"/>
+			         <enumeration value="PATIENT_NOTES"/>
+			         <enumeration value="SURVEY_NOTES"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="ActionIdType">
+		      <annotation>
+			         <documentation>All identifiers of actions the Task service can perform.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="CLAIM"/>
+			         <enumeration value="RELEASE"/>
+			         <enumeration value="FINISH"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="SearchableFieldNameType">
+		      <annotation>
+			         <documentation>An enumeration of all fields for that can be used in filters. However, not all fields can be used in all filters, e.g. only date fields can be used in a date range filter.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <enumeration value="ID">
+				            <annotation>
+					               <documentation>The Task ID can be used in the following filter types: EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="TYPE">
+				            <annotation>
+					               <documentation>The type of a Task can be used in the following filter types: EqualsFilterType, NotEqualsFilterType. Valid search values are defined by the TypeIdType enumeration.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PRIORITY">
+				            <annotation>
+					               <documentation>The priority of Tasks can be used in the following filter types: EqualsFilterType, NotEqualsFilterType. Valid search values are defined by the PriorityType enumeration.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="STATUS">
+				            <annotation>
+					               <documentation>The status of Tasks can be used in the following filter types: EqualsFilterType, NotEqualsFilterType. Valid search values are defined by the StatusType enumeration.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="OWNER">
+				            <annotation>
+					               <documentation>The owner of a Task can be used in the following filter types: EqualsFilterType, NotEqualsFilterType. Valid search values are User IDs.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="CATEGORY">
+				            <annotation>
+					               <documentation>The name of a category a Task is assigned to. This can be used in the following filter types: WildcardFilterType, EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="DUE_TIME">
+				            <annotation>
+					               <documentation>The due time of Tasks can be used in the following filter types: DateRangeFilterType</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="CREATION_TIME">
+				            <annotation>
+					               <documentation>The creation time of Tasks can be used in the following filter types: DateRangeFilterType</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="LAST_RESPONSE_TIME">
+				            <annotation>
+					               <documentation>The last date/time a patient provided clinical data. This field name is only applicable for "ReviewNonResponder tasks" and can be used in the following filter types: DateRangeFilterType</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PATIENT_ID">
+				            <annotation>
+					               <documentation>Internal surrogate key of the patient the Task is related to (do not confuse this with the PATIENT_BTP_ID!). This can be used in the following filter types: EqualsFilterType, NotEqualsFilterType. Valid search values are Patient IDs.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PATIENT_BTP_ID">
+				            <annotation>
+					               <documentation>Bosch Telemedicine Platform ID (BTP ID) of the patient the Task is related to. This can be used in the following filter Types: WildcardFilterType, EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PATIENT_MAIN_ID">
+				            <annotation>
+					               <documentation>Customer-specific main identifier of the patient the Task is related to. This can be used in the following filter Types: WildcardFilterType, EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PATIENT_FIRST_NAME">
+				            <annotation>
+					               <documentation>First name of the patient the Task is related to. This can be used in the following filter Types: WildcardFilterType, EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="PATIENT_LAST_NAME">
+				            <annotation>
+					               <documentation>Last name of the patient the Task is related to. This can be used in the following filter Types: WildcardFilterType, EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+			         <enumeration value="SOURCE_ID">
+				            <annotation>
+					               <documentation>The identifier of a related business entity of the Task (e.g., a particular survey a patient has provided answers for). This can be used in the following filter Types: EqualsFilterType, NotEqualsFilterType.</documentation>
+				            </annotation>
+			         </enumeration>
+		      </restriction>
+	   </simpleType>
+	   <element name="task">
+		      <annotation>
+			         <documentation>Task data</documentation>
+		      </annotation>
+		      <complexType>
+			         <sequence>
+				            <element name="header" type="tns:HeaderType"/>
+				            <element name="payload" type="tns:AbstractPayloadType"/>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <complexType name="HeaderType">
+		      <annotation>
+			         <documentation>Contains a task's meta information, e.g. ID, status etc.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="id" type="basic:SurrogateKeyType" minOccurs="0">
+				            <annotation>
+					               <documentation>The id of the task. When a new task is created, this ID will be generated by the Task Service (on the server side).</documentation>
+				            </annotation>
+			         </element>
+			         <element ref="basic:version" minOccurs="0">
+				            <annotation>
+					               <documentation>The version of the task, used for optimistic locking. When a new task is created, this version will be generated by the Task Service (on the server side). A user should never modify this version, but send back the same value she obtained when fetching the task from the Task Service.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="scope" type="long" minOccurs="0">
+				            <annotation>
+					               <documentation>The identifier of the object representing the task's scope. The scope is usually set automatically by the service implementation during the creation of the task. However, a client having authority SUPERHERO can set the scope explicitly during creation.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="taskType" type="tns:TypeIdType" minOccurs="0">
+				            <annotation>
+					               <documentation>Indicates the task's type. The value of this property is determined by the task's payload type and is available as an explicit property for convenience only. A client does not need to specify any particular value during creation of a task (indeed any value specified will be ignored) since the type of task to create will be determined by the payload type passed in to the createTask operation.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="priority" type="tns:PriorityType">
+				            <annotation>
+					               <documentation>The priority of this task. Can be any of LOW, MEDIUM, HIGH.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="dueDateTime" type="dateTime">
+				            <annotation>
+					               <documentation> -TO DO- </documentation>
+				            </annotation>
+			         </element>
+			         <element name="description" type="string">
+				            <annotation>
+					               <documentation>A short description of the task's purpose, e.g. "What needs to be done?"</documentation>
+				            </annotation>
+			         </element>
+			         <element name="status" type="tns:StatusType" minOccurs="0">
+				            <annotation>
+					               <documentation>The status of the task. The status is determined on the server side.  If set/changed on client side, it will be ignored by the task service.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="owner" type="tns:UserIdType" minOccurs="0">
+				            <annotation>
+					               <documentation>The user id of the task owner. If task is unassigned, this field will not be set.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="ownerFirstName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The first name of the owner.  This field will be set by the service for the convenience of the client.  If set by the client, this element will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="ownerLastName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The last name of the owner.  This field will be set by the service for the convenience of the client.  If set by the client, this element will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="creatorType" type="tns:CreatorType" default="USER">
+				            <annotation>
+					               <documentation>Indicates whether the task was created by another user (value is USER) or by the system (value is SYSTEM), e.g. the clinical data service. SYSTEM tasks can only be created by a user eith SUPERHERO authority.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="creator" type="tns:UserIdType" minOccurs="0">
+				            <annotation>
+					               <documentation>Indicates the user who created the task (only applicable if the creatorType is set to USER). The creator is usually set automatically by the service implementation during the creation of the task. However, a client having authority SUPERHERO can set the creator explicitly during creation. Otherwise, any value specified during creation will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="creationDateTime" type="dateTime" minOccurs="0">
+				            <annotation>
+					               <documentation>Date when the task was created. This time is usually set automatically by the service implementation during the creation of the task. However, a client having authority SUPERHERO can set the creation time explicitly during creation. Otherwise, any value specified during creation will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="taskHistory" type="tns:TaskHistory" minOccurs="0">
+				            <annotation>
+					               <documentation>The history details related to this task</documentation>
+				            </annotation>
+			         </element>
+			         <!-- IMPLEMENTATION NOTE:
+                 - The following task properties (changedBy, changeTime, changeComment) are redundant to the "taskHistory'.
+                 - They are added as a workaround, because the "taskHistory" is not supported in TM+ 1.0
+            -->
+			<element name="changedBy" type="tns:UserIdType" minOccurs="0">
+				            <annotation>
+					               <documentation>Id of the user that has most recently changed this task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changedByFirstName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>First name of the user that has most recently changed this task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changedByLastName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>Last name of the user that has most recently changed this task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changeTime" type="dateTime" minOccurs="0">
+				            <annotation>
+					               <documentation>Date when the task was changed the last time</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changeComment" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>Comments, if any, entered while claiming, releasing, finishing or reopening this task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="closeTime" type="dateTime" minOccurs="0">
+				            <annotation>
+					               <documentation>Date when the task was closed the last time</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <complexType name="AbstractPayloadType" abstract="true">
+		      <annotation>
+			         <documentation>Defines properties common for all types of payload. The payload of a task contains the business data, i.e. the data necessary to perform the piece of work the task represents.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="category" type="tns:TaskCategory" minOccurs="0" maxOccurs="unbounded">
+				            <annotation>
+					               <documentation>List of all categories that are associated with this task.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <complexType name="PatientRelatedPayloadType" abstract="true">
+		      <annotation>
+			         <documentation>Defines properties common for all payloads related to a particular patient. </documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractPayloadType">
+				            <sequence>
+					               <element name="patient">
+						                  <annotation>
+							                     <documentation>The patient this task is related to. The patient is uniquely identified by its "id" which must always be set. Additional patients details are provided for the client's convenience only. If they are specified by a client, they are simply ignored by the server. </documentation>
+						                  </annotation>
+						                  <complexType>
+							                     <sequence>
+								                        <element name="id" type="tns:UserIdType" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's unique ID.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="btpId" type="string" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's Bosch Telemedicine Platform ID (BTP ID), which is a unique number for the patient. Uniqueness is scoped to the account level. This means that it is possible for the same number to represent two different patients in two different accounts. This number is assigned by the system automatically whenever a patient is created in the system. It is different from the "Patient ID", which is an internal id not intended to be seen by end users.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="customMainIdType" type="string" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The type of the patient's customer-specific main identifier. </documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="customMainIdValue" type="string" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The value of the patient's customer-specific main identifier. </documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="firstName" type="string" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's first name.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="middleName" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's middle name.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="lastName" type="string" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's last name.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="dateOfBirth" type="dateTime" minOccurs="0">
+									                           <annotation>
+										                              <documentation>The patient's date of birth.</documentation>
+									                           </annotation>
+								                        </element>
+							                     </sequence>
+						                  </complexType>
+					               </element>
+					               <element name="sourceId" type="long" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The identifier of a related business entity, e.g. a particular survey a patient has provided answers for. Since this identifier does not indicate the type of the referenced entity, any concrete payload type needs to define this element's semantics explicitly.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="FollowUpPayloadType">
+		      <annotation>
+			         <documentation>The payload for a task defining an arbitrary follow-up activity for another task.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractPayloadType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="PatientFollowUpPayloadType">
+		      <annotation>
+			         <documentation>The payload for a PatientFollowUpTask.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:PatientRelatedPayloadType">
+				            <sequence>
+					               <element name="mostRecentVitalSignDate" type="tns:DateTimeWithTimeZoneType"
+                             minOccurs="0">
+						                  <annotation>
+							                     <documentation>The most recent date/time when a meter measurement was made with the highest risk level. This property is optional, as a patient may not have previously provided any vital sign measurements.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="patientFollowUpSubType" type="tns:AbstractPatientFollowUpTaskSubType"
+                             minOccurs="0">
+						                  <annotation>
+							                     <documentation>Specifies further the reason why the patient follow-up task has been created.
+For a patient follow-up task only one sub type can be specified.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="ReviewNonResponderPayloadType">
+		      <annotation>
+			         <documentation>The payload for a ReviewNonResponderTask.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:PatientRelatedPayloadType">
+				            <sequence>
+					               <element name="reviewNonResponderSubType"
+                             type="tns:AbstractReviewNonResponderTaskSubType"
+                             minOccurs="0"
+                             maxOccurs="3">
+						                  <annotation>
+							                     <documentation>Specifies further why a patient has not responded, for example to which sort of request.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="numberOfDaysNotCompliant" type="int" minOccurs="0">
+						                  <annotation>
+							                     <documentation>Number of days the patient was not compliant, for example has not responded to a survey or a requested list of vital signs.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="lastResponseDate" type="tns:DateTimeWithTimeZoneType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The last date/time the patient provided clinical data. This property is optional, as a patient may not have previously provided any data.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="lastConnection" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The last interaction of the patient with the TMP system. This may be a heartbeat call from a store and forward device, such as a Health Buddy appliance, or a full IVR transaction via a telephone - independent of the success of this interaction. This property is optional, as a patient may not have previously interacted with the system at all.</documentation>
+						                  </annotation>
+						                  <complexType>
+							                     <sequence>
+								                        <element name="connectDate" type="tns:DateTimeWithTimeZoneType">
+									                           <annotation>
+										                              <documentation>The date/time of the patient's last interaction with the system.</documentation>
+									                           </annotation>
+								                        </element>
+								                        <element name="interfaceType" type="string">
+									                           <annotation>
+										                              <documentation>The inventory type the patient used to interact with the system.</documentation>
+									                           </annotation>
+								                        </element>
+							                     </sequence>
+						                  </complexType>
+					               </element>
+					               <element name="wasPaused" type="boolean" minOccurs="0">
+						                  <annotation>
+							                     <documentation>Indicates whether the patient was in a paused state for some time since his/her last response.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="ReviewClinicalDataPayloadType">
+		      <annotation>
+			         <documentation>Contains all relevant information for reviewing clinical data provided by a patient.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:PatientRelatedPayloadType">
+				            <sequence>
+					               <element name="responseTime" type="dateTime">
+						                  <annotation>
+							                     <documentation>The date/time the clincal data was received from the patient.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="symptoms" type="clinical:RiskType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The level of risk the clinical data imposes regarding the patient's symptoms.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="behavior" type="clinical:RiskType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The level of risk the clinical data imposes regarding the patient's behavior.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="knowledge" type="clinical:RiskType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The level of risk the clinical data imposes regarding the patient's knowledge.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="vitalSigns" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The level of risk the clinical data imposes regarding the vital signs of a patient.</documentation>
+						                  </annotation>
+						                  <complexType>
+							                     <simpleContent>
+								                        <extension base="clinical:RiskType">
+									                           <attribute name="containsInvalidData" type="boolean" default="false">
+										                              <annotation>
+											                                 <documentation>Indicates whether the uploaded vital sign measurements contain at least one reading that is not valid.
+If not set, by default it is assumed that the measurements do not contain any invalid data.</documentation>
+										                              </annotation>
+									                           </attribute>
+								                        </extension>
+							                     </simpleContent>
+						                  </complexType>
+					               </element>
+					               <element name="general" type="clinical:RiskType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The overall level of risk the clinical data imposes.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="subTypes" type="tns:AbstractReviewClinicalDataTaskSubType" minOccurs="0"
+                             maxOccurs="unbounded">
+						                  <annotation>
+							                     <documentation>Specifies further what sort of clinical data has to be reviewed. 
+For example, it could be the response to a survey, a list of vital sign measurements, or both.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="NotesPayloadType" abstract="true">
+		      <annotation>
+			         <documentation>The abstract payload type for different types of notes.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:PatientRelatedPayloadType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="PatientNotesPayloadType">
+		      <annotation>
+			         <documentation>Payload for Patient Notes.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:NotesPayloadType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="SurveyNotesPayloadType">
+		      <annotation>
+			         <documentation>Payload for Survey Notes.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:NotesPayloadType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="AbstractTaskSubType" abstract="true">
+		      <annotation>
+			         <documentation>Further specifies a task of a given type, for instance why it has been created.</documentation>
+		      </annotation>
+	   </complexType>
+	   <complexType name="AbstractPatientFollowUpTaskSubType">
+		      <annotation>
+			         <documentation>Defines properties common for the patient follow-up task sub types.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="AbstractReviewClinicalDataTaskSubType">
+		      <annotation>
+			         <documentation>Defines properties common for the review clinical data task sub types.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="AbstractReviewNonResponderTaskSubType">
+		      <annotation>
+			         <documentation>Defines properties common for the review non-responder task sub types.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="CareManagerEnteredVitalSignsTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for patient-follow up tasks that have been created on a care manager having entered vital measurements of a patient into the system.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractPatientFollowUpTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="CompleteEnrollmentReminderTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for patient-follow up task that has been created to remind a care manager to complete the enrollment for an integrated patient.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractPatientFollowUpTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="RequestedVitalSignTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review clinical data tasks that have been created on the system having received requested vital sign measurements from a patient.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewClinicalDataTaskSubType">
+				            <attribute name="allRequestedVitalSignsSent" type="boolean" use="required">
+					               <annotation>
+						                  <documentation>Indicates whether the patient has sent measurements for all required vital signs.</documentation>
+					               </annotation>
+				            </attribute>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="AdHocVitalSignTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review clinical data tasks that have been created on the system having received vital sign measurements from a patient that had not been requested.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewClinicalDataTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="SurveyTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review clinical data tasks that have been created on the system having received the response to a survey from a patient.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewClinicalDataTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="SurveyNonResponderTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review non-responder tasks that have been created because the system has not received an expected response to a survey.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewNonResponderTaskSubType">
+				            <attribute name="sessionName" use="optional">
+					               <annotation>
+						                  <documentation>The name of the session the patient should have answered</documentation>
+					               </annotation>
+					               <simpleType>
+						                  <restriction base="xsd:string">
+							                     <maxLength value="255"/>
+						                  </restriction>
+					               </simpleType>
+				            </attribute>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="RequestedVitalSignsNonResponderTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review non-responder tasks that have been created because the system has not received required vital sign measurements from a patient.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewNonResponderTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="IncompleteConfigurationNonResponderTaskSubType">
+		      <annotation>
+			         <documentation>Sub type for review non-responder tasks that have been created because a patient cannot respond due to an incomplete configuration.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractReviewNonResponderTaskSubType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="TaskHistory">
+		      <sequence>
+			         <element name="id" type="basic:SurrogateKeyType">
+				            <annotation>
+					               <documentation>The id of the task. This id will be same as that for associated task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="revision" type="int">
+				            <annotation>
+					               <documentation>This field contains the task revision number. Value is 1 based and oldest task will have version number as 1. This is different from version used in optimistic locking.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="status" type="tns:StatusType">
+				            <annotation>
+					               <documentation>The status of the task. The status is determined on the server side.  If set/changed on client side, it will be ignored by the task service.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="priority" type="tns:PriorityType">
+				            <annotation>
+					               <documentation>The priority of this task. Can be any of LOW, MEDIUM, HIGH.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="dueDateTime" type="dateTime">
+				            <annotation>
+					               <documentation>Task due date.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="owner" type="tns:UserIdType" minOccurs="0">
+				            <annotation>
+					               <documentation>The user id of the task owner. If task is unassigned, this field will not be set.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="ownerFirstName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The first name of the owner.  This field will be set by the service for the convenience of the client.  If set by the client, this element will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="ownerLastName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The last name of the owner.  This field will be set by the service for the convenience of the client.  If set by the client, this element will be ignored.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="description" type="string">
+				            <annotation>
+					               <documentation>A short description of the task's purpose, e.g. "What needs to be done?"</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changeComment" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>Comments, if any, entered while claiming, releasing, finishing or reopening this task.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changeTime" type="dateTime">
+				            <annotation>
+					               <documentation>Time when a task was last changed. This comes from task before request of updating the task is fulfilled.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changedBy" type="tns:UserIdType">
+				            <annotation>
+					               <documentation/>
+				            </annotation>
+			         </element>
+			         <element name="changedByFirstName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The first name of the updater. This field will be set by the service for the convenience of the client.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="changedByLastName" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The last name of the updater. This field will be set by the service for the convenience of the client.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="taskCategory" type="tns:TaskCategory" minOccurs="0" maxOccurs="unbounded">
+				            <annotation>
+					               <documentation>List of all categories that are associated with this task.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <complexType name="TaskCategory">
+		      <annotation>
+			         <documentation>Represents a TaskCategory object, which can be used to group similar tasks together.
+            </documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="id" type="basic:SurrogateKeyType">
+				            <annotation>
+					               <documentation>The unique id of the task category. When a new category is created, this ID will be generated by the Task Service (on the server side). If an id is already present in the request for creating new category in the system, it is ignored. A new id will be generated and the original id passed in the request will be lost.</documentation>
+				            </annotation>
+			         </element>
+			         <element ref="basic:version" minOccurs="0">
+				            <annotation>
+					               <documentation>The version of the task category, used for optimistic locking. When a new category is created, this version will be generated by the Task Service (on the server side). A user should never modify this version, but send back the same value she obtained when fetching the category from the Task Service.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="name" type="string">
+				            <annotation>
+					               <documentation>Category Name.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="description" type="string" minOccurs="0">
+				            <annotation>
+					               <documentation>The description of this category.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="scope" type="long" minOccurs="0">
+				            <annotation>
+					               <documentation>Indicates the scope/account in which this Task Category was created.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="index" type="long" minOccurs="0">
+				            <annotation>
+					               <documentation>Indicates the index/version # of this category. Used for auditing purposes.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="linkedTasksCount" type="int" minOccurs="0">
+				            <annotation>
+					               <documentation>Total number of tasks that are associated with this category.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="enabled" type="boolean" minOccurs="0">
+				            <annotation>
+					               <documentation>
+                        Indicates whether this category is enabled or not. By default, all categories are enabled at
+                        the creation time. A category gets disabled when an admin performs the disable operation on
+                        that category.
+                    </documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <element name="actionId" type="tns:ActionIdType">
+		      <annotation>
+			         <documentation>The unique id of a workflow action.</documentation>
+		      </annotation>
+	   </element>
+	   <complexType name="AbstractFilterType" abstract="true">
+		      <annotation>
+			         <documentation>A generic filter type used as a base Type for all filters.</documentation>
+		      </annotation>
+	   </complexType>
+	   <complexType name="DateRangeFilterType">
+		      <annotation>
+			         <documentation>Used to check whether a date field value lies within a given (possibly open) time interval. The filter evaluates to TRUE if fromDate &lt;= valueOf(field) &lt;= toDate. If neither fromDate nor toDate is given the filter evaluates to true.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="fieldName" type="tns:SearchableFieldNameType"/>
+					               <element name="fromDate" type="dateTime" minOccurs="0"/>
+					               <element name="toDate" type="dateTime" minOccurs="0"/>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="EqualsFilterType">
+		      <annotation>
+			         <documentation>Used to check whether a field has a particular value, i.e. the filter evaluates to TRUE if and only if valueOf(fieldName) = value.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="fieldName" type="tns:SearchableFieldNameType"/>
+					               <element name="value" type="string"/>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="NotEqualsFilterType">
+		      <annotation>
+			         <documentation>Used to check whether a field does not have a particular value, i.e. the filter evaluates to TRUE if and only if valueOf(fieldName) != value.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="fieldName" type="tns:SearchableFieldNameType"/>
+					               <element name="value" type="string"/>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="WildcardFilterType">
+		      <annotation>
+			         <documentation>Used to check whether a field matches a particular value with one or more unknown characters. The filter value may contain any number of asterisk ('*') characters to specify zero or more alphanumeric characters. For example, filtering for the value "t*b*y" would yield all results that start with "t', end with "y" and have a "b" somewhere in between, such as "toby'. This comparison is always CASE-INSENSITIVE. Note that value = "*" matches all field values and thus has no filtering effect at all (i.e. the filter could be omitted without changing the filter semantics). To search for the asterisk ('*') literal itself, the "escapeChar" attribute allows specifiying an escape character (see below).</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="fieldName" type="tns:SearchableFieldNameType"/>
+					               <element name="value" type="string"/>
+				            </sequence>
+				            <attribute name="escapeChar" type="tns:Character" default="/">
+					               <annotation>
+						                  <documentation>Specifies the escape character used within the search pattern. This character can be used to escape the asterisk ('*') literal whenever it should not represent a wildcard. To search for the escape character itself, it must also be escaped (i.e. must be written two times). Using "/" as escape character, for example, the search pattern "t//b/*y" will search for the string "t/b*y" (and no wildcard is used in this case!). Note that an escape character that is neither followed by another escape character nor followed by an asterisk (like "/toby" for example) does NOT represent a valid search pattern. </documentation>
+					               </annotation>
+				            </attribute>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="AndFilterType">
+		      <annotation>
+			         <documentation>Used to concatenate other filters using the logical AND operator, i.e. the filter evaluates to TRUE only if all of the contained filters evaluate to TRUE or the filter does not contain any other filters at all.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="childFilters" type="tns:AbstractFilterType" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="OrFilterType">
+		      <annotation>
+			         <documentation>Used to concatenate other filters using the logical OR operator, i.e. the filter evaluates to TRUE if any of the contained filters evaluate to TRUE or If the filter does not contain any other filters at all.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:AbstractFilterType">
+				            <sequence>
+					               <element name="childFilters" type="tns:AbstractFilterType" minOccurs="0"
+                             maxOccurs="unbounded"/>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="TaskHistoryFilter">
+		      <sequence>
+			         <element name="taskId" type="basic:SurrogateKeyType"/>
+			         <element name="revisions" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+		      </sequence>
+	   </complexType>
+</schema>

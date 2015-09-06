@@ -1,0 +1,44 @@
+package com.test.java;
+
+import java.util.Date;
+
+public class Employee implements Cloneable {
+
+	private String name = null;
+	private String office = null;
+	private final Integer id = null;
+	
+	public Employee () {
+		id = new Integer();
+	}
+
+	public void test () {
+		System.out.println("test");
+		id = new Integer();
+
+	}
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getOffice() {
+		return office;
+	}
+
+
+	public void setOffice(String office) {
+		this.office = office;
+	}
+	
+	@Override
+	public Employee clone(){
+		return null;
+		
+	}
+}

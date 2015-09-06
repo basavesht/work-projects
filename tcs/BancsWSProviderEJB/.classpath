@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="lib" path="D:/Coder Park/Libraries/EJB 3.0/ejb-api-3.0.jar"/>
+	<classpathentry kind="lib" path="APP-INF/lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="APP-INF/lib/msejb.jar"/>
+	<classpathentry kind="lib" path="D:/Coder Park/Libraries/Oracle Java EE 6 Libraries/javaee.jar"/>
+	<classpathentry kind="lib" path="D:/Coder Park/Libraries/Oracle Java EE 6 Libraries/javax.transaction.jar"/>
+	<classpathentry kind="output" path="WEB-INF/classes"/>
+</classpath>

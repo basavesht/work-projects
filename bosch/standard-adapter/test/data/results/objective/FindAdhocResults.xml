@@ -1,0 +1,1530 @@
+<ns3:findResultsReply xmlns:ns2="http://th.bosch.com/basictypes"
+	xmlns="http://tmp.bosch.com/cl/task" xmlns:ns4="http://tmp.bosch.com/cl/basictypes"
+	xmlns:ns3="http://th.bosch.com/cia" xmlns:ns9="http://tmp.bosch.com/cl/results"
+	xmlns:ns5="http://th.bosch.com/integrationpatient" xmlns:ns6="http://th.bosch.com/patientrecord"
+	xmlns:ns10="http://th.bosch.com/externalorganization" xmlns:ns7="http://th.bosch.com/threshold"
+	xmlns:ns8="http://th.bosch.com/audit">
+	<ns3:chunkInfo totalSize="17" chunkSize="50"
+		lastSeenItemId="265" totalChunks="1" />
+	<ns3:meterMeasurement uploadId="3567"
+		collectionTime="2013-01-22T06:37:54.000Z" patientTimezone="America/Los_Angeles">
+		<ns6:btpId>L6GPLTD0</ns6:btpId>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>L6GPLTD0</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:ScheduledCollection"
+			surveyResponseId="1302" sequenceNo="7"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>Health Buddy 3 EU</ns6:model>
+				<ns6:serialNumber>11812AD9</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-22T06:37:54.000Z"
+			patientTimezone="America/Los_Angeles">
+			<ns6:numericValue collectionTime="2013-01-22T06:37:54.000Z"
+				patientTimezone="America/Los_Angeles" id="2526">
+				<ns6:loincCode>8480-6</ns6:loincCode>
+				<ns6:value>121</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:numericValue collectionTime="2013-01-22T06:37:54.000Z"
+				patientTimezone="America/Los_Angeles" id="2527">
+				<ns6:loincCode>8462-4</ns6:loincCode>
+				<ns6:value>80</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>2385</ns6:id>
+			<ns6:type>bloodPressure</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>8462-4</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>61</ns7:minValue>
+						<ns7:maxValue>69</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2586</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>90</ns7:minValue>
+						<ns7:maxValue>108</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2587</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>109</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2588</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>70</ns7:minValue>
+						<ns7:maxValue>89</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2585</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>60</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2584</ns7:id>
+					</ns7:range>
+					<ns7:id>906</ns7:id>
+					<ns7:begin>2013-01-18T05:16:53.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:threshold>
+					<ns7:loincCode>8480-6</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>100</ns7:minValue>
+						<ns7:maxValue>139</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2622</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>160</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2620</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>90</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2621</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>140</ns7:minValue>
+						<ns7:maxValue>159</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2619</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>91</ns7:minValue>
+						<ns7:maxValue>99</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2618</ns7:id>
+					</ns7:range>
+					<ns7:id>914</ns7:id>
+					<ns7:begin>2013-01-18T05:16:53.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="Low" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>1645</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="3567"
+		collectionTime="2013-01-22T06:37:54.000Z" patientTimezone="America/Los_Angeles">
+		<ns6:btpId>L6GPLTD0</ns6:btpId>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>L6GPLTD0</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:ScheduledCollection"
+			surveyResponseId="1302" sequenceNo="2"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>Health Buddy 3 EU</ns6:model>
+				<ns6:serialNumber>11812AD9</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-22T06:37:54.000Z"
+			patientTimezone="America/Los_Angeles">
+			<ns6:numericValue collectionTime="2013-01-22T06:37:54.000Z"
+				patientTimezone="America/Los_Angeles" id="2525">
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>100</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>2384</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>14743-9</ns7:loincCode>
+					<ns7:unitOfMeasure>mg/dL</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>80</ns7:minValue>
+						<ns7:maxValue>140</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2608</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>71</ns7:minValue>
+						<ns7:maxValue>79</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2609</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>70</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2612</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>141</ns7:minValue>
+						<ns7:maxValue>199</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2611</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>200</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2610</ns7:id>
+					</ns7:range>
+					<ns7:id>912</ns7:id>
+					<ns7:begin>2013-01-18T05:16:53.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="Low" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>1644</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="3566"
+		collectionTime="2013-01-22T06:04:55.000Z" patientTimezone="America/Los_Angeles">
+		<ns6:btpId>L6GPLTD0</ns6:btpId>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>L6GPLTD0</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:ScheduledCollection"
+			surveyResponseId="1301" sequenceNo="8"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>Health Buddy 3 EU</ns6:model>
+				<ns6:serialNumber>11812AD9</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-22T06:04:55.000Z"
+			patientTimezone="America/Los_Angeles">
+			<ns6:numericValue collectionTime="2013-01-22T06:04:55.000Z"
+				patientTimezone="America/Los_Angeles" id="2524">
+				<ns6:loincCode>8480-6</ns6:loincCode>
+				<ns6:value>120</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:numericValue collectionTime="2013-01-22T06:04:55.000Z"
+				patientTimezone="America/Los_Angeles" id="2523">
+				<ns6:loincCode>8462-4</ns6:loincCode>
+				<ns6:value>80</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>2383</ns6:id>
+			<ns6:type>bloodPressure</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>8462-4</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>61</ns7:minValue>
+						<ns7:maxValue>69</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2586</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>90</ns7:minValue>
+						<ns7:maxValue>108</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2587</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>109</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2588</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>70</ns7:minValue>
+						<ns7:maxValue>89</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2585</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>60</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2584</ns7:id>
+					</ns7:range>
+					<ns7:id>906</ns7:id>
+					<ns7:begin>2013-01-18T05:16:53.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:threshold>
+					<ns7:loincCode>8480-6</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>100</ns7:minValue>
+						<ns7:maxValue>139</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2622</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>160</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2620</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>90</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2621</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>140</ns7:minValue>
+						<ns7:maxValue>159</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2619</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>91</ns7:minValue>
+						<ns7:maxValue>99</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2618</ns7:id>
+					</ns7:range>
+					<ns7:id>914</ns7:id>
+					<ns7:begin>2013-01-18T05:16:53.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="Low" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>1643</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="2188"
+		collectionTime="2013-01-17T06:01:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>A1YK42CI</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-17T09:33:42.695Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-17T06:01:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-17T06:01:00.000Z"
+				patientTimezone="America/New_York" id="1363">
+				<ns6:loincCode>8310-5</ns6:loincCode>
+				<ns6:value>111</ns6:value>
+				<ns6:unit>degrees F</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>1279</ns6:id>
+			<ns6:type>temperature</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>8310-5</ns7:loincCode>
+					<ns7:unitOfMeasure>degrees F</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>101.3</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2304</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>99.6</ns7:minValue>
+						<ns7:maxValue>101.2</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2303</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>99.5</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2302</ns7:id>
+					</ns7:range>
+					<ns7:id>818</ns7:id>
+					<ns7:begin>2013-01-16T13:03:38.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>845</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="2187"
+		collectionTime="2013-01-17T05:09:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>A1YK42CI</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-17T09:32:26.156Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-17T05:09:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-17T05:09:00.000Z"
+				patientTimezone="America/New_York" id="1362">
+				<ns6:loincCode>8480-6</ns6:loincCode>
+				<ns6:value>909</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:numericValue collectionTime="2013-01-17T05:09:00.000Z"
+				patientTimezone="America/New_York" id="1361">
+				<ns6:loincCode>8462-4</ns6:loincCode>
+				<ns6:value>900</ns6:value>
+				<ns6:unit>mmHg</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>1278</ns6:id>
+			<ns6:type>bloodPressure</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>8480-6</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>100</ns7:minValue>
+						<ns7:maxValue>139</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2331</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>160</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2329</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>90</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2330</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>140</ns7:minValue>
+						<ns7:maxValue>159</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2332</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>91</ns7:minValue>
+						<ns7:maxValue>99</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2328</ns7:id>
+					</ns7:range>
+					<ns7:id>824</ns7:id>
+					<ns7:begin>2013-01-16T13:03:38.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:threshold>
+					<ns7:loincCode>8462-4</ns7:loincCode>
+					<ns7:unitOfMeasure>mmHg</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>61</ns7:minValue>
+						<ns7:maxValue>69</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2290</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>109</ns7:minValue>
+
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2289</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>90</ns7:minValue>
+						<ns7:maxValue>108</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2293</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>70</ns7:minValue>
+						<ns7:maxValue>89</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2291</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>60</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2292</ns7:id>
+					</ns7:range>
+					<ns7:id>815</ns7:id>
+					<ns7:begin>2013-01-16T13:03:38.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>844</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="2108"
+		collectionTime="2013-01-17T09:24:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>YFOQ6YYJ</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-17T09:24:08.685Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-17T09:24:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-17T09:24:00.000Z"
+				patientTimezone="America/New_York" id="1293">
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>33</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>1210</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>14743-9</ns7:loincCode>
+					<ns7:unitOfMeasure>mg/dL</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>71</ns7:minValue>
+						<ns7:maxValue>79</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2524</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>80</ns7:minValue>
+						<ns7:maxValue>140</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2525</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>70</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>2523</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>141</ns7:minValue>
+						<ns7:maxValue>199</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2526</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>200</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>2527</ns7:id>
+					</ns7:range>
+					<ns7:id>895</ns7:id>
+					<ns7:begin>2013-01-17T09:23:52.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>776</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="2107"
+		collectionTime="2013-01-17T08:03:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>YFOQ6YYJ</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-17T09:23:34.295Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-17T08:03:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-17T08:03:00.000Z"
+				patientTimezone="America/New_York" id="1292">
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>33</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>1209</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:risk level="None" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>775</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="2104"
+		collectionTime="2013-01-17T08:03:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>CS79MDIM</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-17T09:17:04.860Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-17T08:03:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-17T08:03:00.000Z"
+				patientTimezone="America/New_York" id="1290">
+				<ns6:loincCode>20157-4</ns6:loincCode>
+				<ns6:value>23</ns6:value>
+				<ns6:unit>Liters</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>1207</ns6:id>
+			<ns6:type>fev1</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:risk level="None" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>773</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="295"
+		collectionTime="2013-01-09T14:32:42.286Z" patientTimezone="America/New_York">
+		<ns6:btpId>0PURV7JK</ns6:btpId>
+		<ns6:responseDate>2013-01-09T02:32:35.000Z</ns6:responseDate>
+		<ns6:receivedDate>2013-01-09T14:32:42.286Z</ns6:receivedDate>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>0PURV7JK</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>T400</ns6:model>
+
+				<ns6:serialNumber>EA0-3790</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-09T14:32:09.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T14:32:09.000Z"
+				patientTimezone="America/New_York" id="504">
+				<ns6:loincCode>29463-7</ns6:loincCode>
+				<ns6:value>60</ns6:value>
+				<ns6:unit>pounds</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>462</ns6:id>
+			<ns6:type>weight</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>29463-7</ns7:loincCode>
+					<ns7:unitOfMeasure>pounds</ns7:unitOfMeasure>
+					<ns7:enteredUnitOfMeasure>pounds</ns7:enteredUnitOfMeasure>
+					<ns7:baselineValue>176.4</ns7:baselineValue>
+					<ns7:range>
+						<ns7:maxValue>172</ns7:maxValue>
+						<ns7:enteredMaxValue>4.4</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>1450</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>172.1</ns7:minValue>
+						<ns7:maxValue>174.1</ns7:maxValue>
+						<ns7:enteredMinValue>4.3</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>2.3</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1449</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>178.7</ns7:minValue>
+						<ns7:maxValue>180.7</ns7:maxValue>
+						<ns7:enteredMinValue>2.3</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>4.3</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1447</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>174.2</ns7:minValue>
+						<ns7:maxValue>178.6</ns7:maxValue>
+						<ns7:enteredMinValue>2.2</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>2.2</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1451</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>180.8</ns7:minValue>
+						<ns7:enteredMinValue>4.4</ns7:enteredMinValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1448</ns7:id>
+					</ns7:range>
+					<ns7:id>455</ns7:id>
+					<ns7:begin>2013-01-09T14:29:08.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:vitalSign collectionTime="2013-01-09T14:30:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T14:30:00.000Z"
+				patientTimezone="America/New_York" id="505">
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>80</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>463</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>14743-9</ns7:loincCode>
+					<ns7:unitOfMeasure>mg/dL</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>80</ns7:minValue>
+						<ns7:maxValue>140</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>1445</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>71</ns7:minValue>
+						<ns7:maxValue>79</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1444</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>70</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1442</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>141</ns7:minValue>
+						<ns7:maxValue>199</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1446</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>200</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1443</ns7:id>
+					</ns7:range>
+					<ns7:id>454</ns7:id>
+					<ns7:begin>2013-01-09T14:29:08.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="Low" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>272</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="294"
+		collectionTime="2013-01-09T14:26:40.115Z" patientTimezone="America/New_York">
+		<ns6:btpId>YCZ7SMNB</ns6:btpId>
+		<ns6:responseDate>2013-01-09T02:25:53.000Z</ns6:responseDate>
+		<ns6:receivedDate>2013-01-09T14:26:40.115Z</ns6:receivedDate>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>YCZ7SMNB</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>T400</ns6:model>
+				<ns6:serialNumber>EA0-3790</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-09T14:25:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T14:25:00.000Z"
+				patientTimezone="America/New_York" id="503">
+
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>66</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>461</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>14743-9</ns7:loincCode>
+					<ns7:unitOfMeasure>mg/dL</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>71</ns7:minValue>
+						<ns7:maxValue>79</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1438</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>80</ns7:minValue>
+						<ns7:maxValue>140</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1439</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>70</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>1437</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>141</ns7:minValue>
+						<ns7:maxValue>199</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1440</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>200</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1441</ns7:id>
+					</ns7:range>
+					<ns7:id>453</ns7:id>
+					<ns7:begin>2013-01-09T14:19:21.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>271</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="291"
+		collectionTime="2013-01-09T14:07:27.605Z" patientTimezone="America/New_York">
+		<ns6:btpId>5FJ3FDRX</ns6:btpId>
+		<ns6:responseDate>2013-01-09T02:07:19.000Z</ns6:responseDate>
+		<ns6:receivedDate>2013-01-09T14:07:27.605Z</ns6:receivedDate>
+		<ns6:mode xsi:type="ns6:SelfReportedMode"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:btpId>5FJ3FDRX</ns6:btpId>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns6:interface>
+				<ns6:manufacturer>Robert Bosch Healthcare</ns6:manufacturer>
+				<ns6:model>T400</ns6:model>
+				<ns6:serialNumber>EA0-3790</ns6:serialNumber>
+			</ns6:interface>
+		</ns6:collectionType>
+		<ns6:vitalSign collectionTime="2013-01-09T14:05:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T14:05:00.000Z"
+				patientTimezone="America/New_York" id="501">
+				<ns6:loincCode>14743-9</ns6:loincCode>
+				<ns6:value>66</ns6:value>
+				<ns6:unit>mg/dL</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>459</ns6:id>
+			<ns6:type>bloodGlucose</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>14743-9</ns7:loincCode>
+					<ns7:unitOfMeasure>mg/dL</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>71</ns7:minValue>
+						<ns7:maxValue>79</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>540</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>80</ns7:minValue>
+						<ns7:maxValue>140</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>542</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>70</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>541</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>141</ns7:minValue>
+						<ns7:maxValue>199</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>539</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>200</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>543</ns7:id>
+					</ns7:range>
+					<ns7:id>213</ns7:id>
+					<ns7:begin>2013-01-08T10:44:57.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:vitalSign collectionTime="2013-01-09T14:06:46.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T14:06:46.000Z"
+				patientTimezone="America/New_York" id="502">
+				<ns6:loincCode>29463-7</ns6:loincCode>
+				<ns6:value>222</ns6:value>
+				<ns6:unit>pounds</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>460</ns6:id>
+			<ns6:type>weight</ns6:type>
+			<ns6:invalid>false</ns6:invalid>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>29463-7</ns7:loincCode>
+					<ns7:unitOfMeasure>pounds</ns7:unitOfMeasure>
+					<ns7:enteredUnitOfMeasure>pounds</ns7:enteredUnitOfMeasure>
+					<ns7:baselineValue>176.4</ns7:baselineValue>
+					<ns7:range>
+						<ns7:minValue>180.8</ns7:minValue>
+						<ns7:enteredMinValue>4.4</ns7:enteredMinValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>536</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>172.1</ns7:minValue>
+						<ns7:maxValue>174.1</ns7:maxValue>
+						<ns7:enteredMinValue>4.3</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>2.3</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>534</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>178.7</ns7:minValue>
+						<ns7:maxValue>180.7</ns7:maxValue>
+						<ns7:enteredMinValue>2.3</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>4.3</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>538</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>172</ns7:maxValue>
+						<ns7:enteredMaxValue>4.4</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>535</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>174.2</ns7:minValue>
+						<ns7:maxValue>178.6</ns7:maxValue>
+						<ns7:enteredMinValue>2.2</ns7:enteredMinValue>
+						<ns7:enteredMaxValue>2.2</ns7:enteredMaxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>537</ns7:id>
+					</ns7:range>
+					<ns7:id>212</ns7:id>
+					<ns7:begin>2013-01-08T10:44:57.000Z</ns7:begin>
+					<ns7:assigner>
+						<ns8:healthCareProfessionalLogin>int1
+						</ns8:healthCareProfessionalLogin>
+						<ns8:healthCareProfessionalId>20029
+						</ns8:healthCareProfessionalId>
+						<ns8:healthCareProfessionalOrganization>30040
+						</ns8:healthCareProfessionalOrganization>
+						<ns8:healthCareProfessionalName>user, INT
+						</ns8:healthCareProfessionalName>
+					</ns7:assigner>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>270</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="288"
+		collectionTime="2013-01-09T13:43:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>QBBI19VU</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-09T13:57:48.302Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-09T13:43:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T13:43:00.000Z"
+				patientTimezone="America/New_York" id="497">
+				<ns6:loincCode>5964-2</ns6:loincCode>
+				<ns6:value>45</ns6:value>
+				<ns6:unit>seconds</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>455</ns6:id>
+			<ns6:type>prothrombinTime</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>5964-2</ns7:loincCode>
+					<ns7:unitOfMeasure>seconds</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>10</ns7:minValue>
+						<ns7:maxValue>20</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1395</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>8.1</ns7:minValue>
+						<ns7:maxValue>9.9</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1397</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>30</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>1394</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>20.1</ns7:minValue>
+						<ns7:maxValue>29.9</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1393</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>8</ns7:maxValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1396</ns7:id>
+					</ns7:range>
+					<ns7:id>443</ns7:id>
+					<ns7:begin>2013-01-09T13:41:44.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:risk level="High" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>267</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:meterMeasurement uploadId="286"
+		collectionTime="2013-01-09T13:42:00.000Z" patientTimezone="America/New_York">
+		<ns6:btpId>QBBI19VU</ns6:btpId>
+		<ns6:mode xsi:type="ns9:CareManagerReportedMode"
+			reportedDate="2013-01-09T13:56:41.822Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<ns9:userId>20029</ns9:userId>
+			<ns9:login>int1</ns9:login>
+			<ns9:organizationId>30040</ns9:organizationId>
+			<ns9:name>user, INT</ns9:name>
+		</ns6:mode>
+		<ns6:collectionType xsi:type="ns6:AdhocCollection"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+		<ns6:vitalSign collectionTime="2013-01-09T13:42:00.000Z"
+			patientTimezone="America/New_York">
+			<ns6:numericValue collectionTime="2013-01-09T13:42:00.000Z"
+				patientTimezone="America/New_York" id="495">
+				<ns6:loincCode>8310-5</ns6:loincCode>
+				<ns6:value>45</ns6:value>
+				<ns6:unit>degrees F</ns6:unit>
+			</ns6:numericValue>
+			<ns6:id>453</ns6:id>
+			<ns6:type>temperature</ns6:type>
+			<ns6:requested>false</ns6:requested>
+			<ns6:riskAssessment>
+				<ns6:threshold>
+					<ns7:loincCode>8310-5</ns7:loincCode>
+					<ns7:unitOfMeasure>degrees F</ns7:unitOfMeasure>
+					<ns7:range>
+						<ns7:minValue>99.6</ns7:minValue>
+						<ns7:maxValue>101.2</ns7:maxValue>
+						<ns7:risk rangeCategory="">Medium</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1376</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:minValue>101.3</ns7:minValue>
+						<ns7:risk rangeCategory="">High</ns7:risk>
+						<ns7:isMatched>false</ns7:isMatched>
+						<ns7:id>1375</ns7:id>
+					</ns7:range>
+					<ns7:range>
+						<ns7:maxValue>99.5</ns7:maxValue>
+						<ns7:risk rangeCategory="">Low</ns7:risk>
+						<ns7:isMatched>true</ns7:isMatched>
+						<ns7:id>1377</ns7:id>
+					</ns7:range>
+					<ns7:id>439</ns7:id>
+					<ns7:begin>2013-01-09T13:41:44.000Z</ns7:begin>
+				</ns6:threshold>
+				<ns6:risk level="Low" />
+			</ns6:riskAssessment>
+		</ns6:vitalSign>
+		<ns6:id>265</ns6:id>
+	</ns3:meterMeasurement>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20190</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>123456789</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser35</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>one A thirty one</ns5:firstName>
+		<ns5:lastName>INT pat Jan eighteen update</ns5:lastName>
+		<ns5:middleInitial>'LAD'LA'D'</ns5:middleInitial>
+		<ns5:birthDate>1980-01-01Z</ns5:birthDate>
+		<ns5:gender>female</ns5:gender>
+		<ns5:address>
+			<ns5:street>street1</ns5:street>
+			<ns5:street>street2</ns5:street>
+			<ns5:street>ere1</ns5:street>
+			<ns5:city>updatecity</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>15000</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>9696969691</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10451</ns5:timeZone>
+		<ns5:btpId>L6GPLTD0</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20181</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>609996798</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser33</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>one</ns5:firstName>
+		<ns5:lastName>INT WEEK Jan sixteen</ns5:lastName>
+		<ns5:middleInitial>MA</ns5:middleInitial>
+		<ns5:birthDate>1979-11-03Z</ns5:birthDate>
+		<ns5:gender>male</ns5:gender>
+		<ns5:address>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>paloalto</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>13345</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>5678785376</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>A1YK42CI</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20158</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser18</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>603456796</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>not display 'A zero Eight'</ns5:firstName>
+		<ns5:lastName>INT PAT PS DataUPDATEDs</ns5:lastName>
+		<ns5:middleInitial>MD</ns5:middleInitial>
+		<ns5:birthDate>1961-12-10Z</ns5:birthDate>
+		<ns5:gender>female</ns5:gender>
+		<ns5:address>
+			<ns5:street>street1 ddd config</ns5:street>
+			<ns5:street>street2 ddd config</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>updatecity ddd config</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>15111</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>565 655 65615 150</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>YFOQ6YYJ</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20187</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>609996799</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser34</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>one</ns5:firstName>
+		<ns5:lastName>INT WEEK Jan seveenteen</ns5:lastName>
+		<ns5:middleInitial>MA</ns5:middleInitial>
+		<ns5:birthDate>1979-11-03Z</ns5:birthDate>
+		<ns5:gender>male</ns5:gender>
+		<ns5:address>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>paloalto</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>13345</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>5678785376</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>CS79MDIM</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20121</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser09</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>103456791</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>A thirty one</ns5:firstName>
+		<ns5:lastName>INT PAT T three update</ns5:lastName>
+		<ns5:middleInitial>'LAD'LA'D'</ns5:middleInitial>
+		<ns5:birthDate>1980-01-01Z</ns5:birthDate>
+		<ns5:gender>female</ns5:gender>
+		<ns5:address>
+			<ns5:street>street1</ns5:street>
+			<ns5:street>street2</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>updatecity</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>15000</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>9696969691</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>0PURV7JK</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20122</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser10</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>103456792</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>four</ns5:firstName>
+		<ns5:lastName>INT PAT T four</ns5:lastName>
+		<ns5:middleInitial>MA</ns5:middleInitial>
+		<ns5:birthDate>1978-11-03Z</ns5:birthDate>
+		<ns5:gender>male</ns5:gender>
+		<ns5:address>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>paloalto</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>13345</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>5678785376</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>YCZ7SMNB</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20095</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>103456786</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser04</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>four</ns5:firstName>
+		<ns5:lastName>INT PAT on JAN eight</ns5:lastName>
+		<ns5:middleInitial>MA</ns5:middleInitial>
+		<ns5:birthDate>1978-11-02Z</ns5:birthDate>
+		<ns5:gender>male</ns5:gender>
+		<ns5:address>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>paloalto</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>13345</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>5678785376</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>5FJ3FDRX</ns5:btpId>
+	</ns3:integrationPatient>
+	<ns3:integrationPatient>
+		<ns5:identifier>
+			<ns4:internalIdentifier>20130</ns4:internalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>0</ns4:identifierId>
+				<ns4:name>PS</ns4:name>
+				<ns4:value>A04newuser16</ns4:value>
+			</ns4:externalIdentifier>
+			<ns4:externalIdentifier>
+				<ns4:identifierId>10507</ns4:identifierId>
+				<ns4:name>SS</ns4:name>
+				<ns4:value>603456795</ns4:value>
+			</ns4:externalIdentifier>
+		</ns5:identifier>
+		<ns5:internalOrganizationId>30040</ns5:internalOrganizationId>
+		<ns5:firstName>VS data</ns5:firstName>
+		<ns5:lastName>INT PAT CM Reported</ns5:lastName>
+		<ns5:middleInitial>MA</ns5:middleInitial>
+		<ns5:birthDate>1978-11-03Z</ns5:birthDate>
+		<ns5:gender>male</ns5:gender>
+		<ns5:address>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street>streetaddress</ns5:street>
+			<ns5:street xsi:nil="true"
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+			<ns5:city>paloalto</ns5:city>
+			<ns5:state>California</ns5:state>
+			<ns5:zipCode>13345</ns5:zipCode>
+			<ns5:country>United States</ns5:country>
+		</ns5:address>
+		<ns5:email>
+		</ns5:email>
+		<ns5:phoneNumber>
+			<ns5:number>5678785376</ns5:number>
+		</ns5:phoneNumber>
+		<ns5:monitoringEntity>
+			<ns5:accountEntityId>20029</ns5:accountEntityId>
+			<ns5:accountEntityOrgId>0</ns5:accountEntityOrgId>
+		</ns5:monitoringEntity>
+		<ns5:status>ENROLLED</ns5:status>
+		<ns5:isIntegration>true</ns5:isIntegration>
+		<ns5:timeZone>10453</ns5:timeZone>
+		<ns5:btpId>QBBI19VU</ns5:btpId>
+	</ns3:integrationPatient>
+</ns3:findResultsReply>

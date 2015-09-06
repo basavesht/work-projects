@@ -1,0 +1,23 @@
+[0m[[0minfo[0m] [0mPackaging C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\bosch-hbs-sbt-parent-1.7-SNAPSHOT.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt\parent[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt\parent[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt\parent\BoschParent.class[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt\parent\BoschParent.class[0m
+[0m[[0mdebug[0m] [0m	sbt[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\sbt[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt\parent\BoschParent$$anonfun$projectSettings$1.class[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt\parent\BoschParent$$anonfun$projectSettings$1.class[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt\parent\BoschParent$autoImport$.class[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt\parent\BoschParent$autoImport$.class[0m
+[0m[[0mdebug[0m] [0m	com\bosch[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch[0m
+[0m[[0mdebug[0m] [0m	com[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com[0m
+[0m[[0mdebug[0m] [0m	sbt\sbt.autoplugins[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\sbt\sbt.autoplugins[0m
+[0m[[0mdebug[0m] [0m	com\bosch\sbt\parent\BoschParent$.class[0m
+[0m[[0mdebug[0m] [0m	  C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\classes\com\bosch\sbt\parent\BoschParent$.class[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

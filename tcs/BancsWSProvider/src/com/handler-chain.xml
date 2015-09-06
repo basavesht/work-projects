@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+	<handler-chain>
+		<handler>
+			<handler-name>SampleSoapHandler</handler-name>
+			<handler-class>com.tcs.sample.soapHandler.SampleSoapHandler</handler-class>
+		</handler>
+		<handler>
+			<handler-name>SampleSoapFaultHandler</handler-name>
+			<handler-class>com.tcs.sample.soapHandler.SampleSoapFaultHandler</handler-class>
+		</handler>
+	</handler-chain>
+</handler-chains>

@@ -1,0 +1,1864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+    Document   : StandardAdapterConfiguration.xml
+    Created on : Sep 06, 2012, 3.24 AM
+    Author     : tis1pal
+    Description: Configuration File for validations and runtime values
+	-->
+<iv:configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:iv="http://integration.tmp.bosch.com/validation" xsi:schemaLocation="http://integration.tmp.bosch.com/validation IntegrationConfiguration.xsd">
+    <iv:messages>
+		<!-- Configuration For ADT_A04 Message -->
+        <iv:message iv:id="ADT_A04">
+			<!-- Configuration For Required segments in a ADT_A04 Message -->
+            <iv:segments>
+
+				<!-- Configuration For PID in ADT_A04 Message -->
+                <iv:segment iv:id="PID">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PID_20</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PID Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PID_20</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PID Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+						<!--Check if all of the following ID codes Exist in PID3 fields -->
+                        <iv:validation iv:type="MISSING_IDENTIFIER">
+                            <iv:value>true</iv:value>
+                            <iv:faults>
+                                <iv:fault iv:id="PS">
+                                    <iv:faultInternalCode>SIA_PID_400</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>Missing Patient System ID</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_400</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing Patient System ID</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                                <iv:fault iv:id="SS">
+                                    <iv:faultInternalCode>SIA_PID_410</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>SSN is Missing</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_410</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing SSN</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault> 
+                            </iv:faults>
+                        </iv:validation>
+                    </iv:validations>
+				    <iv:fields>
+                        <!--Validation for PID5 containing patient last name-->
+                        <iv:field iv:id="PID5">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_PID_420</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing PID5 Segment</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_PID_420</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Last Name</iv:faultExternalMessage>
+                                        <iv:segmentName>PID</iv:segmentName>
+                                        <iv:fieldNumber>5</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                            <iv:dataTypes>
+								<!-- Validating the Last Name which is present in pid5.xpn1.fn1-->
+                                <iv:dataType iv:id="XPN1_FN1">
+                                    <iv:validations>
+                                        <iv:validation iv:type="MANDATORY">
+                                            <iv:value>true</iv:value>
+                                            <iv:fault>
+                                                <iv:faultInternalCode>SIA_PID_420</iv:faultInternalCode>
+                                                <iv:faultInternalMessage>LastName is missing</iv:faultInternalMessage>
+                                                <iv:faultExternalCode>SIA_PID_420</iv:faultExternalCode>
+                                                <iv:faultExternalMessage>Missing Last Name</iv:faultExternalMessage>
+                                                <iv:segmentName>PID</iv:segmentName>
+                                                <iv:fieldNumber>5</iv:fieldNumber>
+                                                <iv:componentNumber>1</iv:componentNumber>
+                                            </iv:fault>
+                                        </iv:validation>
+                                  </iv:validations>
+                                </iv:dataType>
+                           </iv:dataTypes>
+                       </iv:field>
+                        	<!--Validation for PID7 containing patient DOB-->
+                        <iv:field iv:id="PID7">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_PID_430</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing PID7 Segment</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_PID_430</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing DOB</iv:faultExternalMessage>
+                                        <iv:segmentName>PID</iv:segmentName>
+                                        <iv:fieldNumber>7</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                            <iv:dataTypes>
+								<!--Validation for TS1 which contains date of birth -->
+                                <iv:dataType iv:id="TS1">
+                                    <iv:validations>
+                                        <iv:validation iv:type="MANDATORY">
+                                            <iv:value>true</iv:value>
+                                            <iv:fault>
+                                                <iv:faultInternalCode>SIA_PID_430</iv:faultInternalCode>
+                                                <iv:faultInternalMessage>Missing DOB</iv:faultInternalMessage>
+                                                <iv:faultExternalCode>SIA_PID_430</iv:faultExternalCode>
+                                                <iv:faultExternalMessage>Missing DOB</iv:faultExternalMessage>
+                                                <iv:segmentName>PID</iv:segmentName>
+                                                <iv:fieldNumber>7</iv:fieldNumber>
+                                                <iv:componentNumber>1</iv:componentNumber>
+                                            </iv:fault>
+                                        </iv:validation>
+                                    </iv:validations>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                     </iv:fields>
+                </iv:segment>
+				<!--
+ Configuration For EVN in ADT_A04 Message
+                  EVN fields are not validated in ADT_A04 message for SA
+				-->
+                <iv:segment iv:id="EVN">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_EVN_40</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing EVN Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_EVN_40</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing EVN Segment</iv:faultExternalMessage>
+                                <iv:segmentName>EVN</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!--Configuration For PV1 in ADT_A04 Message -->
+                <iv:segment iv:id="PV1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PV1_50</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PV1 Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PV1_50</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PV1 Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PV1</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ADT_A08 Message -->
+        <iv:message iv:id="ADT_A08">
+			<!-- Configuration For Required segments in a ADT_A08 Message -->
+            <iv:segments>
+				<!--
+ Configuration For EVN in ADT_A08 Message
+                  EVN fields are not validated in ADT_A08 message for SA
+				-->
+                <iv:segment iv:id="EVN">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_EVN_40</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing EVN Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_EVN_40</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing EVN Segment</iv:faultExternalMessage>
+                                <iv:segmentName>EVN</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!-- Configuration For PID in ADT_A08 Message -->
+                <iv:segment iv:id="PID">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PID_20</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PID Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PID_20</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PID Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+						<!--Check if all of the following ID codes Exist in PID3 fields -->
+                        <iv:validation iv:type="MISSING_IDENTIFIER">
+                            <iv:value>true</iv:value>
+                            <iv:faults>
+                                <iv:fault iv:id="PS">
+                                    <iv:faultInternalCode>SIA_PID_400</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>Missing Patient System ID</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_400</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing Patient System ID</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                                <iv:fault iv:id="SS">
+                                    <iv:faultInternalCode>SIA_PID_410</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>SSN is Missing</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_410</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing SSN</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                            </iv:faults>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ADT_A31 Message -->
+        <iv:message iv:id="ADT_A31">
+			<!-- Configuration For Required segments in a ADT_A31 Message -->
+            <iv:segments>
+				<!--
+ Configuration For EVN in ADT_A31 Message
+                  EVN fields are not validated in ADT_A31 message for SA
+				-->
+                <iv:segment iv:id="EVN">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_EVN_40</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing EVN Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_EVN_40</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing EVN Segment</iv:faultExternalMessage>
+                                <iv:segmentName>EVN</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!-- Configuration For PID in ADT_A31 Message -->
+                <iv:segment iv:id="PID">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PID_20</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PID Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PID_20</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PID Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+						<!--Check if all of the following ID codes Exist in PID3 fields -->
+                        <iv:validation iv:type="MISSING_IDENTIFIER">
+                            <iv:value>true</iv:value>
+                            <iv:faults>
+                                <iv:fault iv:id="PS">
+                                    <iv:faultInternalCode>SIA_PID_400</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>Missing Patient System ID</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_400</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing Patient System ID</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                            </iv:faults>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ADT_A03 Message -->
+        <iv:message iv:id="ADT_A03">
+			<!-- Configuration For Required segments in a ADT_A03 Message -->
+            <iv:segments>
+				<!--
+ Configuration For EVN in ADT_A03 Message
+                  EVN fields are not validated in ADT_A03 message for SA
+				-->
+                <iv:segment iv:id="EVN">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_EVN_40</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing EVN Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_EVN_40</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing EVN Segment</iv:faultExternalMessage>
+                                <iv:segmentName>EVN</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!-- Configuration For PID in ADT_A03 Message -->
+                <iv:segment iv:id="PID">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PID_20</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PID Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PID_20</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PID Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+						<!--Check if all of the following ID codes Exist in PID3 fields -->
+                        <iv:validation iv:type="MISSING_IDENTIFIER">
+                            <iv:value>true</iv:value>
+                            <iv:faults>
+                                <iv:fault iv:id="PS">
+                                    <iv:faultInternalCode>SIA_PID_400</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>Missing Patient System ID</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PID_400</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Missing Patient System ID</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>3</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                            </iv:faults>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!--Configuration For PV1 in ADT_A03 Message -->
+                <iv:segment iv:id="PV1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PV1_50</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing PV1 Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PV1_50</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing PV1 Segment</iv:faultExternalMessage>
+                                <iv:segmentName>PV1</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ACK Message -->
+        <iv:message iv:id="ACK">
+			<!-- Configuration For Required segments in an ACK Message -->
+            <iv:segments>
+				<!-- Configuration For MSH in outgoing ACK Message -->
+                <iv:segment iv:id="MSH">
+                    <iv:fields>
+                        <iv:field iv:id="MSH4">
+                            <iv:dataTypes>
+								<!-- msh4.hd1 which contains Sending facility-->
+                                <iv:dataType iv:id="HD1">
+                                    <iv:configValue>Bosch TH+ System Code</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                        <iv:field iv:id="MSH5">
+                            <iv:dataTypes>
+								<!-- msh5.hd1 which contains receiving application Name-->
+                                  <iv:dataType iv:id="HD1">
+                                    <iv:configValue>Customer EMR</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+						<!--Configuring MSH9 Field For message type -->
+                        <iv:field iv:id="MSH9">
+                            <iv:dataTypes>
+                                <iv:dataType iv:id="MSG1">
+                                    <iv:configValue>ACK</iv:configValue>
+                                </iv:dataType>
+                                <iv:dataType iv:id="MSG2">
+                                    <iv:configValue>ACK</iv:configValue>
+                                </iv:dataType>
+                                <iv:dataType iv:id="MSG3">
+                                    <iv:configValue>ACK</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                    </iv:fields>
+                </iv:segment>
+				<!--Configuration For MSA in incoming ACK Message -->
+                <iv:segment iv:id="MSA">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSA_80</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing MSA Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSA_80</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing MSA Segment</iv:faultExternalMessage>
+                                <iv:segmentName>MSA</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                    <iv:fields>
+						<!--Validation for MSA1 containing Application acknowledgment code  -->
+                        <iv:field iv:id="MSA1">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_MSA_600</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Ack Code</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_MSA_600</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Ack Code</iv:faultExternalMessage>
+                                        <iv:segmentName>MSA</iv:segmentName>
+                                        <iv:fieldNumber>1</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:field>
+						<!--Validation for MSA2 containing Application acknowledgment code  -->
+                        <iv:field iv:id="MSA2">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_MSA_610</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Reference Message Control ID</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_MSA_610</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Reference Message Control ID</iv:faultExternalMessage>
+                                        <iv:segmentName>MSA</iv:segmentName>
+                                        <iv:fieldNumber>2</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:field>
+						<!--Validation for MSA3 containing Application acknowledgment code  -->
+                        <iv:field iv:id="MSA3">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_MSA_620</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Rejection Reason</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_MSA_620</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Rejection Reason</iv:faultExternalMessage>
+                                        <iv:segmentName>MSA</iv:segmentName>
+                                        <iv:fieldNumber>3</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:field>
+                    </iv:fields>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ACK_BATCH Message -->
+        <iv:message iv:id="ACK_BATCH">
+			<!-- Configuration For Required segments in ACK_BATCH Message -->
+            <iv:segments>
+				<!-- Configuration For BHS in ACK_BATCH Message -->
+                <iv:segment iv:id="BHS">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_BHS_100</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing BHS Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_BHS_100</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing BHS Segment</iv:faultExternalMessage>
+                                <iv:segmentName>BHS</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!-- Configuration For BTS in ACK_BATCH Message -->
+                <iv:segment iv:id="BTS">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_BTS_110</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing BTS Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_BTS_110</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing BTS Segment</iv:faultExternalMessage>
+                                <iv:segmentName>BTS</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For QVR_Q17 Message -->
+        <iv:message iv:id="QVR_Q17">
+			<!-- Configuration For Required segments in QVR_Q17 Message -->
+            <iv:segments>
+				<!-- Configuration For QPD in QVR_Q17 Message -->
+                <iv:segment iv:id="QPD">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_QPD_60</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing QPD Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_QPD_60</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing QPD Segment</iv:faultExternalMessage>
+                                <iv:segmentName>QPD</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+				<!-- Configuration For RCP in QVR_Q17 Message -->
+                <iv:segment iv:id="RCP">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_RCP_70</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing RCP Segment</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_RCP_70</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing RCP Segment</iv:faultExternalMessage>
+                                <iv:segmentName>RCP</iv:segmentName>
+                                <iv:fieldNumber>0</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ORU_R30 Message -->
+        <iv:message iv:id="ORU_R30">
+			<!-- Configuration For Required segments in a ORU_R30 Message -->
+            <iv:segments>
+				<!-- Configuration For MSH in ACK Message -->
+                <iv:segment iv:id="MSH">
+                    <iv:fields>
+						<!--Configuring MSH9 Field For message type -->
+                        <iv:field iv:id="MSH9">
+                            <iv:dataTypes>
+                                <iv:dataType iv:id="MSG1">
+                                    <iv:configValue>ORU</iv:configValue>
+                                </iv:dataType>
+                                <iv:dataType iv:id="MSG2">
+                                    <iv:configValue>R30</iv:configValue>
+                                </iv:dataType>
+                                <iv:dataType iv:id="MSG3">
+                                    <iv:configValue>ORU_R30</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+						<!--Configuring MSH16 Field For APP ACK -->
+                        <iv:field iv:id="MSH16">
+                            <iv:configValue>AL</iv:configValue>
+                        </iv:field>
+                        <!-- OBX2 -->
+                        <iv:field iv:id="OBX2">
+                            <iv:configValue>ST</iv:configValue>
+                        </iv:field>
+                        <iv:field iv:id="OBX3">
+                            <iv:dataTypes>
+								<!--Configuration OBX3.CE3 which contains name of coding system -->
+                                <iv:dataType iv:id="CE3">
+                                    <iv:configValue>99VA120.51</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                        <iv:field iv:id="OBX6">
+                            <iv:dataTypes>
+								<!--Configuration OBX6.CE3 which contains name of coding system -->
+                                <iv:dataType iv:id="CE3">
+                                    <iv:configValue>VHA_ERT</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                        <iv:field iv:id="OBX17">
+                            <iv:dataTypes>
+								<!--Configuration OBX17.CE3 which contains name of coding system -->
+                                <iv:dataType iv:id="CE3">
+                                    <iv:configValue>VHA_ERT</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                        <iv:field iv:id="OBX18">
+								<!--Configuration OBX18 indicates the device record-->
+                            <iv:dataTypes>
+                                <iv:dataType iv:id="EI1">
+                                    <iv:configValue>Telehealth Health Hero</iv:configValue>
+                                </iv:dataType>
+                            </iv:dataTypes>
+                        </iv:field>
+                    </iv:fields>
+                </iv:segment>
+            </iv:segments>
+        </iv:message>
+		<!-- Configuration For ORU_R30_BATCH Message -->
+        <iv:message iv:id="ORU_R30_BATCH">
+			<!-- Configuration For Required segments in a ORU_R30_BATCH Message -->
+        </iv:message>
+    </iv:messages>
+	<!--END of Configuration For Messages-->
+	<!--START of Configuration For Segments-->
+	<!--
+ MSH mandatory check should be taken care even before the validation code gets invoked
+                and it should be done in binding component
+	-->
+    <iv:segments>
+        <iv:segment iv:id="MSH">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_10</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH Segment</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_10</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing MSH Segment</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>0</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:segment>
+        <!-- Configuration For UAC in ADT_A04 Message -->
+        <iv:segment iv:id="UAC">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_UAC_30</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing UAC Segment</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_UAC_30</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing UAC Segment</iv:faultExternalMessage>
+                        <iv:segmentName>UAC</iv:segmentName>
+                        <iv:fieldNumber>0</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+					<!--Validation for UAC2 -->
+            <iv:fields>
+                <iv:field iv:id="UAC2">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_UAC_650</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Account Entity</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_UAC_650</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Account Entity</iv:faultExternalMessage>
+                                <iv:segmentName>UAC</iv:segmentName>
+                                <iv:fieldNumber>2</iv:fieldNumber>
+                                <iv:componentNumber>0</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                    <iv:dataTypes>
+								<!-- Validating the username which is present in UAC2.ED5.UNT1-->
+                        <iv:dataType iv:id="ED5">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_UAC_650</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Account Entity Username And Password</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_UAC_650</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Account Entity Username And Password</iv:faultExternalMessage>
+                                        <iv:segmentName>UAC</iv:segmentName>
+                                        <iv:fieldNumber>2</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:dataType>
+                        <iv:dataType iv:id="ED5_UNT1">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_UAC_650</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Account Entity Username</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_UAC_650</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Account Entity Username</iv:faultExternalMessage>
+                                        <iv:segmentName>UAC</iv:segmentName>
+                                        <iv:fieldNumber>2</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:dataType>
+								<!-- Validating the password which is present in UAC2.ED5.UNT2-->
+                        <iv:dataType iv:id="ED5_UNT2">
+                            <iv:validations>
+                                <iv:validation iv:type="MANDATORY">
+                                    <iv:value>true</iv:value>
+                                    <iv:fault>
+                                        <iv:faultInternalCode>SIA_UAC_660</iv:faultInternalCode>
+                                        <iv:faultInternalMessage>Missing Account Entity Password</iv:faultInternalMessage>
+                                        <iv:faultExternalCode>SIA_UAC_660</iv:faultExternalCode>
+                                        <iv:faultExternalMessage>Missing Account Entity Password</iv:faultExternalMessage>
+                                        <iv:segmentName>UAC</iv:segmentName>
+                                        <iv:fieldNumber>2</iv:fieldNumber>
+                                        <iv:componentNumber>0</iv:componentNumber>
+                                    </iv:fault>
+                                </iv:validation>
+                            </iv:validations>
+                        </iv:dataType>
+                    </iv:dataTypes>
+                </iv:field>
+            </iv:fields>
+        </iv:segment>
+    </iv:segments>
+	<!--END of Configuration For Segments-->
+	<!--START of configuration for Fields-->
+    <iv:fields>
+		<!--Configuration for Different Fields in PID Patient Identification Segment-->
+		<!--PID3 Configuration Patient Identifier List -->
+        <iv:field iv:id="PID3">
+            <iv:validations>
+				<!--Validate the length and format of the identifiers -->
+                <iv:validation iv:type="PATTERN" iv:id="SS">
+                        <iv:value>(\d{3}[- ]?\d{2}[- ]?\d{4})|(\d{3}\\\d{2}\\\d{4})|(\d{3}\/\d{2}\/\d{4})</iv:value>
+                         <iv:fault>
+                        <iv:faultInternalCode>SIA_PROCESS_720</iv:faultInternalCode>
+                        <iv:faultInternalMessage>The length or the format of SSN is inconsistent</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_720</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Invalid SSN</iv:faultExternalMessage>
+                        <iv:segmentName>PID</iv:segmentName>
+                        <iv:fieldNumber>3</iv:fieldNumber>
+                        <iv:componentNumber>1</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+                <iv:validation iv:type="PATTERN" iv:id="PS">
+                    <iv:value>^[A-Za-z0-9-._/\\\s]{1,31}+$</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_PROCESS_840</iv:faultInternalCode>
+                        <iv:faultInternalMessage>The length or format of PS Id is inconsistent</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_840</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Invalid Patient System ID</iv:faultExternalMessage>
+                        <iv:segmentName>PID</iv:segmentName>
+                        <iv:fieldNumber>3</iv:fieldNumber>
+                        <iv:componentNumber>1</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!--End Of PID3-->
+        <!--Validation for PID5 containing patient last name-->
+       <iv:field iv:id="PID5">
+             <iv:dataTypes>
+	         <!-- Validating the Last Name which is present in pid5.xpn1.fn1-->
+                <iv:dataType iv:id="XPN1_FN1">
+                    <iv:validations>
+                        <iv:validation iv:type="PATTERN">
+                            <iv:value>^[a-zA-Z-.'\s]*$</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PROCESS_880</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Last Name should be of alpha characters</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PROCESS_880</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Invalid Last Name</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>5</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+                <!-- Validating the first Name which is present in pid5.xpn2-->
+                <iv:dataType iv:id="XPN2">
+                        <iv:validations>
+                            <iv:validation iv:type="PATTERN">
+                                <iv:value>^[a-zA-Z-.'\s]*$</iv:value>
+                                <iv:fault>
+                                    <iv:faultInternalCode>SIA_PROCESS_890</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>first Name should be of alpha characters</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PROCESS_890</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Invalid FIRST Name</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>5</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                            </iv:validation>
+                        </iv:validations>
+                 </iv:dataType>
+                 <!-- Validating the first Name which is present in pid5.xpn3-->
+                 <iv:dataType iv:id="XPN3">
+                        <iv:validations>
+                            <iv:validation iv:type="PATTERN">
+                                <iv:value>^[a-zA-Z-.'\s]*$</iv:value>
+                                <iv:fault>
+                                    <iv:faultInternalCode>SIA_PROCESS_900</iv:faultInternalCode>
+                                    <iv:faultInternalMessage>Middle Name should be of alpha characters</iv:faultInternalMessage>
+                                    <iv:faultExternalCode>SIA_PROCESS_900</iv:faultExternalCode>
+                                    <iv:faultExternalMessage>Invalid MIDDLE Name</iv:faultExternalMessage>
+                                    <iv:segmentName>PID</iv:segmentName>
+                                    <iv:fieldNumber>5</iv:fieldNumber>
+                                    <iv:componentNumber>1</iv:componentNumber>
+                                </iv:fault>
+                            </iv:validation>
+                        </iv:validations>
+                   </iv:dataType>
+               </iv:dataTypes>
+     </iv:field>
+		<!--Validation for PID7 -->
+        <iv:field iv:id="PID7">
+            <iv:dataTypes>
+				<!--Validation for TS1 which contains date of birth -->
+                <iv:dataType iv:id="TS1">
+                    <iv:configValue>yyyyMMdd</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="DATE_FORMAT">
+                            <iv:value>yyyyMMdd</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PROCESS_730</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Invalid DOB</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PROCESS_730</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Invalid DOB</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>7</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                         <!--Validation for TS1 which to check if DOB is less then Current Date -->
+                       <iv:validation iv:type="DATE_CHECKER">
+                            <iv:value>yyyyMMdd</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PROCESS_920</iv:faultInternalCode>
+                                <iv:faultInternalMessage>DOB is greater then Current Date</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PROCESS_920</iv:faultExternalCode>
+                                <iv:faultExternalMessage>DOB is greater then Current Date</iv:faultExternalMessage>
+                                <iv:segmentName>PID</iv:segmentName>
+                                <iv:fieldNumber>7</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+        <iv:field iv:id="PID11">
+                            <iv:dataTypes>
+				<!--Validation for XAD5 which contains Zip Code -->
+                                <iv:dataType iv:id="XAD5">
+                                    <iv:validations>
+                                        <iv:validation iv:type="PATTERN">
+                                            <iv:value>^\d{5}(-\d{4})?$</iv:value>
+                                            <iv:fault>
+                                                <iv:faultInternalCode>SIA_PROCESS_910</iv:faultInternalCode>
+                                                <iv:faultInternalMessage>Invalid Zip Code</iv:faultInternalMessage>
+                                                <iv:faultExternalCode>SIA_PROCESS_910</iv:faultExternalCode>
+                                                <iv:faultExternalMessage>Invalid Zip Code</iv:faultExternalMessage>
+                                                <iv:segmentName>PID</iv:segmentName>
+                                                <iv:fieldNumber>11</iv:fieldNumber>
+                                                <iv:componentNumber>1</iv:componentNumber>
+                                            </iv:fault>
+                                        </iv:validation>
+                                    </iv:validations>
+                                </iv:dataType>
+                          </iv:dataTypes>
+            </iv:field>
+            <iv:field iv:id="PID13">
+                            <iv:dataTypes>
+				<!--Validation for XTN1 which contains Phone number -->
+                                <iv:dataType iv:id="XTN1">
+                                    <iv:validations>
+                                        <iv:validation iv:type="PATTERN">
+                                            <iv:value>^[0-9-+.()/]{3,32}$</iv:value>
+                                            <iv:fault>
+                                                <iv:faultInternalCode>SIA_PROCESS_930</iv:faultInternalCode>
+                                                <iv:faultInternalMessage>Invalid Phone Number</iv:faultInternalMessage>
+                                                <iv:faultExternalCode>SIA_PROCESS_930</iv:faultExternalCode>
+                                                <iv:faultExternalMessage>Invalid Phone Number</iv:faultExternalMessage>
+                                                <iv:segmentName>PID</iv:segmentName>
+                                                <iv:fieldNumber>13</iv:fieldNumber>
+                                                <iv:componentNumber>1</iv:componentNumber>
+                                            </iv:fault>
+                                        </iv:validation>
+                                    </iv:validations>
+                                </iv:dataType>
+                            </iv:dataTypes>
+          </iv:field>
+		<!--End Of PID7-->
+        <!--Validation of MSH fields-->
+		<!--Validation of MSH1 field which is a Field Separator-->
+        <iv:field iv:id="MSH1">
+			<!-- Configured Field Separator used in construction of outgoing message -->
+            <iv:configValue>|</iv:configValue>
+			<!-- Validate for MSH1 mandatory requirement -->
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY" >
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_200</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Field Separator</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_200</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Field Separator</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>1</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!--Validation of MSH2 field which Consists of Encoding Characters-->
+		<!--The order in which the encoding characters are listed will be used to identify the specific usage of them -->
+		<!--This field is required while constructing an ack message -->
+        <iv:field iv:id="MSH2">
+			<!-- Configured Encoding Characters are used in construction of outgoing message -->
+            <iv:configValue>~|\&amp;</iv:configValue>
+			<!-- Validate for MSH2 mandatory requirement -->
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY" >
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_210</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Encoding Characters</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_210</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Encoding Characters</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>2</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!--Validation of MSH3 Field containing Sending Application name-->
+        <iv:field iv:id="MSH3">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY" >
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_220</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH3</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_220</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Sending Application Name</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>3</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+			<!-- Validation msh3.hd1 which contains Sending Application Name-->
+            <iv:dataTypes>
+                <iv:dataType iv:id="HD1">
+					<!-- Configured Sending application name for out going message -->
+                    <iv:configValue>Bosch Telehealth System</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>false</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_220</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Sending Application Name</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_220</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Sending Application Name</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>3</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--Validation of MSH4 Field which contains Sending Facility details-->
+        <iv:field iv:id="MSH4">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_230</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH4</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_230</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Sending Facility Code/Organization ID</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>4</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!--Validation msh4.hd1 which contains Sending Facility code/Organization Id-->
+                <iv:dataType iv:id="HD1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_230</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Sending Facility Code/Organization ID</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_230</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Sending Facility Code/Organization ID</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>4</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--Validating MSH5 Field For receiving application information -->
+        <iv:field iv:id="MSH5">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_240</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH5</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_240</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Receiving Application Name</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>5</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!--Validation msh5.hd1 which contains Receiving Application Name-->
+                <iv:dataType iv:id="HD1">
+					<!-- Configured value for Receiving Application Name for outgoing messages -->
+                    <iv:configValue>Customer Application Name</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>false</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_240</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Receiving Application Name</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_240</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Receiving Application Name</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>5</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--Validating MSH6 Field For receiving facility information -->
+        <iv:field iv:id="MSH6">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_250</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH6</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_250</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Receiving Facility Code</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>6</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!--Validation msh6.hd1 which contains Receiving Facility Code-->
+                <iv:dataType iv:id="HD1">
+					<!-- Configured value for Receiving Application Name for outgoing messages -->
+                    <iv:configValue>Customer Facility Code</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_250</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Receiving Facility Code</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_250</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Receiving Facility Code</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>6</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--
+Validating MSH7 Field which contains the Date and Time that the sending system created the message
+        If the time zone is specified, it will be used throughout the message as the default time zone
+		-->
+        <iv:field iv:id="MSH7">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_320</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH7</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_320</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Message Creation Time</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>7</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+                <iv:dataType iv:id="TS1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>false</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_320</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Message Creation Time</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_320</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Message Creation Time</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>7</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!-- Validating MSH9 for Message Type information -->
+        <iv:field iv:id="MSH9">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_260</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH9</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_260</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Message Code</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>9</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+                <iv:validation iv:type="UNSUPPORTED_TRIGGER">
+                    <iv:value>true</iv:value>
+                    <iv:faults>                   
+                    <iv:fault iv:id="UNSUPPORTED_MESSAGE_CODE">
+                        <iv:faultInternalCode>SIA_PROCESS_740</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Unsupported Message Code</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_740</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Unsupported Message Code</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>9</iv:fieldNumber>
+                        <iv:componentNumber>1</iv:componentNumber>
+                    </iv:fault>
+                     <iv:fault iv:id="UNSUPPORTED_MESSAGE_TYPE">
+                        <iv:faultInternalCode>SIA_PROCESS_750</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Unsupported Message Type</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_750</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Unsupported Message Type</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>9</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                    <iv:fault iv:id="INVALID_MESSAGE_STRUCTURE">
+                        <iv:faultInternalCode>SIA_PROCESS_760</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Invalid Message Structure</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_760</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Invalid Message Structure</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>9</iv:fieldNumber>
+                        <iv:componentNumber>2</iv:componentNumber>
+                    </iv:fault>
+                    </iv:faults>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!-- Validating mandatory req for message type -->
+                <iv:dataType iv:id="MSG1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_260</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Message Code</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_260</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Message Code</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>9</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+				<!-- Validating mandatory req for trigger event -->
+                <iv:dataType iv:id="MSG2">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_270</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Trigger Event</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_270</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Trigger Event</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>9</iv:fieldNumber>
+                                <iv:componentNumber>2</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+				<!-- Validating mandatory req for message structure -->
+                <iv:dataType iv:id="MSG3">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_280</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Message Structure</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_280</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Message Structure</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>9</iv:fieldNumber>
+                                <iv:componentNumber>3</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--Validating MSH10 which contains Message Control ID  -->
+        <iv:field iv:id="MSH10">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_290</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Message Control ID</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_290</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Message Control ID</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>10</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!--Validating MSH11 which contains ProcessingID-->
+        <iv:field iv:id="MSH11">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_330</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH11</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_330</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Processing Id</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>11</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!--Validation msh11.pt11 which contains ProcessingID-->
+				<!--values will be T,P,D-->
+                <iv:dataType iv:id="PT1">
+                    <iv:configValue>P</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_330</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Processing ID</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_330</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Processing ID</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>11</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!--Validating MSH12 which contains HL7 Version ID  -->
+        <iv:field iv:id="MSH12">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_300</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing MSH12</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_300</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing HL7 Version</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>12</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!--Validation msh12.VID1 which contains HL7 Version ID-->
+				<!--values will be 2.4,2.5,2.6-->
+                <iv:dataType iv:id="VID1">
+                    <iv:configValue>2.5</iv:configValue>
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>false</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_MSH_300</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing HL7 Version</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_MSH_300</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing HL7 Version</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>12</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                        <!--<iv:validation iv:type="VALID_VALUE">
+                            <iv:value>2.4</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_PROCESS_830</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Unsupported HL7 Version</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_PROCESS_830</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Unsupported HL7 Version</iv:faultExternalMessage>
+                                <iv:segmentName>MSH</iv:segmentName>
+                                <iv:fieldNumber>12</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation> -->
+                        </iv:validations>
+                        </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!-- Validating MSH 16 field - app ack request -->
+        <iv:field iv:id="MSH16">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_MSH_310</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Application Ack</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_MSH_310</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Application Ack</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>16</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+                <iv:validation iv:type="VALID_VALUE">
+                    <iv:value>AL</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_PROCESS_770</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Invalid Ack Code</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_PROCESS_770</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Invalid Ack Code</iv:faultExternalMessage>
+                        <iv:segmentName>MSH</iv:segmentName>
+                        <iv:fieldNumber>16</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- END MSH segment configuration and validation -->
+		<!-- Configuration For BTS Segment -->
+		<!-- BTS1 contains the number of messages sent in the batch message -->
+        <iv:field iv:id="BTS1">
+            <iv:configValue>25</iv:configValue>
+        </iv:field>
+		<!-- Validating BHS1 field - Batch Field Separator -->
+        <iv:field iv:id="BHS1">
+            <iv:configValue>|</iv:configValue>
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_560</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Field Separator</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_560</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Field Separator</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>1</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS2 field - Batch Encoding Characters -->
+        <iv:field iv:id="BHS2">
+            <iv:configValue>^~\&amp;</iv:configValue>
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>false</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_570</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Encoding Characters</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_570</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Encoding Characters</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>2</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS3 field - Batch Sending Application name -->
+        <iv:field iv:id="BHS3">
+            <iv:configValue>Bosch TH+ Integration System</iv:configValue>
+        </iv:field>
+		<!-- Validating BHS4 field - Batch sending facility code (Org Id) -->
+        <iv:field iv:id="BHS4">
+            <iv:configValue>Bosch TH+ Integration System Facility Code</iv:configValue>
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_500</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Sending Facility Code</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_500</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Sending Facility Code</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>4</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS5 field - Batch Receiving Application name -->
+        <iv:field iv:id="BHS5">
+            <iv:configValue>Customer Application name</iv:configValue>
+        </iv:field>
+		<!-- Validating BHS6 field - Batch Receiving Facility Code -->
+        <iv:field iv:id="BHS6">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_510</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Receiving Facility Code</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_510</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Receiving Facility Code</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>6</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS7 field - Batch creation data/time -->
+        <iv:field iv:id="BHS7">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_520</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Creation Time</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_520</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Creation Time</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>7</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+            <iv:dataTypes>
+				<!-- Validation BHS7.TS1 which contains Batch creation data/time -->
+                <iv:dataType iv:id="TS1">
+                    <iv:validations>
+                        <iv:validation iv:type="MANDATORY">
+                            <iv:value>true</iv:value>
+                            <iv:fault>
+                                <iv:faultInternalCode>SIA_BHS_520</iv:faultInternalCode>
+                                <iv:faultInternalMessage>Missing Batch Creation Time</iv:faultInternalMessage>
+                                <iv:faultExternalCode>SIA_BHS_520</iv:faultExternalCode>
+                                <iv:faultExternalMessage>Missing Batch Creation Time</iv:faultExternalMessage>
+                                <iv:segmentName>BHS</iv:segmentName>
+                                <iv:fieldNumber>7</iv:fieldNumber>
+                                <iv:componentNumber>1</iv:componentNumber>
+                            </iv:fault>
+                        </iv:validation>
+                    </iv:validations>
+                </iv:dataType>
+            </iv:dataTypes>
+        </iv:field>
+		<!-- Validating BHS9 field - Message Type -->
+        <iv:field iv:id="BHS9">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_530</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Message Type</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_530</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Message Type</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>9</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS11 field - Batch Control ID -->
+        <iv:field iv:id="BHS11">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_550</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Batch Control ID</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_550</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Batch Control ID</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>11</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating BHS12 field - Reference Batch Control ID -->
+        <iv:field iv:id="BHS12">
+            <iv:validations>
+                <iv:validation iv:type="MANDATORY">
+                    <iv:value>true</iv:value>
+                    <iv:fault>
+                        <iv:faultInternalCode>SIA_BHS_540</iv:faultInternalCode>
+                        <iv:faultInternalMessage>Missing Reference Batch Control ID</iv:faultInternalMessage>
+                        <iv:faultExternalCode>SIA_BHS_540</iv:faultExternalCode>
+                        <iv:faultExternalMessage>Missing Reference Batch Control ID</iv:faultExternalMessage>
+                        <iv:segmentName>BHS</iv:segmentName>
+                        <iv:fieldNumber>12</iv:fieldNumber>
+                        <iv:componentNumber>0</iv:componentNumber>
+                    </iv:fault>
+                </iv:validation>
+            </iv:validations>
+        </iv:field>
+		<!-- Validating ORC2 field - Observations sending facility name -->
+        <iv:field iv:id="ORC2_EI2">
+            <iv:configValue>Bosch TH+ Integration System</iv:configValue>
+        </iv:field>
+    </iv:fields>
+	<!--END of Configuration For Fields -->
+	<!--START of Configuration For Data Types -->
+    <iv:dataTypes>
+        <iv:dataType iv:id="TS1">
+            <iv:configValue>yyyyMMdd</iv:configValue>
+        </iv:dataType>
+    </iv:dataTypes>
+	<!--END of Configuration For Data Types -->
+    <iv:application>
+        <iv:faults>
+			<!-- Process Related Faults -->
+            <iv:fault iv:id="UNKNOWN_ORGANIZATION">
+                <iv:faultInternalCode>SIA_PROCESS_700</iv:faultInternalCode>
+                <iv:faultInternalMessage>Sending Facility code/organization id is not found</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_700</iv:faultExternalCode>
+                <iv:faultExternalMessage>Unknown Organization</iv:faultExternalMessage>
+                <iv:segmentName>MSH</iv:segmentName>
+                <iv:fieldNumber>4</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="ORGANIZATION_NOT_INTEGRATED">
+                <iv:faultInternalCode>SIA_PROCESS_850</iv:faultInternalCode>
+                <iv:faultInternalMessage>Organization is Not Integrated</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_850</iv:faultExternalCode>
+                <iv:faultExternalMessage>Organization is Not Integrated</iv:faultExternalMessage>
+                <iv:segmentName>MSH</iv:segmentName>
+                <iv:fieldNumber>4</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="PATIENT_NOT_FOUND">
+                <iv:faultInternalCode>SIA_PROCESS_710</iv:faultInternalCode>
+                <iv:faultInternalMessage>Patient not found</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_710</iv:faultExternalCode>
+                <iv:faultExternalMessage>Patient not found</iv:faultExternalMessage>
+                <iv:segmentName>PID</iv:segmentName>
+                <iv:fieldNumber>3</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>            
+            <iv:fault iv:id="USER_AUTHENTICATION_FAILED">
+                <iv:faultInternalCode>SIA_PROCESS_780</iv:faultInternalCode>
+                <iv:faultInternalMessage>User Authentication Failed</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_780</iv:faultExternalCode>
+                <iv:faultExternalMessage>User Authentication Failed</iv:faultExternalMessage>
+                <iv:segmentName>UAC</iv:segmentName>
+                <iv:fieldNumber>2</iv:fieldNumber>
+                <iv:componentNumber>5</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="DUPLICATE_SSN">
+                <iv:faultInternalCode>SIA_PROCESS_790</iv:faultInternalCode>
+                <iv:faultInternalMessage>Duplicate SSN</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_790</iv:faultExternalCode>
+                <iv:faultExternalMessage>Duplicate SSN</iv:faultExternalMessage>
+                <iv:segmentName>PID</iv:segmentName>
+                <iv:fieldNumber>3</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="PATIENT_ALREADY_EXISTS">
+                <iv:faultInternalCode>SIA_PROCESS_800</iv:faultInternalCode>
+                <iv:faultInternalMessage>Patient with Patient System ID already exists</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_800</iv:faultExternalCode>
+                <iv:faultExternalMessage>Patient with Patient System ID already exists</iv:faultExternalMessage>
+                <iv:segmentName>PID</iv:segmentName>
+                <iv:fieldNumber>3</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="PATIENT_ALREADY_PAUSED">
+                <iv:faultInternalCode>SIA_PROCESS_810</iv:faultInternalCode>
+                <iv:faultInternalMessage>Patient is already Paused</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_810</iv:faultExternalCode>
+                <iv:faultExternalMessage>Patient is already Paused</iv:faultExternalMessage>
+                <iv:segmentName>PID</iv:segmentName>
+                <iv:fieldNumber>3</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="ORGANIZATION_NOT_MAPPED">
+                <iv:faultInternalCode>SIA_PROCESS_860</iv:faultInternalCode>
+                <iv:faultInternalMessage>Organization is not mapped</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_860</iv:faultExternalCode>
+                <iv:faultExternalMessage>Organization is not mapped</iv:faultExternalMessage>
+                <iv:segmentName>MSH</iv:segmentName>
+                <iv:fieldNumber>4</iv:fieldNumber>
+                <iv:componentNumber>1</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="RESOURCE_NOT_FOUND">
+                <iv:faultInternalCode>SIA_PROCESS_870</iv:faultInternalCode>
+                <iv:faultInternalMessage>Requested Resource not found</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_870</iv:faultExternalCode>
+                <iv:faultExternalMessage>Requested Resource not found</iv:faultExternalMessage>
+                 <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="ORGANIZATION_NOT_ACTIVE">
+                <iv:faultInternalCode>SIA_PROCESS_940</iv:faultInternalCode>
+                <iv:faultInternalMessage>User is currently inactive </iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_940</iv:faultExternalCode>
+                <iv:faultExternalMessage>User is currently inactive </iv:faultExternalMessage>
+                 <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="USER_NOT_AUTHORIZED">
+                <iv:faultInternalCode>SIA_PROCESS_950</iv:faultInternalCode>
+                <iv:faultInternalMessage>User not authorized</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_950</iv:faultExternalCode>
+                <iv:faultExternalMessage>User not authorized</iv:faultExternalMessage>
+                 <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+           <iv:fault iv:id="GENERAL_ERROR">
+                <iv:faultInternalCode>SIA_PROCESS_960</iv:faultInternalCode>
+                <iv:faultInternalMessage>General Processing Error</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_960</iv:faultExternalCode>
+                <iv:faultExternalMessage>General Processing Error</iv:faultExternalMessage>
+                <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+             <iv:fault iv:id="REMOTE_SERVICE_FAILED">
+                <iv:faultInternalCode>SIA_PROCESS_970</iv:faultInternalCode>
+                <iv:faultInternalMessage>Message could not be processed because of a RemoteServiceException. Please try sending this message again.</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_970</iv:faultExternalCode>
+                <iv:faultExternalMessage>Message could not be processed because of a RemoteServiceException. Please try sending this message again.</iv:faultExternalMessage>
+                <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="OPTIMISTIC_LOCKING">
+                <iv:faultInternalCode>SIA_PROCESS_980</iv:faultInternalCode>
+                <iv:faultInternalMessage>Multiple processes tried to operate on the patient record </iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_980</iv:faultExternalCode>
+                <iv:faultExternalMessage>Multiple processes tried to operate on the patient record</iv:faultExternalMessage>
+                 <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+             <iv:fault iv:id="INSUFFICIENT_DATA">
+                <iv:faultInternalCode>SIA_PROCESS_990</iv:faultInternalCode>
+                <iv:faultInternalMessage>Insufficient data to process the message</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_990</iv:faultExternalCode>
+                <iv:faultExternalMessage>Insufficient data to process the message</iv:faultExternalMessage>
+                <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+            <iv:fault iv:id="PATIENT_NOT_INTEGRATED">
+                <iv:faultInternalCode>SIA_PROCESS_1000</iv:faultInternalCode>
+                <iv:faultInternalMessage>Operation not allowed for Non-Integrated patient.</iv:faultInternalMessage>
+                <iv:faultExternalCode>SIA_PROCESS_1000</iv:faultExternalCode>
+                <iv:faultExternalMessage>Operation not allowed for Non-Integrated patient</iv:faultExternalMessage>
+                <iv:segmentName>0</iv:segmentName>
+                <iv:fieldNumber>0</iv:fieldNumber>
+                <iv:componentNumber>0</iv:componentNumber>
+            </iv:fault>
+        </iv:faults>
+		<!-- Identifier Codes mapping -->
+        <iv:configValue iv:id="PAT_ID">PS</iv:configValue>
+        <iv:configValue iv:id="SSN">SS</iv:configValue>
+        <!-- Identifier Codes mapping -->
+        <iv:configValue iv:id="FEMALE">F</iv:configValue>
+        <iv:configValue iv:id="MALE">M</iv:configValue>
+        <!--Length to be trimmed for patient to fit identifiers -->
+        <iv:configValue iv:id="FIRST_NAME_LENGTH">32</iv:configValue>
+        <iv:configValue iv:id="LAST_NAME_LENGTH">32</iv:configValue>
+        <iv:configValue iv:id="MIDDLE_NAME_LENGTH">32</iv:configValue>
+        <iv:configValue iv:id="ADDRESS_LENGTH">30</iv:configValue>
+        <iv:configValue iv:id="CITY_LENGTH">30</iv:configValue>
+        <!--- Phone number -->
+
+
+
+         <!-- OrganisationType that needs to be mapped to PS Organisation(for Find organiation) -->
+        <iv:configValue iv:id="ORGANIZATION_TYPE">SA</iv:configValue>
+		<!-- Date Format Used for entire Application -->
+        <iv:configValue iv:id="DATE_FORMAT">yyyyMMddHHmmss</iv:configValue>
+		<!-- Observations related configuration -->
+        <iv:configValue iv:id="NUMBER_OF_OBR_SEGMENTS">10</iv:configValue>
+        <iv:configValue iv:id="NUMBER_OF_OBX_SEGMENTS">25</iv:configValue>
+        <iv:configValue iv:id="RESULTS_COUNT_PER_MESSAGE">25</iv:configValue>
+		<!-- Message to be sent in the last batch when there are no more observations to be reported -->
+        <iv:configValue iv:id="RESULTS_LAST_BATCH_MESSAGE">Last batch for this account number</iv:configValue>
+
+		<!-- Configuration of the loinc codes used. This information is extracted from Legacy database. -->
+        <iv:configValue iv:id="RESULTS_LOINC_CONSTANT">LOINC</iv:configValue>
+		<!-- The names like systolic, diastolic doesn't need to be configured. -->
+        <iv:configValues iv:id="RESULTS_LOINC_DESCRIPTION">
+			<!-- Use this for internal logging purposes. -->
+            <iv:configValue iv:id="8480-6">Systolic BP</iv:configValue>
+            <iv:configValue iv:id="8462-4">Diastolic BP</iv:configValue>
+            <iv:configValue iv:id="8867-4">Pulse rate</iv:configValue>
+            <iv:configValue iv:id="8310-5">Temperature</iv:configValue>
+            <iv:configValue iv:id="14743-9">Glucose level in the blood</iv:configValue>
+            <iv:configValue iv:id="29463-7">Weight</iv:configValue>
+            <iv:configValue iv:id="20564-1">Oxygen Saturation</iv:configValue>
+            <iv:configValue iv:id="19935-6">Peak Expiratory Flow Rate</iv:configValue>
+            <iv:configValue iv:id="5964-2">Prothrombin Time</iv:configValue>
+            <iv:configValue iv:id="34714-6">International Normalized Ratio</iv:configValue>
+            <iv:configValue iv:id="9279-1">Respirations</iv:configValue>
+            <iv:configValue iv:id="28083-4">Pain</iv:configValue>
+            <iv:configValue iv:id="20081-6">Pulse Oximetry</iv:configValue>
+            <iv:configValue iv:id="14770-2">Fasting Blood Glucose</iv:configValue>
+			<!-- The following code is defined in Results.xsd, but not found in Legacy database. -->
+            <iv:configValue iv:id="20157-4">Forced Expiratory Volume</iv:configValue>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_LOINC_CUSTOMER_DESCRIPTION">
+			<!-- Customer-specific description of the LOINC code. -->
+            <iv:configValue iv:id="8480-6">SYSTOLIC BP</iv:configValue>
+            <iv:configValue iv:id="8462-4">DIASTOLIC BP</iv:configValue>
+            <iv:configValue iv:id="8867-4">PULSE RATE</iv:configValue>
+            <iv:configValue iv:id="8310-5">TEMPERATURE</iv:configValue>
+            <iv:configValue iv:id="14743-9">GLUCOSE LEVEL IN THE BLOOD</iv:configValue>
+            <iv:configValue iv:id="29463-7">WEIGHT</iv:configValue>
+            <iv:configValue iv:id="20564-1">OXYGEN SATURATION</iv:configValue>
+            <iv:configValue iv:id="19935-6">PEAK EXPIRATORY FLOW RATE</iv:configValue>
+            <iv:configValue iv:id="5964-2">PROTHROMBIN TIME</iv:configValue>
+            <iv:configValue iv:id="34714-6">INTERNATIONAL NORMALIZED RATIO</iv:configValue>
+            <iv:configValue iv:id="9279-1">RESPIRATIONS</iv:configValue>            
+            <iv:configValue iv:id="20157-4">FORCED EXPIRATORY VOLUME</iv:configValue>
+            <!-- Not USED right now -->
+            <iv:configValue iv:id="28083-4">PAIN</iv:configValue>
+            <iv:configValue iv:id="20081-6">PULSE OXIMETRY/O2 SATURATION</iv:configValue>
+            <iv:configValue iv:id="14770-2">BLOOD GLUCOSE</iv:configValue>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_LOINC_CUSTOMER_CODE">
+			<!-- VUID (Customer-specific code of the LOINC code. -->
+            <iv:configValue iv:id="8480-6">4500634</iv:configValue>
+            <iv:configValue iv:id="8462-4">4500634</iv:configValue>
+            <iv:configValue iv:id="8867-4">4500636</iv:configValue>
+            <iv:configValue iv:id="8310-5">4500638</iv:configValue>
+            <iv:configValue iv:id="14743-9">4500640</iv:configValue>
+            <iv:configValue iv:id="29463-7">4500639</iv:configValue>
+            <iv:configValue iv:id="20564-1">4500637</iv:configValue>
+            <iv:configValue iv:id="19935-6">TBD</iv:configValue>
+            <iv:configValue iv:id="5964-2">TBD</iv:configValue>
+            <iv:configValue iv:id="34714-6">TBD</iv:configValue>
+            <iv:configValue iv:id="9279-1">TBD</iv:configValue>
+            <iv:configValue iv:id="28083-4">4500635</iv:configValue>
+            <iv:configValue iv:id="20081-6">4500637</iv:configValue>
+            <iv:configValue iv:id="14770-2">4500640</iv:configValue>
+			<!-- The following code is defined in Results.xsd, but not found in Legacy database. -->
+            <iv:configValue iv:id="20157-4"/>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_UOM_CUSTOMER_DESCRIPTION">
+			<!-- Customer-specific description of the UOM code. -->
+            <iv:configValue iv:id="pounds">Pounds</iv:configValue>
+            <iv:configValue iv:id="kilograms">kilograms</iv:configValue>
+            <iv:configValue iv:id="mg/dL">mg/dL</iv:configValue>
+            <iv:configValue iv:id="mmol/L">mmol/L</iv:configValue>
+            <iv:configValue iv:id="mmHg">mmHg</iv:configValue>
+            <iv:configValue iv:id="l/min">1/min</iv:configValue>
+            <iv:configValue iv:id="degrees F">F</iv:configValue>
+            <iv:configValue iv:id="degrees C">C</iv:configValue>
+            <iv:configValue iv:id="percent">%</iv:configValue>
+            <iv:configValue iv:id="beats per minute">beats/min</iv:configValue>
+            <iv:configValue iv:id="seconds">seconds</iv:configValue>
+            <iv:configValue iv:id="breaths Per Minute">breaths/min</iv:configValue>
+            <iv:configValue iv:id="percent Oxygen">%</iv:configValue>
+            <iv:configValue iv:id="INR">INR</iv:configValue>
+            <iv:configValue iv:id="kc">kc</iv:configValue>
+            <iv:configValue iv:id="steps">steps</iv:configValue>
+            <iv:configValue iv:id="pain scale">Verbal Numeric Analog Scale</iv:configValue>
+			<!-- The following code is defined in ResultsCommon.xsd, but not found in Legacy database. -->
+            <iv:configValue iv:id="Liters">L</iv:configValue>
+            <iv:configValue iv:id="insulinUnits">mg</iv:configValue>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_UOM_CUSTOMER_CODE">
+			<!-- VUID (Customer-specific code of the UOM code. -->
+            <!-- NOT used for now -->
+            <iv:configValue iv:id="pounds">4500989</iv:configValue>
+            <iv:configValue iv:id="kilograms"/>
+            <iv:configValue iv:id="mg/dL">4500985</iv:configValue>
+            <iv:configValue iv:id="mmolPerL"/>
+            <iv:configValue iv:id="mmHg">4500986</iv:configValue>
+            <iv:configValue iv:id="litresPerMin"/>
+            <iv:configValue iv:id="degreesF">4500991</iv:configValue>
+            <iv:configValue iv:id="degreesC"/>
+            <iv:configValue iv:id="percent">4500990</iv:configValue>
+            <iv:configValue iv:id="beats per minute">4500988</iv:configValue>
+            <iv:configValue iv:id="seconds"/>
+            <iv:configValue iv:id="breathsPerMinute"/>
+            <iv:configValue iv:id="percentOxygen">4500990</iv:configValue>
+            <iv:configValue iv:id="inr"/>
+            <iv:configValue iv:id="kc"/>
+            <iv:configValue iv:id="steps"/>
+            <iv:configValue iv:id="painScale">4500987</iv:configValue>
+			<!-- The following code is defined in ResultsCommon.xsd, but not found in Legacy database. -->
+            <iv:configValue iv:id="liters"/>
+            <iv:configValue iv:id="insulinUnits"/>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_OBS_METHOD_CUSTOMER_DESCRIPTION">
+			<!-- Customer-specific description of the observation method code -->
+            <iv:configValue iv:id="device">DEVICE REPORTED</iv:configValue>
+            <iv:configValue iv:id="self">SELF REPORTED</iv:configValue>
+        </iv:configValues>
+        <iv:configValues iv:id="RESULTS_OBS_METHOD_CUSTOMER_CODE">
+			<!-- VUID (Customer-specific code of the observation method code. -->
+            <iv:configValue iv:id="device">D</iv:configValue>
+            <iv:configValue iv:id="self">S</iv:configValue>
+            <iv:configValue iv:id="careManager">C</iv:configValue>
+        </iv:configValues>
+        <!-- Configuration to define if the patient identifiers defined for a care provider system should be updated or not in case if they are not empty/blank..-->
+		<iv:configValues iv:id="UPDATE_PATIENT_IDENTIFIERS_LIST">
+            <iv:configValue iv:id="SSN">false</iv:configValue>
+        </iv:configValues>
+        <!-- Customer ID -->
+        <iv:customerId>SA</iv:customerId>
+    </iv:application>
+</iv:configuration>

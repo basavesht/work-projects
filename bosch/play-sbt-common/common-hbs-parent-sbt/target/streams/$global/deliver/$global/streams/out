@@ -1,0 +1,4 @@
+[0m[[0minfo[0m] [0m:: delivering :: com.bosch#bosch-hbs-sbt-parent;1.7-SNAPSHOT :: 1.7-SNAPSHOT :: integration :: Wed May 06 17:05:51 PDT 2015[0m
+[0m[[0mdebug[0m] [0m	options = status=integration pubdate=Wed May 06 17:05:51 PDT 2015 validate=true resolveDynamicRevisions=true merge=true resolveId=null pubBranch=null[0m
+[0m[[0minfo[0m] [0m	delivering ivy file to C:\CodeSpace\Coder Park\common-hbs-parent-sbt\target\scala-2.10\sbt-0.13\ivy-1.7-SNAPSHOT.xml[0m
+[0m[[0mdebug[0m] [0m	deliver done (78ms)[0m

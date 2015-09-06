@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v25  - ORU_R01_BATCH
+    Copyright (c) 1999-2004, Health Level Seven. All rights reserved.
+--><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml"
+            xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+            xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+            targetNamespace="urn:hl7-org:v2xml"
+            jaxb:version="2.0">
+	<!-- include segment definitions for version v24 -->
+	<xsd:include schemaLocation="segments.xsd"/>
+	   <xsd:include schemaLocation="ACK.xsd"/>
+	   <xsd:include schemaLocation="ORU_R01.xsd"/>
+	   <xsd:annotation>
+		      <xsd:appinfo source="urn:com.sun:encoder">
+			         <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding"
+                      namespace="urn:com.sun:encoder-hl7-1.0"
+                      style="hl7encoder-1.0"/>
+		      </xsd:appinfo>
+	   </xsd:annotation>
+	   <!-- include segment definitions for version v25 -->
+	<!-- <xsd:include schemaLocation="segments.xsd"/> -->
+	<!-- Changed on 17-Oct-2010 by Swetha_Thimojapalli (HCTM/PJ-INT) -->
+	<!-- .. message definition ORU_R01_BATCH -->
+	<xsd:complexType name="ORU_R01_BATCH.CONTENT">
+		      <xsd:sequence>
+			         <xsd:element ref="FHS" minOccurs="0"/>
+			         <xsd:element ref="BHS"/>
+			         <xsd:element ref="ORU_R01" minOccurs="0" maxOccurs="unbounded"/>
+			         <xsd:element ref="ACK" minOccurs="0" maxOccurs="unbounded"/>
+			         <xsd:element ref="BTS"/>
+			         <xsd:element ref="FTS" minOccurs="0"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+	   <xsd:element name="ORU_R01_BATCH" type="ORU_R01_BATCH.CONTENT">
+		      <xsd:annotation>
+			         <xsd:appinfo source="urn:com.sun:encoder">
+				            <top xmlns="urn:com.sun:encoder">true</top>
+			         </xsd:appinfo>
+		      </xsd:annotation>
+	   </xsd:element>
+</xsd:schema>

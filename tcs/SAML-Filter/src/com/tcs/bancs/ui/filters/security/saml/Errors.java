@@ -1,0 +1,10 @@
+package com.tcs.bancs.ui.filters.security.saml;
+
+
+public enum Errors {
+	SAML_TOKEN_BASE64_DECODING_FAILED, 
+	SAML_TOKEN_DECRYPTION_FAILED, 
+	SAML_TOKEN_VALIDATION_FAILED, 
+	CONTEXT_DATA_EXTRACTION_FAILED, 
+	INTERNAL_ERROR
+}

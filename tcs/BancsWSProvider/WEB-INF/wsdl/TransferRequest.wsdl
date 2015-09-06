@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions targetNamespace="http://tcs.com/bancs/morganstanley/payments/transfers" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tcs.com/bancs/morganstanley/payments/transfers" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/response" schemaLocation="TransferRequest_schema1.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/selectAccount/request" schemaLocation="TransferRequest_schema2.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/response" schemaLocation="TransferRequest_schema3.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/loadTransfer/request" schemaLocation="TransferRequest_schema4.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/fault" schemaLocation="TransferRequest_schema5.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/response" schemaLocation="TransferRequest_schema6.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers/createTransfer/request" schemaLocation="TransferRequest_schema7.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://tcs.com/bancs/morganstanley/payments/transfers" schemaLocation="TransferRequest_schema8.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="loadTransfer">
+    <part name="parameters" element="tns:loadTransfer"/>
+  </message>
+  <message name="loadTransferResponse">
+    <part name="parameters" element="tns:loadTransferResponse"/>
+  </message>
+  <message name="TransferRequestException">
+    <part name="fault" element="ns1:TransferRequestFault" xmlns:ns1="http://tcs.com/bancs/morganstanley/payments/transfers/fault"/>
+  </message>
+  <message name="selectAccount">
+    <part name="parameters" element="tns:selectAccount"/>
+  </message>
+  <message name="selectAccountResponse">
+    <part name="parameters" element="tns:selectAccountResponse"/>
+  </message>
+  <message name="createTransfer">
+    <part name="parameters" element="tns:createTransfer"/>
+  </message>
+  <message name="createTransferResponse">
+    <part name="parameters" element="tns:createTransferResponse"/>
+  </message>
+  <portType name="TransferRequest">
+    <operation name="loadTransfer">
+      <input message="tns:loadTransfer"/>
+      <output message="tns:loadTransferResponse"/>
+      <fault name="TransferRequestException" message="tns:TransferRequestException"/>
+    </operation>
+    <operation name="selectAccount">
+      <input message="tns:selectAccount"/>
+      <output message="tns:selectAccountResponse"/>
+      <fault name="TransferRequestException" message="tns:TransferRequestException"/>
+    </operation>
+    <operation name="createTransfer">
+      <input message="tns:createTransfer"/>
+      <output message="tns:createTransferResponse"/>
+      <fault name="TransferRequestException" message="tns:TransferRequestException"/>
+    </operation>
+  </portType>
+</definitions>
+

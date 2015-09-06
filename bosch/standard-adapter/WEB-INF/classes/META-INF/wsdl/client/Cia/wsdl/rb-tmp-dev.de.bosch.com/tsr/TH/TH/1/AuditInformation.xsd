@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Stefan Burkhardt (Robert Bosch GmbH) --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://th.bosch.com/audit"
+            targetNamespace="http://th.bosch.com/audit"
+            elementFormDefault="qualified">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 2117</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:complexType name="AuditInformationType">
+		      <xsd:sequence>
+			         <xsd:element name="healthCareProfessionalLogin" type="xsd:string"/>
+			         <xsd:element name="healthCareProfessionalId" type="xsd:string"/>
+			         <xsd:element name="healthCareProfessionalOrganization" type="xsd:string"/>
+			         <xsd:element name="healthCareProfessionalName" type="xsd:string"/>
+		      </xsd:sequence>
+	   </xsd:complexType>
+</xsd:schema>

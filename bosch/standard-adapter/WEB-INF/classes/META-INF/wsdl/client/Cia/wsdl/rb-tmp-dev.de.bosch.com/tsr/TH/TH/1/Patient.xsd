@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://th.bosch.com/patient"
+        xmlns:basic="http://th.bosch.com/basictypes"
+        xmlns:aud="http://th.bosch.com/audit"
+        targetNamespace="http://th.bosch.com/patient"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3068</documentation>
+	   </annotation>
+	   <!-- Import used namespaces -->
+	<import namespace="http://th.bosch.com/basictypes"
+            schemaLocation="../../TH/1/BasicTypes.xsd"/>
+	   <import namespace="http://th.bosch.com/audit"
+            schemaLocation="../../TH/1/AuditInformation.xsd"/>	
+	   <!-- DEPRECATED: This type definition is superseded by "basic:BtpIdType"
+         (I didn't remove it to avoid updating all the service interfaces and service units...)-->
+	<simpleType name="BtpId">
+		      <annotation>
+			         <documentation>The btp id of a patient along with a version used for optimistic locking purposes.</documentation>
+		      </annotation>
+		      <restriction base="basic:BtpIdType"/>
+	   </simpleType>
+	   <complexType name="VersionedBtpIdType">
+		      <annotation>
+			         <documentation>The btp id of a patient along with a version used for optimistic locking purposes.</documentation>
+		      </annotation>
+		      <simpleContent>
+			         <extension base="tns:BtpId">
+				            <attribute name="version" type="basic:VersionType" use="required"/>
+			         </extension>
+		      </simpleContent>
+	   </complexType>
+	   <!--  *************************************************************** PausePeriod type definition  ************************************************************** -->
+	<complexType name="PausePeriodType">
+		      <sequence>
+			         <element name="pauseDate" type="xsd:dateTime"/>
+			         <element name="resumeDate" type="xsd:dateTime" minOccurs="0"/>
+			         <element name="pauseId" type="xsd:long" minOccurs="0">
+				            <annotation>
+					               <documentation>The internal pauseId that is created by the system.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="pauseAuditInformation" type="aud:AuditInformationType">
+				            <annotation>
+					               <documentation>Information about the person who pauses the Provisioning.</documentation>
+				            </annotation>
+			         </element>
+			         <element name="resumeAuditInformation" type="aud:AuditInformationType" minOccurs="0">
+				            <annotation>
+					               <documentation>Information about the person who resumes the Provisioning.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>	
+</schema>

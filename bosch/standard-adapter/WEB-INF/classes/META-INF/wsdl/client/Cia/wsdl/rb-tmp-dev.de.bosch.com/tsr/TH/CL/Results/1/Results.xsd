@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Balasubramanian Azhagappan (Robert Bosch GmbH) --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://tmp.bosch.com/cl/results"
+            xmlns:bsc="http://tmp.bosch.com/cl/basictypes"
+            xmlns:cmn="http://th.bosch.com/patientrecord/common"
+            xmlns:pr="http://th.bosch.com/patientrecord"
+            xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            targetNamespace="http://tmp.bosch.com/cl/results"
+            elementFormDefault="qualified"
+            jxb:version="2.0">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3228</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:include schemaLocation="../../../CL/1/Chunking.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/patientrecord"
+                schemaLocation="../../../TH/PatientRecord/1/SubmitResults.xsd"/>
+	   <xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../../CL/1/BasicTypes.xsd"/>
+	   <xsd:import namespace="http://th.bosch.com/patientrecord/common"
+                schemaLocation="../../../TH/PatientRecord/1/SubmitResultsCommon.xsd"/>
+	   <!-- ############### Filter ############### -->
+	<xsd:complexType name="AbstractFilter" abstract="true">
+		      <xsd:annotation>
+			         <xsd:documentation>A generic filter type used as a base Type for all filters.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:complexType>
+	   <xsd:complexType name="DateFilter">
+		      <xsd:annotation>
+			         <xsd:documentation>A filter for querying results by date regardless of their type.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractFilter">
+				            <xsd:sequence>
+					               <xsd:element name="patientId" type="xsd:string">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Indicates that only results for the patient identified by this id should be obtained.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+				            </xsd:sequence>
+				            <xsd:attribute name="from" type="xsd:dateTime" use="optional">
+					               <xsd:annotation>
+						                  <xsd:documentation>Obtained results should not be older than this date (including this date). If omitted all results for the patient are returned.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+				            <xsd:attribute name="to" type="xsd:dateTime" use="optional">
+					               <xsd:annotation>
+						                  <xsd:documentation>Obtained results should not be newer than this date (including this date). If omitted all results for the patient are returned.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="SurveyResponseFilter">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that only responses to surveys should be get.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:DateFilter"/>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:simpleType name="MeterMeasurementMode">
+		      <xsd:annotation>
+			         <xsd:documentation>Enumerates modes in which meter measurements may be taken.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="deviceReported"/>
+			         <xsd:enumeration value="selfReported"/>
+			         <xsd:enumeration value="careManagerReported"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:complexType name="MeterMeasurementFilter">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that only meter measurements, collected using the passed mode, should be get.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:DateFilter">
+				            <xsd:attribute name="mode" type="tns:MeterMeasurementMode" use="optional">
+					               <xsd:annotation>
+						                  <xsd:documentation>The mode in which meter measurements which should be obtained should have been taken.
+
+If omitted, all meter measurements are returned, regardless of their mode.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:complexType name="IdFilter">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that results should be obtained by an id.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="tns:AbstractFilter">
+				            <xsd:choice>
+					               <xsd:element name="id" type="tns:ResultId" maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Indicates that results should be obtained by their "primary" identifier, denoted by the "id" element.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="uploadId" type="tns:UploadId" maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Indicates that results should be obtained by the id of the upload they belonged to.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+				            </xsd:choice>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <!-- ############### Messages  ############### -->
+	<xsd:simpleType name="ResultsType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates the type of an result, be it a session or a vital sign.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="session"/>
+			         <xsd:enumeration value="meterMeasurement"/>
+			         <xsd:enumeration value="vitalSign"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:element name="addResult">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:AbstractResult">
+					               <xsd:annotation>
+						                  <xsd:documentation>The result which should be added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="addResults">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:AbstractResult" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The results which should be added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findResults">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="filter" type="tns:AbstractFilter">
+					               <xsd:annotation>
+						                  <xsd:documentation>Defines filter criteria for the results to be obtained.
+
+Supported filters:
+- MeterMeasurementFilter
+- SurveyResponseFilter
+- IdFilter: The IdFilter is restricted to survey responses and meter measurements. In addition to that, all IDs  must reference results of the same type!)</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="queryInfo" type="tns:QueryInfo" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.
+
+If omitted, the default chunk size is used and the first chunk is returned.
+
+All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="addCareManagerEnteredMeterMeasurement">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:MeterMeasurement">
+					               <xsd:annotation>
+						                  <xsd:documentation>The care manager entered vital sign which should be added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="addCareManagerEnteredMeterMeasurementReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:MeterMeasurement">
+					               <xsd:annotation>
+						                  <xsd:documentation>The care manager entered vital sign which was added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findResultsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="chunkInfo" type="tns:ChunkInfo">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.
+
+If omitted, the default chunk size is used and the first chunk is returned.
+
+All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:choice>
+					               <xsd:element name="surveyResponse" type="pr:SurveyResponse" minOccurs="0"
+                                 maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Requested survey responses, depending on the filter in the request.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+					               <xsd:element name="meterMeasurement" type="pr:MeterMeasurement" minOccurs="0"
+                                 maxOccurs="unbounded">
+						                  <xsd:annotation>
+							                     <xsd:documentation>Requested meter measurings, depending on the filter in the request.</xsd:documentation>
+						                  </xsd:annotation>
+					               </xsd:element>
+				            </xsd:choice>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:complexType name="ResultId">
+		      <xsd:annotation>
+			         <xsd:documentation>Identifies a result using its id and type.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:attribute name="id" type="xsd:long" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The id identifying the result.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="type" type="tns:ResultsType" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The type of the result.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:complexType name="UploadId">
+		      <xsd:annotation>
+			         <xsd:documentation>Identifies results by their upload id.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:attribute name="uploadId" type="xsd:long" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The id identifying the upload whose results should be obtained.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+		      <xsd:attribute name="type" type="tns:ResultsType" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The type of the result contained in the upload.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <xsd:element name="getResult">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="id" type="tns:ResultId">
+					               <xsd:annotation>
+						                  <xsd:documentation>An id of a result (either a survey response or a meter measurement) which should be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getResultReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="result" type="pr:AbstractResult">
+					               <xsd:annotation>
+						                  <xsd:documentation>The requested result.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="findAssessments">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="filter" type="tns:AbstractFilter">
+					               <xsd:annotation>
+						                  <xsd:documentation>Defines filter criteria for the results whose assessments should be obtained.
+
+Supported filters:
+MeterMeasurementFilter
+SurveyResponseFilter</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="queryInfo" type="tns:QueryInfo" minOccurs="0">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.
+
+If omitted, the default chunk size is used and the first chunk is returned.
+
+All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:complexType name="ResultAssessment">
+		      <xsd:complexContent>
+			         <xsd:extension base="pr:Assessment">
+				            <xsd:attribute name="patientTimezone" use="required">
+					               <xsd:annotation>
+						                  <xsd:documentation>The POSIX name of the patient timezone in effect when the result for which this assessment was made was collected.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+				            <xsd:attribute name="resultCollectionTime" type="xsd:dateTime" use="required">
+					               <xsd:annotation>
+						                  <xsd:documentation>The collection time of the result for which this assessment was made.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:element name="findAssessmentsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="chunkInfo" type="tns:ChunkInfo">
+					               <xsd:annotation>
+						                  <xsd:documentation>Information about the expected chunking of results.
+
+If omitted, the default chunk size is used and the first chunk is returned.
+
+All results are returned by their identifier in descending order.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="assessment" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The requested assessments.</xsd:documentation>
+					               </xsd:annotation>
+					               <xsd:complexType>
+						                  <xsd:complexContent>
+							                     <xsd:extension base="tns:ResultAssessment">
+								                        <xsd:attribute name="resultId" use="required">
+									                           <xsd:annotation>
+										                              <xsd:documentation>The id identifying the result.</xsd:documentation>
+									                           </xsd:annotation>
+								                        </xsd:attribute>
+								                        <xsd:attribute name="resultType" type="tns:ResultsType" use="required">
+									                           <xsd:annotation>
+										                              <xsd:documentation>The type of the result which was assessed: Either a survey response or a vital sign.</xsd:documentation>
+									                           </xsd:annotation>
+								                        </xsd:attribute>
+							                     </xsd:extension>
+						                  </xsd:complexContent>
+					               </xsd:complexType>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="addReview">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="id" type="tns:ResultId">
+					               <xsd:annotation>
+						                  <xsd:documentation>The id of the result for which a review should be added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="review" type="tns:WorkplaceReview">
+					               <xsd:annotation>
+						                  <xsd:documentation>The user who made the review.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="addReviewReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="review" type="tns:WorkplaceReview">
+					               <xsd:annotation>
+						                  <xsd:documentation>The review which was added.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getReviews">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="id" type="tns:ResultId">
+					               <xsd:annotation>
+						                  <xsd:documentation>The id of the result whose reviews should be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getReviewsReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="resultReview" type="tns:WorkplaceReview" maxOccurs="unbounded">
+					               <xsd:annotation>
+						                  <xsd:documentation>The requested reviews.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="determineResultPeriodBoundary">
+		      <xsd:complexType>
+			         <xsd:attribute name="patientId">
+				            <xsd:annotation>
+					               <xsd:documentation>The id of the patient whose result period boundary should be obtained.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:attribute>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="determineResultPeriodBoundaryReply">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="firstSessionResponseDate" type="xsd:dateTime" nillable="true">
+					               <xsd:annotation>
+						                  <xsd:documentation>The date when the patient answered the very first session.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="firstSessionPatientTimezone" type="xsd:string">
+					               <xsd:annotation>
+						                  <xsd:documentation>The POSIX name of the patient time zone in effect when the first session was taken.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="mostRecentSessionResponseDate" type="xsd:dateTime" nillable="true">
+					               <xsd:annotation>
+						                  <xsd:documentation>The date when the patient answered the most recent session.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="mostRecentSessionPatientTimezone" type="xsd:string">
+					               <xsd:annotation>
+						                  <xsd:documentation>The POSIX name of the patient time zone in effect when the most recent session was taken.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="firstVitalSignDate" type="xsd:dateTime" nillable="true">
+					               <xsd:annotation>
+						                  <xsd:documentation>The date when the very first vital sign was collected from the patient.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="firstVitalSignPatientTimezone" type="xsd:string">
+					               <xsd:annotation>
+						                  <xsd:documentation>The POSIX name of the patient time zone in effect when the first vital sign was taken.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="mostRecentVitalSignDate" type="xsd:dateTime" nillable="true">
+					               <xsd:annotation>
+						                  <xsd:documentation>The date when the most recent vital sign was collected from the patient.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+				            <xsd:element name="mostRecentVitalSignPatientTimezone" type="xsd:string">
+					               <xsd:annotation>
+						                  <xsd:documentation>The POSIX name of the patient time zone in effect when the most recent vital sign was taken.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getLatestResponseDate">
+		      <xsd:complexType>
+			         <xsd:sequence>
+				            <xsd:element name="patientId" type="xsd:string">
+					               <xsd:annotation>
+						                  <xsd:documentation>The id of a patient whose latest response date should be obtained.</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:element>
+			         </xsd:sequence>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <xsd:element name="getLatestResponseDateReply">
+		      <xsd:complexType>
+			         <xsd:attribute name="patientId" type="xsd:string" use="required">
+				            <xsd:annotation>
+					               <xsd:documentation>The id of the patient, denoting to which patient this date belongs.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:attribute>
+			         <xsd:attribute name="patientTimezone" type="xsd:string" use="required">
+				            <xsd:annotation>
+					               <xsd:documentation>The POSIX name of the patient time zone in effect when the latest session was taken.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:attribute>
+			         <xsd:attribute name="date" type="xsd:dateTime" use="required">
+				            <xsd:annotation>
+					               <xsd:documentation>The date of the most recently answered session.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:attribute>
+		      </xsd:complexType>
+	   </xsd:element>
+	   <!--  ###############Type definitions specific to Results service  ############### -->
+	<xsd:complexType name="CareManagerReportedMode">
+		      <xsd:annotation>
+			         <xsd:documentation>Holds information for care-manager-reported mode.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="pr:Mode">
+				            <xsd:group ref="tns:WorkplaceUserProperties"/>
+				            <xsd:attribute name="reportedDate" type="xsd:dateTime" use="required">
+					               <xsd:annotation>
+						                  <xsd:documentation>the datetime when the vitalsign was reported by the CareManager (in UTC)</xsd:documentation>
+					               </xsd:annotation>
+				            </xsd:attribute>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <xsd:group name="WorkplaceUserProperties">
+		      <xsd:annotation>
+			         <xsd:documentation>All properties making up a workplace user.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:element name="userId" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The id of the user.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="login" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The user's login name.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="organizationId" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The id of the organization to which the user belongs.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+			         <xsd:element name="name" type="xsd:string" minOccurs="0">
+				            <xsd:annotation>
+					               <xsd:documentation>The user's name.</xsd:documentation>
+				            </xsd:annotation>
+			         </xsd:element>
+		      </xsd:sequence>
+	   </xsd:group>
+	   <xsd:complexType name="WorkplaceReview">
+		      <xsd:annotation>
+			         <xsd:documentation>A review of a result done through the Workplace.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:sequence>
+			         <xsd:group ref="tns:WorkplaceUserProperties"/>
+		      </xsd:sequence>
+		      <xsd:attribute name="reviewTime" type="xsd:dateTime" use="required">
+			         <xsd:annotation>
+				            <xsd:documentation>The date when the review was made.</xsd:documentation>
+			         </xsd:annotation>
+		      </xsd:attribute>
+	   </xsd:complexType>
+	   <!-- ############### Faults  ############### -->
+	<xsd:complexType name="EnrollmentPeriodViolationError">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the timestamp of a passed result refers to a date when the patient was not enrolled.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:complexContent>
+			         <xsd:extension base="bsc:BaseErrorType">
+				            <xsd:sequence>
+					               <xsd:element name="enrolledDate">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The patient's most recent enrolled date.</xsd:documentation>
+						                  </xsd:annotation>
+						                  <xsd:complexType>
+							                     <xsd:simpleContent>
+								                        <xsd:extension base="xsd:dateTime">
+									                           <xsd:attribute name="violated" type="xsd:boolean" use="required">
+										                              <xsd:annotation>
+											                                 <xsd:documentation>Indicates if the patient's enrolled date has been violated.</xsd:documentation>
+										                              </xsd:annotation>
+									                           </xsd:attribute>
+								                        </xsd:extension>
+							                     </xsd:simpleContent>
+						                  </xsd:complexType>
+					               </xsd:element>
+					               <xsd:element name="disenrolledDate">
+						                  <xsd:annotation>
+							                     <xsd:documentation>The patient's most recent disenrolled date.</xsd:documentation>
+						                  </xsd:annotation>
+						                  <xsd:complexType>
+							                     <xsd:simpleContent>
+								                        <xsd:extension base="xsd:dateTime">
+									                           <xsd:attribute name="violated" type="xsd:boolean" use="required">
+										                              <xsd:annotation>
+											                                 <xsd:documentation>Indicates if the patient's disenrolled date has been violated.</xsd:documentation>
+										                              </xsd:annotation>
+									                           </xsd:attribute>
+								                        </xsd:extension>
+							                     </xsd:simpleContent>
+						                  </xsd:complexType>
+					               </xsd:element>
+				            </xsd:sequence>
+			         </xsd:extension>
+		      </xsd:complexContent>
+	   </xsd:complexType>
+	   <!-- invalidResultDataError and userNotAuthorizedError need to be redefined here, since the TSR requires them to be in the target namespace for WSDL generation -->
+	<xsd:element name="invalidResultDataError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that processing the passed results failed because of invalid data.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="userNotAuthorizedError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that user is not authorized to perform the operation.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="unknownResultError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that a passed id cannot be related to a result.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="invalidFilterError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the passed filter could not be applied.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="noResultsError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that there are no results for the requested patient. This can be due to the patient not being existent or the patient is existent but has not sent any results yet.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="duplicateResultError" type="bsc:BaseErrorType">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that a result, passed for adding, was a duplicate.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+	   <xsd:element name="enrollmentPeriodViolationError" type="tns:EnrollmentPeriodViolationError">
+		      <xsd:annotation>
+			         <xsd:documentation>Indicates that the timestamp of a passed result refers to a date when the patient was not enrolled.</xsd:documentation>
+		      </xsd:annotation>
+	   </xsd:element>
+</xsd:schema>

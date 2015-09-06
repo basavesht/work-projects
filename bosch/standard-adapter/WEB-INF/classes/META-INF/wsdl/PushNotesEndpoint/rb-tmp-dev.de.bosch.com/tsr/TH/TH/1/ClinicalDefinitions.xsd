@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Tim Chambers (HEALTH HERO NETWORK) --><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://th.bosch.com/clinicaldefinitions"
+            targetNamespace="http://th.bosch.com/clinicaldefinitions"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+	   <xsd:annotation>
+		      <xsd:documentation>Revision: 3198</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:annotation>
+		      <xsd:documentation>
+			The types declared in this schema are meant to be reused in service specific schematas by importing its target namespace.
+		</xsd:documentation>
+	   </xsd:annotation>
+	   <xsd:simpleType name="RiskType">
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="None"/>
+			         <xsd:enumeration value="Low"/>
+			         <xsd:enumeration value="Medium"/>
+			         <xsd:enumeration value="High"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="UnitOfMeasureType">
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="pounds"/>
+			         <xsd:enumeration value="kilograms"/>
+			         <xsd:enumeration value="mg/dL"/>
+			         <xsd:enumeration value="mmol/L"/>
+			         <xsd:enumeration value="mmHg"/>
+			         <xsd:enumeration value="l/min"/>
+			         <xsd:enumeration value="degrees F"/>
+			         <xsd:enumeration value="degrees C"/>
+			         <xsd:enumeration value="percent"/>
+			         <xsd:enumeration value="beats per minute"/>
+			         <xsd:enumeration value="seconds"/>
+			         <xsd:enumeration value="breaths per minute"/>
+			         <xsd:enumeration value="percent oxygen"/>
+			         <xsd:enumeration value="INR"/>
+			         <xsd:enumeration value="kc"/>
+			         <xsd:enumeration value="steps"/>
+			         <xsd:enumeration value="pain scale"/>
+			         <xsd:enumeration value="Liters"/>
+			         <xsd:enumeration value="insulin units"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="LoincCodeType">
+		      <xsd:annotation>
+			         <xsd:documentation>Enumerates all used LOINC codes. </xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="14743-9"/>
+			         <xsd:enumeration value="8480-6"/>
+			         <xsd:enumeration value="8462-4"/>
+			         <xsd:enumeration value="29463-7"/>
+			         <xsd:enumeration value="19935-6"/>
+			         <xsd:enumeration value="20564-1"/>
+			         <xsd:enumeration value="8310-5"/>
+			         <xsd:enumeration value="8867-4"/>
+			         <xsd:enumeration value="34714-6"/>
+			         <xsd:enumeration value="20157-4"/>
+			         <xsd:enumeration value="5964-2"/>
+			         <xsd:enumeration value="9279-1"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="MeterFlagEnumType">
+		      <xsd:annotation>
+			         <xsd:documentation>meter flags.</xsd:documentation>
+		      </xsd:annotation>
+		      <xsd:restriction base="xsd:token">
+			         <xsd:enumeration value="HighReading"/>
+			         <xsd:enumeration value="LowReading"/>
+			         <xsd:enumeration value="PreMealReading"/>
+			         <xsd:enumeration value="PostMealReading"/>
+			         <xsd:enumeration value="ControlReading"/>
+			         <xsd:enumeration value="MeterBatteryLow"/>
+			         <xsd:enumeration value="MeterClockError"/>
+			         <xsd:enumeration value="MeterOperatingTemperatureExceeded"/>
+			         <xsd:enumeration value="InvalidReading"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+	   <xsd:simpleType name="VitalSignValueType">
+		      <xsd:restriction base="xsd:decimal">
+			         <xsd:maxExclusive value="1000"/>
+			         <xsd:totalDigits value="5"/>
+			         <xsd:fractionDigits value="2"/>
+		      </xsd:restriction>
+	   </xsd:simpleType>
+</xsd:schema>

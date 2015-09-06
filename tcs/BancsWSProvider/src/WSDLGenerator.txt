@@ -1,0 +1,1 @@
+wsgen -wsdl:Xsoap1.2 -extension -s D:\test\ -cp D:\test com.tcs.bancs.services.provider.payments.transfers.implementations.TransferRequestImpl -verbose -d d:/test/

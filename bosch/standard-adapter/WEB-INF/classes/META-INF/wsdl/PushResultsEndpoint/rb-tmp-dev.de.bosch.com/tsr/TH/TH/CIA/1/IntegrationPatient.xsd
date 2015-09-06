@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:basic="http://tmp.bosch.com/cl/basictypes"
+        xmlns:tns="http://th.bosch.com/integrationpatient"
+        targetNamespace="http://th.bosch.com/integrationpatient"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3118</documentation>
+	   </annotation>
+	   <!-- Import used namespaces -->
+	<xsd:import namespace="http://tmp.bosch.com/cl/basictypes"
+                schemaLocation="../../../CL/1/BasicTypes.xsd"/>
+	   <annotation>
+		      <documentation>The Patient type as it has been defined by Integration Adapter.</documentation>
+	   </annotation>
+	   <!-- Custom type definitions -->
+	<element name="integrationPatient" type="tns:IntegrationPatientType"/>
+	   <complexType name="IntegrationPatientType">
+		      <sequence>
+			         <element name="identifier" type="basic:IdentifierType"/>
+			         <element name="internalOrganizationId" type="string"/>
+			         <element name="externalOrganizationId" type="string"/>
+			         <element name="firstName" type="string"/>
+			         <element name="lastName" type="string"/>
+			         <element name="middleInitial" type="string" minOccurs="0"/>
+			         <element name="birthDate" type="date" minOccurs="0"/>
+			         <element name="gender" type="tns:GenderType" minOccurs="0"/>
+			         <element name="language" type="basic:SurrogateKeyType" minOccurs="0"/>
+			         <element name="address" type="tns:AddressType" maxOccurs="unbounded"/>
+			         <element name="email" type="string" minOccurs="0" maxOccurs="1"/>
+			         <element name="phoneNumber" type="tns:PhoneNumberType" maxOccurs="unbounded"/>
+			         <element name="monitoringEntity" type="tns:MonitoringEntityType"/>
+			         <element name="consultNumber" type="string"/>
+			         <element name="status" type="tns:StatusType"/>
+			         <element name="isIntegration" type="xsd:boolean"/>
+			         <element name="latestResponseDate" type="date" minOccurs="0"/>
+			         <element name="effectiveStateChangeDate" type="date" minOccurs="0"/>
+                     <element name="height" type="xsd:decimal" minOccurs="0"/>
+                     <element name="weight" type="xsd:decimal" minOccurs="0"/>
+                     <element name="primaryLanguage" type="tns:LanguageType" minOccurs="0"/>
+                     <element name="secondaryLanguage" type="tns:LanguageType" minOccurs="0"/>
+                     <element name="enrollmentHistoryList" type="tns:Enrollment" minOccurs="0"
+                     maxOccurs="unbounded"/>
+					       <element name="timeZone" type="basic:SurrogateKeyType" minOccurs="0"/>
+					       <element name="btpId" type="string"/>
+		      </sequence>
+	   </complexType>
+	   <!-- Gender -->
+	<simpleType name="GenderType">
+		      <annotation>
+			         <documentation>Male/Female</documentation>
+		      </annotation>
+		      <restriction base="string">
+			         <enumeration value="male"/>
+			         <enumeration value="female"/>
+		      </restriction>
+	   </simpleType>
+	   <!-- Address -->
+	<complexType name="AddressType">
+		      <annotation>
+			         <documentation>An address type contains a houseNumber, a list of streets, a city, a state, a zip code and a country.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="houseNumber" type="string" minOccurs="0"/>
+			         <element name="street" type="string" minOccurs="0" maxOccurs="unbounded"/>
+			         <element name="city" type="string" minOccurs="0"/>
+			         <element name="state" type="string" minOccurs="0"/>
+			         <element name="zipCode" type="string" minOccurs="0"/>
+			         <element name="country" type="string" minOccurs="0"/>
+		      </sequence>
+	   </complexType>
+	   <!-- Monitoring Entity -->
+	<complexType name="MonitoringEntityType">
+		      <sequence>
+			         <element name="monitoringEntityId" type="string"/>
+			         <element name="accountEntityId" type="string"/>
+			         <element name="accountEntityUserName" type="string"/>
+			         <element name="accountEntityOrgId" type="int"/>
+			         <element name="firstName" type="string"/>
+			         <element name="lastName" type="string"/>
+			         <element name="middleInitial" type="string" minOccurs="0"/>
+			         <element name="birthDate" type="date" minOccurs="0"/>
+			         <element name="gender" type="basic:GenderType" minOccurs="0"/>
+		      </sequence>
+	   </complexType>
+	   <!-- Email -->
+	<complexType name="EmailType">
+		      <sequence>
+			         <element name="address" type="string"/>
+			         <element name="emailAccessibility" type="tns:EmailAccessibilityType"/>
+		      </sequence>
+	   </complexType>
+	   <simpleType name="EmailAccessibilityType">
+		      <restriction base="string">
+			         <enumeration value="HOME"/>
+			         <enumeration value="WORK"/>
+		      </restriction>
+	   </simpleType>
+	   <!-- Phone -->
+	<complexType name="PhoneNumberType">
+		      <sequence>
+			         <element name="number" type="string"/>
+			         <element name="line" type="tns:PhoneConnectionType"/>
+		      </sequence>
+	   </complexType>
+	   <simpleType name="PhoneConnectionType">
+		      <restriction base="string">
+			         <enumeration value="MOBILE"/>
+			         <enumeration value="FIXED"/>
+		      </restriction>
+	   </simpleType>
+	   <!-- Patient Status -->
+	<simpleType name="StatusType">
+		      <restriction base="string">
+			         <enumeration value="ENROLLED"/>
+			         <enumeration value="DISENROLLED"/>
+			         <enumeration value="PAUSED"/>
+		      </restriction>
+	   </simpleType>
+
+    <!-- Language -->
+	<complexType name="LanguageType">
+		      <annotation>
+			         <documentation>Langauge Information contains a code,name,localized Name,tag,falg.</documentation>
+		      </annotation>
+		      <sequence>
+                    <xsd:element name="code" type="basic:SurrogateKeyType" nillable="false"/>
+                    <xsd:element name="name" type="xsd:string" nillable="true"/>
+                    <xsd:element name="localizedName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="tag" type="xsd:string" nillable="true"/>
+                    <xsd:element name="flag" type="xsd:int" nillable="true"/>
+            </sequence>
+	   </complexType>
+
+     <complexType name="Enrollment">
+        <sequence>
+            <element name="enrollmentId" type="basic:SurrogateKeyType" minOccurs="0"/>
+            <element name="enrollmentReasonId" type="basic:SurrogateKeyType" minOccurs="0"/>
+            <element name="enrollmentReasonName" type="string" minOccurs="0"/>
+            <element name="consultNumber" type="string" minOccurs="0"/>
+            <element name="consentDate" type="date" minOccurs="0"/>
+            <element name="auditInfo" type="tns:AuditInfo"/>
+            <element name="creatorOrganizationId" type="basic:SurrogateKeyType" minOccurs="0"/>
+        </sequence>
+    </complexType>
+
+     <complexType name="AuditInfo">
+        <sequence>
+            <element name="userId" type="basic:SurrogateKeyType" minOccurs="0"/>
+            <element name="userName" type="basic:NameType" minOccurs="0"/>
+            <element name="userLoginName" type="xsd:string" minOccurs="0"/>
+            <element name="userOrganizationId" type="xsd:string" minOccurs="0"/>
+            <element name="externalUser" type="tns:ExternalEntityInfoType" minOccurs="0"/>
+            <element name="timestamp" type="date"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="ExternalEntityInfoType">
+        <sequence>
+            <element name="externalEntityId" type="basic:SurrogateKeyType" minOccurs="0"/>
+            <element name="externalEntityName" type="basic:NameType" minOccurs="0"/>
+            <element name="accountEntityId" type="basic:SurrogateKeyType" minOccurs="0"/>
+            <element name="foreignId" type="xsd:string" minOccurs="0"/>
+        </sequence>
+        <attribute name="versionCount" type="basic:VersionType" use="optional"/>
+    </complexType>
+
+</schema>

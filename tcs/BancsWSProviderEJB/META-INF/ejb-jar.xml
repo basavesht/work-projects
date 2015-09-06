@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+	<display-name>BancsWSProviderEJB</display-name>
+	<enterprise-beans>
+		<session>
+			<ejb-name>BancsWorkflowRouter</ejb-name>
+			<ejb-class>com.tcs.bancs.gateway.iiop.ejb.BancsWorkflowRouterBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Bean</transaction-type>
+			<resource-ref>
+				<res-ref-name>jdbc/MMDatasource</res-ref-name>
+				<res-type>javax.sql.DataSource</res-type>
+			</resource-ref>
+			<env-entry>
+				<env-entry-name>workflow-executor</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+				<env-entry-value>D:/profiles/WAS7/AppSrv32Bit/msapp/Mobile/config/workflow-executor.xml</env-entry-value>
+			</env-entry>
+		</session>
+	</enterprise-beans>
+</ejb-jar>

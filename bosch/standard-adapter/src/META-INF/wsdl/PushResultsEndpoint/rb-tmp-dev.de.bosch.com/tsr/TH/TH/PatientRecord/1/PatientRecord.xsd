@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (x64) (http://www.altova.com) by Steffen Reimann (Robert Bosch GmbH) --><schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://th.bosch.com/patientrecord"
+        xmlns:basic="http://th.bosch.com/basictypes"
+        xmlns:cmn="http://th.bosch.com/patientrecord/common"
+        xmlns:patient="http://th.bosch.com/patient"
+        xmlns:program="http://th.bosch.com/program"
+        targetNamespace="http://th.bosch.com/patientrecord"
+        elementFormDefault="qualified">
+	   <annotation>
+		      <documentation>Revision: 3349</documentation>
+	   </annotation>
+	   <!-- *************************************************************** Import used namespaces ************************************************************************************** -->
+	<include schemaLocation="./SubmitResults.xsd"/>
+	   <import namespace="http://th.bosch.com/basictypes"
+            schemaLocation="../../../TH/1/BasicTypes.xsd"/>
+	   <import namespace="http://th.bosch.com/patient"
+            schemaLocation="../../../TH/1/Patient.xsd"/>
+	   <import namespace="http://th.bosch.com/program"
+            schemaLocation="../../../TH/1/Program.xsd"/>
+	   <import namespace="http://th.bosch.com/patientrecord/common"
+            schemaLocation="./SubmitResultsCommon.xsd"/>
+	   <!--  *************************************************************** Referenced element definitions  ****************************************************************************** -->
+	<complexType name="PatientInfoType">
+		      <sequence>
+			         <element name="firstName" type="string"/>
+			         <element name="lastName" type="string"/>
+			         <element name="age" type="integer"/>
+			         <element name="gender" type="string"/>
+			         <element name="weight" type="decimal"/>
+			         <element name="caremanagerName" type="string"/>
+			         <element name="caremanagerPhone" type="string"/>
+			         <element name="physicianName" type="string"/>
+			         <element name="physisicanPhone" type="string"/>
+		      </sequence>
+	   </complexType>
+	   <!--  *************************************************************** getPatient message element definitions  ************************************************************** -->
+	<element name="getPatient">
+		      <annotation>
+			         <documentation>Request message for getting the patient information.</documentation>
+		      </annotation>
+		      <complexType>
+			         <sequence>
+				            <element name="btpId" type="patient:BtpId">
+					               <annotation>
+						                  <documentation>The unique BTP ID to identify an existing patient.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="getPatientReply">
+		      <annotation>
+			         <documentation>Reply message for getting the patient information.</documentation>
+		      </annotation>
+		      <complexType>
+			         <annotation>
+				            <documentation>The patient information.</documentation>
+			         </annotation>
+			         <sequence>
+				            <element name="patientInfo" type="tns:PatientInfoType"/>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <!-- ############### Submit Messages  ############### -->
+	<element name="submitResult">
+		      <complexType>
+			         <sequence>
+				            <element name="result" type="tns:AbstractResult">
+					               <annotation>
+						                  <documentation>The result which should be added.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <element name="submitResults">
+		      <complexType>
+			         <sequence>
+				            <element name="result" type="tns:AbstractResult" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>The results which should be added.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <!-- ############### Non-Responder  ############### -->
+	<element name="submitNonResponderResult">
+		      <annotation>
+			         <documentation>Notify that the patient didn't respond any clinical content until now</documentation>
+		      </annotation>
+		      <complexType>
+			         <sequence>
+				            <element name="btpId" type="patient:BtpId">
+					               <annotation>
+						                  <documentation>The unique BTP ID to identify an existing patient.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="reasons" type="cmn:AbstractNonResponderReason" maxOccurs="unbounded">
+					               <annotation>
+						                  <documentation>A list of reasons that triggered this non responder message.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <!-- ############### Program name Updated  ############### -->
+	<element name="submitProgramNameUpdate">
+		      <annotation>
+			         <documentation>Notify that the program name has been updated.</documentation>
+		      </annotation>
+		      <complexType>
+			         <sequence>
+				            <element name="programId" type="program:IdType">
+					               <annotation>
+						                  <documentation>The ID of the program that has been renamed.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="oldName" type="xsd:string" minOccurs="0">
+					               <annotation>
+						                  <documentation>Optionally, the old name of the program.</documentation>
+					               </annotation>
+				            </element>
+				            <element name="newName" type="xsd:string">
+					               <annotation>
+						                  <documentation>The new name of the program.</documentation>
+					               </annotation>
+				            </element>
+			         </sequence>
+		      </complexType>
+	   </element>
+	   <!--  *************************************************************** Basic Error message definition  ************************************************************************************* -->
+	<complexType name="PatientErrorType">
+		      <annotation>
+			         <documentation>Base ErrorType for patient errors.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="basic:BaseErrorType"/>
+		      </complexContent>
+	   </complexType>
+	   <!--  *************************************************************** Error message definition  ************************************************************************************* -->
+	<element name="noSuchPatientError">
+		      <annotation>
+			         <documentation>Error message that is sent if the patient does not exist.</documentation>
+		      </annotation>
+		      <complexType>
+			         <complexContent>
+				            <extension base="tns:PatientErrorType"/>
+			         </complexContent>
+		      </complexType>
+	   </element>
+</schema>

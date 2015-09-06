@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://th.bosch.com/basictypes"
+        targetNamespace="http://th.bosch.com/basictypes"
+        elementFormDefault="qualified"
+        version="1.0">
+	   <annotation>
+		      <documentation>Revision: 3214</documentation>
+		      <documentation>The types declared in this schema are meant to be reused in other schemata by importing its target namespace.</documentation>
+	   </annotation>
+	   <simpleType name="SurrogateKeyType">
+		      <restriction base="long">
+			         <totalDigits value="18"/>
+		      </restriction>
+	   </simpleType>
+	   <element name="version" type="tns:VersionType"/>
+	   <simpleType name="VersionType">
+		      <restriction base="long">
+			         <totalDigits value="18"/>
+		      </restriction>
+	   </simpleType>
+	   <attributeGroup name="VersionedSurrogateKey">
+		      <annotation>
+			         <documentation>surrogate key with version attributes used for optimistic locking purposes.</documentation>
+		      </annotation>
+		      <attribute name="id" type="tns:SurrogateKeyType" use="required"/>
+		      <attribute name="version" type="tns:VersionType" use="required"/>
+	   </attributeGroup>
+	   <complexType name="BasicValueType">
+		      <sequence>
+			         <any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+		      </sequence>
+		      <attribute name="codeSystem" type="xsd:string" use="required"/>
+		      <attribute name="code" type="xsd:string" use="required"/>
+		      <attribute name="value" type="xsd:string" use="optional"/>
+	   </complexType>
+	   <simpleType name="BtpIdType">
+		      <annotation>
+			         <documentation>The "Bosch Telemedicine Platform (BTP) ID" used for patients and organizations.</documentation>
+		      </annotation>
+		      <restriction base="string">
+			         <pattern value="[a-zA-Z0-9]{8}"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="PositiveInt">
+		      <restriction base="xsd:int">
+			         <minInclusive value="1"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="NonEmptyString">
+		      <restriction base="xsd:string">
+			         <minLength value="1"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="CountryCode">
+		      <annotation>
+			         <documentation>2 Letter code for countries as defined by ISO 3166-1 alpha-2 .</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <length value="2"/>
+		      </restriction>
+	   </simpleType>
+	   <simpleType name="StateCode">
+		      <annotation>
+			         <documentation>3 Letter code for country subdivisions as defined as second part of a ISO-3166-2 code.</documentation>
+		      </annotation>
+		      <restriction base="xsd:string">
+			         <maxLength value="3"/>
+		      </restriction>
+	   </simpleType>
+	   <!-- common error types -->
+	<complexType name="BaseErrorType">
+		      <annotation>
+			         <documentation>The BaseErrorType is the root type of all business errors in the TMP. All business faults defined by services should either use BaseErrorType or use types, which extend BaseErrorType.</documentation>
+		      </annotation>
+		      <sequence>
+			         <element name="message" type="string">
+				            <annotation>
+					               <documentation>The description of the error.</documentation>
+				            </annotation>
+			         </element>
+		      </sequence>
+	   </complexType>
+	   <complexType name="InvalidDataError">
+		      <annotation>
+			         <documentation>Indicates that some input data was invalid.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:BaseErrorType">
+				            <sequence>
+					               <element name="invalidData" type="xsd:anyType" maxOccurs="unbounded">
+						                  <annotation>
+							                     <documentation>Any fragments of invalid input data.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="InsufficientDataError">
+		      <annotation>
+			         <documentation>Indicates that some mandatory input is missing.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:BaseErrorType">
+				            <sequence>
+					               <element name="missingData" type="xsd:string" maxOccurs="unbounded">
+						                  <annotation>
+							                     <documentation>Indicates the missing data element.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="ResourceNotFoundError" abstract="true">
+		      <annotation>
+			         <documentation>Common base type for various "not found" errors.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:BaseErrorType">
+				            <sequence>
+					               <element name="resourceType" type="xsd:string" minOccurs="0">
+						                  <annotation>
+							                     <documentation>Type of the resource that could not be found.</documentation>
+						                  </annotation>
+					               </element>
+					               <element name="resourceKey" type="xsd:anyType" minOccurs="0">
+						                  <annotation>
+							                     <documentation>The key that could not be found.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="OrganizationNotFoundError">
+		      <complexContent>
+			         <extension base="tns:ResourceNotFoundError"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="OrganizationNotActiveError">
+		      <complexContent>
+			         <extension base="tns:BaseErrorType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="OptimisticLockingErrorType">
+		      <annotation>
+			         <documentation>Indicates an optimistic locking violation while persisting data.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:BaseErrorType"/>
+		      </complexContent>
+	   </complexType>
+	   <complexType name="UserNotAuthorizedError">
+		      <annotation>
+			         <documentation>Indicates that the logged-in user is not authorized to perform an operation.</documentation>
+		      </annotation>
+		      <complexContent>
+			         <extension base="tns:BaseErrorType">
+				            <sequence>
+					               <element name="userName" type="xsd:string" minOccurs="0">
+						                  <annotation>
+							                     <documentation>Name of the logged-in user.</documentation>
+						                  </annotation>
+					               </element>
+				            </sequence>
+			         </extension>
+		      </complexContent>
+	   </complexType>
+</schema>

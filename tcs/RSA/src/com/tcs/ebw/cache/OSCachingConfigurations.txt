@@ -1,0 +1,43 @@
+1. Class for Cashing the DB Data :
+	com.tcs.ebw.cache.CasheObject
+
+2. Syntex to Fetch the Data from Cache/DB : 
+	com.tcs.ebw.cache.CasheObject objCashed= new com.tcs.ebw.cache.CasheObject();
+	Object data = objCashed.getCasheData(<<ServiceId>>);
+	
+	Example for Holidaylist
+	com.tcs.ebw.cache.CasheObject objHolidayList = new com.tcs.ebw.cache.CasheObject();
+	Object holidays = objHolidayList.getCasheData("getHolidaysList");
+
+3. Statement.properties
+	Create the query for service Id   as Channels Standard in the property file and update it for ServiceDefMaster.
+
+4. ebw.properties
+	Object_Cache_Type=OpenSymphonyCache
+	Configure this key in the ebw.properties, else the method will fetch the data from DB each time.
+
+5. Set System Property for
+	com.tcs.bfsarch.caching.PROPERTIES_PATH
+	ApplDataDir
+
+	Fro Example in Tomcat, edit the catalina.bat as
+	-Dcom.tcs.bfsarch.caching.PROPERTIES_PATH="caching.properties" (File name)
+	-DApplDataDir="D:\dev1\Tomcat 4.1\webapps\MoneyMovement"     (Application folder path)
+
+6. Create an Folder in MoneyMovement as InputFiles
+	Keep these two file in MoneyMovement/InputFiles
+	caching.properties
+	oscache.properties
+
+7. In caching.properties set these key values
+	com.tcs.bfsarch.caching.ImplClass=com.tcs.bfsarch.caching.OSCacheManagerImpl
+	com.tcs.bfsarch.caching.properties=oscache.propertie
+
+8.  In oscache.properties set this key values  (Expire time in Seconds)
+	cache.refresh.period=60  
+
+NOTE :
+1. No different Expire time for the different object is possible from this class.
+2. How it will work with clustered envirornment needs to check.
+
+	
