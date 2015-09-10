@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:batch="http://www.springframework.org/schema/batch"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="
+          http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <beans:import resource="classpath:config/applicationContext-job.xml"/>
+
+    <!-- The Central store for information regarding a given job -->
+	<beans:bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry"/>   
+    <beans:bean id="jobRegistryBeanPostProcessor" class="org.springframework.batch.core.configuration.support.JobRegistryBeanPostProcessor"
+				p:jobRegistry-ref="jobRegistry"/>
+				
+	<!-- Launch Spring-Batch jobs -->			
+    <beans:bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher"
+                p:jobRepository-ref="jobRepository"/>
+                
+    <!-- Persistence and Retrieval for the domain models surrounding jobs, steps etc. -->
+	<beans:bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+				p:dataSource-ref="dataSource"
+				p:transactionManager-ref="transactionManager"
+				p:isolationLevelForCreate="ISOLATION_DEFAULT"/>
+						
+	<beans:bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
+                p:dataSource-ref="dataSource" />
+
+	<!-- Custom ItemReader/ItemProcessor/ItemWriter definition for task-->
+    <beans:bean id="taskItemReader" class="com.bosch.pat.batch.reader.TaskItemReader" scope="step"/>
+    <beans:bean id="taskItemProcessor" class="com.bosch.pat.batch.processor.TaskItemProcessor" scope="step"/>
+    <beans:bean id="taskItemWriter" class="com.bosch.pat.batch.writer.TaskItemWriter" scope="step"/>
+ 	<beans:bean id="taskRetryItemWriter" class="com.bosch.pat.batch.writer.RetryableTaskItemWriter" scope="step"/>
+ 	
+ 	<!-- Custom ItemReader/ItemProcessor/ItemWriter definition for auto system review-->
+ 	<beans:bean id="autoSystemReviewReader" class="com.bosch.pat.batch.reader.AutoSystemReviewReader" scope="step"/>
+    <beans:bean id="autoSystemReviewProcessor" class="com.bosch.pat.batch.processor.AutoSystemReviewProcessor" scope="step"/>
+    <beans:bean id="autoSystemReviewWriter" class="com.bosch.pat.batch.writer.AutoSystemReviewWriter" scope="step"/>
+ 	<beans:bean id="autoSystemReviewRetryWriter" class="com.bosch.pat.batch.writer.RetryableAutoSystemReviewWriter" scope="step"/>
+
+ 	<!-- Custom ItemReader/ItemProcessor/ItemWriter definition for auto user lock-->
+ 	<beans:bean id="autoUserLockReader" class="com.bosch.pat.batch.reader.AutoUserLockReader" scope="step"/>
+    <beans:bean id="autoUserLockProcessor" class="com.bosch.pat.batch.processor.AutoUserLockProcessor" scope="step"/>
+    <beans:bean id="autoUserLockWriter" class="com.bosch.pat.batch.writer.AutoUserLockWriter" scope="step"/>
+ 	<beans:bean id="autoUserLockRetryWriter" class="com.bosch.pat.batch.writer.RetryableAutoUserLockWriter" scope="step"/>
+ 	
+</beans:beans>
+
+

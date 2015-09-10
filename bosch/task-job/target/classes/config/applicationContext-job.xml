@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+          http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<beans:description>Job configuration for a Spring Batch application
+	</beans:description>
+
+	<batch:job id="taskJob" job-repository="jobRepository">
+		<batch:step id="step1">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="taskItemReader" 
+							 processor="taskItemProcessor"
+							 writer="taskRetryItemWriter"
+							 commit-interval="${step1.commit.interval}"  
+							 retry-limit="${step1.retry.limit}" >
+					<batch:retryable-exception-classes>
+								<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException"/>
+								<batch:include class="com.bosch.pat.exception.TaskProcessException"/>
+					</batch:retryable-exception-classes>
+					<batch:listeners>
+								 <batch:listener ref="noWorkFoundStepExecutionListener" after-step-method="afterStep" />
+								 <batch:listener ref="needMoreProcessingStepExecutionListener" after-step-method="afterStep" />
+					</batch:listeners>
+				</batch:chunk>
+			</batch:tasklet>
+			<batch:next on="NEEDS_MORE_PROCESSING" to="step1"/>
+			<batch:fail on="FAILED" />
+			<batch:end on="*" />
+		</batch:step>
+		<batch:listeners>
+					<batch:listener ref="sendEmailAckListener" after-job-method="afterJob"/>
+		</batch:listeners>
+	</batch:job>
+	
+	<batch:job id="autoSystemReview" job-repository="jobRepository">
+		<batch:step id="step2">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="autoSystemReviewReader" 
+							 processor="autoSystemReviewProcessor"
+							 writer="autoSystemReviewRetryWriter"
+							 commit-interval="${step1.commit.interval}"  
+							 retry-limit="${step1.retry.limit}" >
+					<batch:retryable-exception-classes>
+								<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException"/>
+					</batch:retryable-exception-classes>
+					<batch:listeners>
+								<batch:listener ref="noWorkFoundStepExecutionListener" after-step-method="afterStep" />
+					</batch:listeners>
+				</batch:chunk>
+			</batch:tasklet>
+			<batch:fail on="FAILED" />
+			<batch:end on="*" />
+		</batch:step>
+	</batch:job>
+	
+	<batch:job id="autoUserLock" job-repository="jobRepository">
+		<batch:step id="step3">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="autoUserLockReader" 
+							 processor="autoUserLockProcessor"
+							 writer="autoUserLockRetryWriter"
+							 commit-interval="${step1.commit.interval}"  
+							 retry-limit="${step1.retry.limit}" >
+					<batch:retryable-exception-classes>
+								<batch:include class="org.springframework.dao.DeadlockLoserDataAccessException"/>
+					</batch:retryable-exception-classes>
+					<batch:listeners>
+								<batch:listener ref="noWorkFoundStepExecutionListener" after-step-method="afterStep" />
+					</batch:listeners>
+				</batch:chunk>
+			</batch:tasklet>
+			<batch:fail on="FAILED" />
+			<batch:end on="*" />
+		</batch:step>
+	</batch:job>
+	
+	<!-- Listener's -->
+	<beans:bean id="noWorkFoundStepExecutionListener" class="com.bosch.pat.batch.listener.NoWorkFoundStepExecutionListener"/>
+	<beans:bean id="sendEmailAckListener" class="com.bosch.pat.batch.listener.SendJobStatusAckListener"/>
+    <beans:bean id="needMoreProcessingStepExecutionListener" class="com.bosch.pat.batch.listener.NeedMoreProcessingStepExecutionListener"/>
+
+    <!-- 1. Setting the backOffPolicy will wait 1 seconds (1000 milliseconds) before the initial retry.
+    	 2. Subsequent attempts will double that value (the growth is influenced by the multiplier).
+    	 3. It’ll continue until the maxInterval is met -->
+	<beans:bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
+		<beans:property name="backOffPolicy">
+			<beans:bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy"
+				p:initialInterval="5" p:maxInterval="10" p:multiplier="2" />
+		</beans:property>
+	</beans:bean>
+
+</beans:beans>

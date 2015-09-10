@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+</head>
+
+<style>
+table {
+	margin: 1em;
+	border-collapse: collapse;
+}
+
+td, th {
+	padding: .1em;
+	border: 1px #ccc solid;
+}
+
+thead {
+	background: #0489B1;
+}
+</style>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Attributes</th>
+				<th>Value</th>
+			</tr>
+		</thead>
+		<tbody>
+		    <tr>
+				<td><b>Job Run Id</b></td>
+				<td>&nbsp;${job_run_id}</td>
+			</tr>
+			<tr>
+				<td><b>Job Name</b></td>
+				<td>&nbsp;${job_name}</td>
+			</tr>
+			<tr>
+				<td><b>Job Start Time</b></td>
+				<td>&nbsp;${job_start_time}</td>
+			</tr>
+			<tr>
+				<td><b>Job End Time</b></td>
+				<td>&nbsp;${job_end_time}</td>
+			</tr>
+			<tr>
+				<td><b>Job Status</b></td>
+				<td>&nbsp;${job_status}</td>
+			</tr>
+			<tr>
+				<td><b>Job Step Status</b></td>
+				<td>&nbsp;${job_step_status}</td>
+			</tr>
+			<tr>
+				<td><b>Job Read Count</b></td>
+				<td>&nbsp;${job_read_count}</td>
+			</tr>
+			<tr>
+				<td><b>Job Skip Count</b></td>
+				<td>&nbsp;${job_skip_count}</td>
+			</tr>
+			<tr>
+				<td><b>Job Query Parameters</b></td>
+				<td>&nbsp;${job_parameters}</td>
+			</tr>
+			<tr>
+				<td><b>Job Failure Exceptions</b></td>
+				<td>&nbsp;${job_failure_exceptions}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
